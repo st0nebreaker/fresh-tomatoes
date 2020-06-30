@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieContainer from './MovieContainer';
+import MovieContainer from '../MovieContainer/MovieContainer';
 import './App.css';
 
 class App extends Component {
@@ -7,6 +7,7 @@ class App extends Component {
 		super();
 		this.state = {
 			movies: [],
+			error: ''
 		}
 	}
 
@@ -20,6 +21,7 @@ class App extends Component {
 					});
 				}
 			)
+			.catch(error => this.setState({error: error}))
 	}
 
 	render() {
@@ -30,6 +32,7 @@ class App extends Component {
 					{/*TODO: add logo*/}
 					<button>Login</button>
 				</header>
+				{this.state.error && <h2>{this.state.error}</h2>}
 				<MovieContainer movies={this.state.movies} />
 			</div>
 		);
