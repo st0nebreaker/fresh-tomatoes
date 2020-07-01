@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import MovieContainer from '../MovieContainer/MovieContainer';
+//import MovieContainer from '../MovieContainer/MovieContainer';
 import './App.css';
+import { Route } from 'react-router-dom';
+import GuestHome from '../GuestHome/GuestHome';
+import LoginPage from '../LoginPage/LoginPage';
 
 class App extends Component {
 	constructor() {
@@ -21,7 +24,7 @@ class App extends Component {
 					});
 				},
 				(error) => {
-					this.sfetState({
+					this.setState({
 						error
 					})
 				}
@@ -29,19 +32,14 @@ class App extends Component {
 	}
 
 	render() {
-		if (this.state.error) {
-			return <div className="error">Error: {this.state.error.message}</div>
-		} else {
-			return (
-				<div className="App">
-					<header className="App-header">
-						<h2>Decaying Ketchup</h2>
-						<button>Login</button>
-					</header>
-					<MovieContainer movies={this.state.movies} />
-				</div>
-			)
-		}
+		return (
+			<div className="App">
+				<Route exact path="/" render={() => <GuestHome appState={this.state}/>} />
+				<Route exact path="/login" render={() => <LoginPage />} />
+
+
+			</div>
+		)
 	}
 }
 
