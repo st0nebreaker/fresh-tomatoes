@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import MovieContainer from '../MovieContainer/MovieContainer';
+//import MovieContainer from '../MovieContainer/MovieContainer';
 import './App.css';
+import { Route } from 'react-router-dom';
+import GuestHome from '../GuestHome/GuestHome';
+import LoginPage from '../LoginPage/LoginPage';
 
 class App extends Component {
 	constructor() {
@@ -31,13 +34,10 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<header className="App-header">
-					<h2>Decaying Ketchup</h2>
-					<button>Login</button>
-				</header>
-				{this.state.error && <div className="error">Error: {this.state.error.message}</div>}
+				<Route exact path="/" render={() => <GuestHome appState={this.state}/>} />
+				<Route exact path="/login" render={() => <LoginPage />} />
 
-				<MovieContainer movies={this.state.movies} />
+
 			</div>
 		)
 	}
