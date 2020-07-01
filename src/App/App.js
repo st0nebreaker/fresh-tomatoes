@@ -21,7 +21,7 @@ class App extends Component {
 					});
 				},
 				(error) => {
-					this.sfetState({
+					this.setState({
 						error
 					})
 				}
@@ -29,19 +29,17 @@ class App extends Component {
 	}
 
 	render() {
-		if (this.state.error) {
-			return <div className="error">Error: {this.state.error.message}</div>
-		} else {
-			return (
-				<div className="App">
-					<header className="App-header">
-						<h2>Decaying Ketchup</h2>
-						<button>Login</button>
-					</header>
-					<MovieContainer movies={this.state.movies} />
-				</div>
-			)
-		}
+		return (
+			<div className="App">
+				<header className="App-header">
+					<h2>Decaying Ketchup</h2>
+					<button>Login</button>
+				</header>
+				{this.state.error && <div className="error">Error: {this.state.error.message}</div>}
+
+				<MovieContainer movies={this.state.movies} />
+			</div>
+		)
 	}
 }
 
