@@ -7,7 +7,7 @@ class App extends Component {
 		super();
 		this.state = {
 			movies: [],
-			error: ''
+			error: null
 		}
 	}
 
@@ -19,23 +19,29 @@ class App extends Component {
 					this.setState({
 						movies: result.movies
 					});
+				},
+				(error) => {
+					this.sfetState({
+						error
+					})
 				}
 			)
-			.catch(error => this.setState({error: error}))
 	}
 
 	render() {
-		return (
-			<div className="App">
-				<header className="App-header">
-					<h2>Decaying Ketchup</h2>
-					{/*TODO: add logo*/}
-					<button>Login</button>
-				</header>
-				{this.state.error && <h2>{this.state.error}</h2>}
-				<MovieContainer movies={this.state.movies} />
-			</div>
-		);
+		if (this.state.error) {
+			return <div className="error">Error: {this.state.error.message}</div>
+		} else {
+			return (
+				<div className="App">
+					<header className="App-header">
+						<h2>Decaying Ketchup</h2>
+						<button>Login</button>
+					</header>
+					<MovieContainer movies={this.state.movies} />
+				</div>
+			)
+		}
 	}
 }
 
