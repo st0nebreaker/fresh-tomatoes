@@ -12,7 +12,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movie')
+		fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
 			.then(res => res.json())
 			.then(
 				(result) => {
@@ -21,7 +21,7 @@ class App extends Component {
 					});
 				},
 				(error) => {
-					this.setState({
+					this.sfetState({
 						error
 					})
 				}
