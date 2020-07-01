@@ -28,11 +28,10 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.error {
+  text-align: center;
+  color: red;
+  font-size: 40px;
+  background-color: grey;
+  width: 40%;
 }
