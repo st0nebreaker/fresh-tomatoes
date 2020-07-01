@@ -7,9 +7,9 @@ const GuestHome = ({ appState }) => {
         <>
             <header className="App-header">
                 <h2>Decaying Ketchup</h2>
-			    <Link to={`/login`}>
-                    <button>Login</button>
-                </Link>
+			    	<Link to={`/login`}>
+              <button>Login</button>
+          	</Link>
             </header>
             {appState.error && <div className="error">Error: {appState.error.message}</div> }
             <MovieContainer movies={appState.movies} />

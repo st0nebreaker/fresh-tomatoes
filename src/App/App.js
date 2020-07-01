@@ -36,8 +36,6 @@ class App extends Component {
 			<div className="App">
 				<Route exact path="/" render={() => <GuestHome appState={this.state}/>} />
 				<Route exact path="/login" render={() => <LoginPage />} />
-
-
 			</div>
 		)
 	}
