@@ -12,7 +12,7 @@ const GuestHome = ({ appState }) => {
 				</Link>
 				</header>
 				{appState.error && <div className="error">Error: {appState.error.message}</div> }
-				<MovieContainer movies={appState.movies} />
+				<MovieContainer appState={appState} />
 			</>
     )
 }
