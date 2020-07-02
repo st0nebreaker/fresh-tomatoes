@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import GuestHome from '../GuestHome/GuestHome';
+import UserHome from '../UserHome/UserHome';
 import LoginPage from '../LoginPage/LoginPage';
 
 class App extends Component {
@@ -10,8 +11,17 @@ class App extends Component {
 		super();
 		this.state = {
 			movies: [],
-			error: null
+			error: null,
+			userID: null,
+			userName: null
 		}
+	}
+
+	changeUserId = (givenUser) => {
+		this.setState({
+			userID: givenUser.id,
+			userName: givenUser.userName
+		})
 	}
 
 	componentDidMount() {
@@ -34,8 +44,17 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Route exact path="/" render={() => <GuestHome appState={this.state}/>} />
-				<Route exact path="/login" render={() => <LoginPage />} />
+				<Route exact path="/" render={() => <GuestHome appState={this.state} />} />
+				<Route 
+					exact 
+					path="/login" 
+					render={() => <LoginPage changeUserId={this.changeUserId} />} 
+				/>
+				<Route 
+					exact 
+					path='/users/:id' 
+					render={() => <UserHome appState={this.state} />} 
+				/>
 			</div>
 		)
 	}

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom'
 
 class LoginPage extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			email: '',
 			password: '',
@@ -30,15 +30,12 @@ class LoginPage extends Component {
 			})
 				.then(response => response.json())
 				.then((data) => {
-					this.setState({id: data.user.id, userName: data.user.name})
+					this.setState({id: data.user.id, userName: data.user.name}, () => {
+						this.props.changeUserId(this.state);
+					});
+					this.props.history.push(`/users/${this.state.id}`);
 				})
 				.catch(err => console.log('Request failure: ', err));
-		}
-		
-    clickHandler() {
-        //is email charlie
-        //is password qwerty?
-        // then make fetch post request
 		}
 		
     render() {
@@ -82,4 +79,4 @@ class LoginPage extends Component {
     }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
