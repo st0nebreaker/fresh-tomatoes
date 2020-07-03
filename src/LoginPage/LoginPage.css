@@ -1,21 +1,7 @@
-img {
-	height: 400px;
-}
-
-.movie-card {
-	display: flex;
-	flex-direction: column;
-	border: 1px solid black;
-	margin: 10px;
-	margin-bottom: 25px;
-	padding: 3px;
-	width: 300px;
-}
-
-.rating-button {
-	box-shadow:inset 0px 1px 6px 0px #91b8b3;
+.login-btn {
+	box-shadow:inset 0px 1px 6px 0px #496662;
 	background:linear-gradient(to bottom, #1a4136 5%, #2e4141 100%);
-	background-color:#2d6657;
+	background-color:#2e4141;
 	border-radius:5px;
 	border:1px solid #566963;
 	display:inline-block;
@@ -31,11 +17,16 @@ img {
 	margin-right: 10px;
 }
 
-.rating-button:hover {
+.login-btn:hover {
 	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
 	background-color:#6c7c7c;
 }
-.rating-button:active {
+.login-btn:active {
 	position:relative;
 	top:1px;
+}
+
+.invalid-login {
+	color: red;
+	font-size: 10px;
 }

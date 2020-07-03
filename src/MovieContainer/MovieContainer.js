@@ -15,7 +15,7 @@ const MovieContainer = ({appState, usersRatings}) => {
 					poster={movie.poster_path}
 					id={movie.id}
 					key={i}
-					usersRatings={usersRatings}
+					userRatings={appState.userRatings}
 				/>
 			)
 		})
