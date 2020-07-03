@@ -13,7 +13,8 @@ class App extends Component {
 			movies: [],
 			error: null,
 			userID: null,
-			userName: null
+			userName: null,
+			userRatings: null
 		}
 	}
 
@@ -41,6 +42,16 @@ class App extends Component {
 			)
 	}
 
+	getUsersRatings = (id) => {
+		fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/60/ratings`)
+			.then(res => res.json())
+			.then(data => {
+				this.setState({ userRatings: data.ratings })
+			})
+			.catch(error => console.log(error.message))
+
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -57,7 +68,7 @@ class App extends Component {
 				<Route 
 					exact 
 					path='/users/:id' 
-					render={() => <UserHome appState={this.state} />} 
+					render={() => <UserHome appState={this.state} getUsersRatings = {this.getUsersRatings}  />} 
 				/>
 			</div>
 		)

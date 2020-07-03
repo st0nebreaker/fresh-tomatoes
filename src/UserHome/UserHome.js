@@ -2,17 +2,8 @@ import React, { Component } from "react";
 import MovieContainer from '../MovieContainer/MovieContainer';
 import { Link } from "react-router-dom";
 
-const UserHome = ({appState}) => {
-
-	let usersRatings = [];
-
-	fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-	.then(res => res.json())
-	.then(
-		(result) => { usersRatings = result.ratings }
-		)
-		.catch(error => console.log(error.message))
-		
+const UserHome = ({ appState, getUsersRatings}) => {
+	getUsersRatings()
 		return (
 			<>
 				<header className="App-header">
@@ -23,10 +14,9 @@ const UserHome = ({appState}) => {
 				</Link>
 				</header>
 				{appState.error && <div className="error">Error: {appState.error.message}</div> }
-				<MovieContainer appState={appState} usersRatings={usersRatings} />
+				<MovieContainer appState={appState} />
 			</>
 	)
 	
 }
-
 export default UserHome;

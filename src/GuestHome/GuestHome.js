@@ -6,7 +6,7 @@ const GuestHome = ({ appState }) => {
     return (
 			<>
 				<header className="App-header">
-						<h2>Decaying Ketchup</h2>
+					<h2>Decaying Ketchup</h2>
 				<Link to={`/login`}>
 					<button>Login</button>
 				</Link>
