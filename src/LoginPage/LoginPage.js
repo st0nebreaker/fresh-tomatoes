@@ -6,8 +6,8 @@ class LoginPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: null,
-			password: null,
+			email: "",
+			password: "",
 			id: null,
 			userName: null,
 			error: null
@@ -18,7 +18,7 @@ class LoginPage extends Component {
 		this.setState({ [event.target.name]: event.target.value })
 	}
 
-	submitLogin(event) {
+	submitLogin = (event) => {
 		event.preventDefault();
 		fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login", {
 			method: 'POST',
@@ -40,46 +40,46 @@ class LoginPage extends Component {
 			.catch(error => this.setState({error}));
 	}
 		
-    render() {
-			return (
-				<form className="login-form"> 
-					<h2>Login</h2>
+	render() {
+		return (
+			<form className="login-form"> 
+				<h2>Login</h2>
 
-					<section className='form-input'>
-							<label htmlFor="email"> Email:</label>
-							<input 
-								type='email' 
-								aria-label="email-input" 
-								className='input' 
-								placeholder='example@turing.io' 
-								name='email' 
-								value={this.state.email}
-								onChange={event => this.handleChange(event)}
-								required
-							/>
-					</section>
+				<section className='form-input'>
+						<label htmlFor="email"> Email:</label>
+						<input 
+							type='email' 
+							aria-label="email-input" 
+							className='input' 
+							placeholder='example@turing.io' 
+							name='email' 
+							value={this.state.email}
+							onChange={event => this.handleChange(event)}
+							required
+						/>
+				</section>
 
-					<section className='form-input'>
-							<label htmlFor="password">Password:</label>
-							<input 
-								type='password' 
-								aria-label="password-input" 
-								className='input' 
-								placeholder='password' 
-								name='password' 
-								value={this.state.password}
-								onChange={event => this.handleChange(event)}
-								required 
-							/>
-					</section>
-					<button onClick={event => this.submitLogin(event)} className="login-btn" aria-label="submit-button">
-							Submit
-					</button>
-					{this.state.error && <div className="invalid-login">Incorrect username or password, please try again</div>}
+				<section className='form-input'>
+						<label htmlFor="password">Password:</label>
+						<input 
+							type='password' 
+							aria-label="password-input" 
+							className='input' 
+							placeholder='password' 
+							name='password' 
+							value={this.state.password}
+							onChange={event => this.handleChange(event)}
+							required 
+						/>
+				</section>
+				<button onClick={(event) => this.submitLogin(event)} className="login-btn" aria-label="submit-button">
+						Submit
+				</button>
+				{this.state.error && <div className="invalid-login">Incorrect username or password, please try again</div>}
 
-				</form>
-        )
-    }
+			</form>
+			)
+	}
 }
 
 export default withRouter(LoginPage);
