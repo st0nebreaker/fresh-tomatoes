@@ -8,6 +8,7 @@ const MovieContainer = ({appState}) => {
 	movieCards = appState.movies.map((movie, i) => {
 		return (
 			<MovieCard
+				userID={appState.userID}
 				title={movie.title}
 				averageRating={movie.average_rating}
 				poster={movie.poster_path}
