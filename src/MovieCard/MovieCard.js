@@ -1,7 +1,7 @@
 import React from 'react';
 import './MovieCard.css';
 
-const MovieCard = ({ title, averageRating, poster, id, key }) => {
+const MovieCard = ({ title, averageRating, poster, id }) => {
 	return (
 		<section className='movie-card' id={id}>
 			<h3>{title}</h3>

@@ -43,7 +43,8 @@ class App extends Component {
 	}
 
 	getUsersRatings = (id) => {
-		fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/60/ratings`)
+		const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`;
+		fetch(url)
 			.then(res => res.json())
 			.then(data => {
 				this.setState({ userRatings: data.ratings })
@@ -63,7 +64,7 @@ class App extends Component {
 				<Route 
 					exact 
 					path="/login" 
-					render={() => <LoginPage changeUserId={this.changeUserId} />} 
+					render={() => <LoginPage changeUserId={this.changeUserId} getUsersRatings={this.getUsersRatings}/>} 
 				/>
 				<Route 
 					exact 
