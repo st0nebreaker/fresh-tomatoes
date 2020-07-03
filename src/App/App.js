@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import MovieContainer from '../MovieContainer/MovieContainer';
 import './App.css';
 import { Route } from 'react-router-dom';
 import GuestHome from '../GuestHome/GuestHome';
@@ -59,7 +58,7 @@ class App extends Component {
 				<Route 
 					exact 
 					path="/" 
-					render={() => <GuestHome appState={this.state} />} 
+					render={() => <GuestHome appState={this.state} getUsersRatings = {this.getUsersRatings} />} 
 				/>
 				<Route 
 					exact 
@@ -69,7 +68,7 @@ class App extends Component {
 				<Route 
 					exact 
 					path='/users/:id' 
-					render={() => <UserHome appState={this.state} getUsersRatings = {this.getUsersRatings}  />} 
+					render={() => <UserHome appState={this.state} getUsersRatings = {this.getUsersRatings} />} 
 				/>
 			</div>
 		)
