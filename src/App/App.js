@@ -36,9 +36,7 @@ class App extends Component {
 					});
 				},
 				(error) => {
-					this.setState({
-						error
-					})
+					this.setState({error})
 				}
 			)
 	}
@@ -90,7 +88,7 @@ class App extends Component {
 					render={ ({ match }) => {
 						const { id } = match.params;
 						const movieToRender = this.state.movies.find(movie => movie.id === parseInt(id));
-						return <MovieDetails {...movieToRender} />
+						return <MovieDetails appState={this.state} {...movieToRender} />
 					}}
 				/>
 			</div>

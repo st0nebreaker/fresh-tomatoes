@@ -5,6 +5,8 @@ class MovieDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
+						userID: this.props.appState.userID,
+						error: null,
             title: null,
             releaseDate: null,
             backDrop: null,
@@ -15,7 +17,6 @@ class MovieDetails extends Component {
             runtime: null,
             tagLine: null,
             averageRating: null
-
         }
     }
 
@@ -34,30 +35,36 @@ class MovieDetails extends Component {
                     runtime: data.movie.runtime,
                     tagLine: data.movie.tagline,
                     averageRating: data.movie.average_rating
-
-                })
-            })
+								})
+							})
+							.catch(error => this.setState({error}))
     }
 
     render() {
-        return (
-            <section className="movie-details" >
-                <Link to={`/`} className='back-btn'> ◀ back </Link>
-                <h1> {this.state.title} </h1>
-                <h3> "{this.state.tagLine}" </h3>
-                <img src={this.state.backDrop} alt="movie poster"/>
-                <p> OVERVIEW: {this.state.overview} </p>
-                <p>
-
-                    Release Date: ${this.state.releaseDate}
-                    Budget: ${this.state.budget}
-                    Revenue: ${this.state.revenue}
-                    Runtime: {this.state.runtime} Minutes
-                    Genres: {this.state.genres}
-                    Average Rating: {this.state.averageRating} /10
-                </p>
-            </section>
-        )
+			if (this.state.error) {
+				return (
+					<div className="error-message">{this.state.error.message}</div>
+				)
+			} else {
+					return (
+							<section className="movie-details" >
+									{this.state.userID && <Link to={`/users/${this.state.userID}`} className='back-btn'> ◀ back </Link>}
+									{!this.state.userID && <Link to={`/`} className='back-btn'> ◀ back </Link>}
+									<h1> {this.state.title} </h1>
+									<h3> "{this.state.tagLine}" </h3>
+									<img src={this.state.backDrop} alt="movie poster"/>
+									<p> OVERVIEW: {this.state.overview} </p>
+									<p>
+											Release Date: {this.state.releaseDate}
+											Budget: ${this.state.budget}
+											Revenue: ${this.state.revenue}
+											Runtime: {this.state.runtime} Minutes
+											Genres: {this.state.genres}
+											Average Rating: {this.state.averageRating} /10
+									</p>
+							</section>
+					)
+			}
     }
 }
 
