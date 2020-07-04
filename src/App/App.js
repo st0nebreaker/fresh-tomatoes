@@ -26,31 +26,29 @@ class App extends Component {
 		})
 	}
 
-	componentDidMount() {
-		fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-			.then(res => res.json())
-			.then(
-				(result) => {
-					this.setState({
-						movies: result.movies
-					});
-				},
-				(error) => {
-					this.setState({
-						error
-					})
-				}
-			)
+	componentDidMount = () => {
+		const getAllMovies = async () => {
+			const response = await fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies');
+			const data = await response.json();
+			return data;
+		}
+
+		getAllMovies()
+			.then(data => this.setState({movies: data.movies}))
+			.catch(error => this.setState({error}));
 	}
 
 	getUsersRatings = (id) => {
 		const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`;
-		fetch(url)
-		.then(res => res.json())
-		.then(data => {
-			this.setState({ userRatings: data.ratings })
-		})
-		.catch(error => console.log(error.message))
+		const getUserRatedMovies = async () => {
+			const response = await fetch(url);
+			const data = await response.json();
+			return data;
+		}
+
+		getUserRatedMovies()
+			.then(data => this.setState({ userRatings: data.ratings }))
+			.catch(error => console.log(error.message));
 	}
 
 	render() {
@@ -81,7 +79,7 @@ class App extends Component {
 						<UserHome 
 							appState={this.state} 
 							changeUserId={this.changeUserId} 
-							getUsersRatings = {this.getUsersRatings} 
+							getUsersRatings={this.getUsersRatings} 
 						/>} 
 				/>
 				<Route
@@ -90,7 +88,7 @@ class App extends Component {
 					render={ ({ match }) => {
 						const { id } = match.params;
 						const movieToRender = this.state.movies.find(movie => movie.id === parseInt(id));
-						return <MovieDetails {...movieToRender} />
+						return <MovieDetails appState={this.state} {...movieToRender} />
 					}}
 				/>
 			</div>

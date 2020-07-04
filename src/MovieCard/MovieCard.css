@@ -39,3 +39,11 @@ img {
 	position:relative;
 	top:1px;
 }
+
+.green-rating {
+	color: green;
+}
+
+.red-rating {
+	color: red;
+}

@@ -20,17 +20,22 @@ class LoginPage extends Component {
 
 	submitLogin = (event) => {
 		event.preventDefault();
-		fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login", {
-			method: 'POST',
-			headers: {
-					'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
+		const verifyLogin = async () => {
+			const request = {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
 					email: this.state.email,
 					password: this.state.password
-			}),
-		})
-			.then(response => response.json())
+				})
+			};
+
+			const response = await fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login", request);
+			const data = await response.json();
+			return data;
+		}
+		
+		verifyLogin()
 			.then((data) => {
 				this.setState({id: data.user.id, userName: data.user.name}, () => {
 					this.props.changeUserId(this.state);	
@@ -38,7 +43,7 @@ class LoginPage extends Component {
 				this.props.getUsersRatings(data.user.id);
 				this.props.history.push(`/users/${this.state.id}`);
 			})
-			.catch(error => this.setState({error}));
+			.catch(error => this.setState({error}))
 	}
 		
 	render() {
