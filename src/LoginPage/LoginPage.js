@@ -35,6 +35,7 @@ class LoginPage extends Component {
 				this.setState({id: data.user.id, userName: data.user.name}, () => {
 					this.props.changeUserId(this.state);	
 				});
+				this.props.getUsersRatings(data.user.id);
 				this.props.history.push(`/users/${this.state.id}`);
 			})
 			.catch(error => this.setState({error}));
