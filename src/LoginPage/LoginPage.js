@@ -20,6 +20,32 @@ class LoginPage extends Component {
 
 	submitLogin = (event) => {
 		event.preventDefault();
+		// const verifyLogin = async () => {
+		// 	const settings = {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/json'
+		// 		}
+		// 	};
+		// 	try {
+		// 		const response = await fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login", settings);
+		// 		const data = await response.json();
+		// 		return data
+		// 	} catch(e) {
+		// 		return e;
+		// 	}
+		// }
+
+		// verifyLogin()
+		// 	.then((data) => {
+		// 		this.setState({id: data.user.id, userName: data.user.name}, () => {
+		// 			this.props.changeUserId(this.state);	
+		// 		});
+		// 		this.props.getUsersRatings(data.user.id);
+		// 		this.props.history.push(`/users/${this.state.id}`);
+		// 	})
+		// 	.catch(error => this.setState({error}))
+
 		fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login", {
 			method: 'POST',
 			headers: {

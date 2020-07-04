@@ -21,23 +21,28 @@ class MovieDetails extends Component {
     }
 
     componentDidMount() {
-        fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.id}`)
-            .then(response => response.json())
-            .then(data => {
-                this.setState({
-                    title: data.movie.title,
-                    releaseDate: data.movie.release_date,
-                    backDrop: data.movie.backdrop_path,
-                    overview: data.movie.overview,
-                    genres: data.movie.genres,
-                    budget: data.movie.budget,
-                    revenue: data.movie.revenue,
-                    runtime: data.movie.runtime,
-                    tagLine: data.movie.tagline,
-                    averageRating: data.movie.average_rating
-								})
-							})
-							.catch(error => this.setState({error}))
+			const fetchOneMovie = async () => {
+				const response = await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.id}`)
+				const data = await response.json();
+				return data;
+			}
+
+			fetchOneMovie()
+				.then(data => {
+					this.setState({
+							title: data.movie.title,
+							releaseDate: data.movie.release_date,
+							backDrop: data.movie.backdrop_path,
+							overview: data.movie.overview,
+							genres: data.movie.genres,
+							budget: data.movie.budget,
+							revenue: data.movie.revenue,
+							runtime: data.movie.runtime,
+							tagLine: data.movie.tagline,
+							averageRating: data.movie.average_rating
+					})
+				})
+				.catch(error => this.setState({error}));
     }
 
     render() {
