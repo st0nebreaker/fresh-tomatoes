@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import GuestHome from '../GuestHome/GuestHome';
 import UserHome from '../UserHome/UserHome';
 import LoginPage from '../LoginPage/LoginPage';
+import MovieDetails from '../MovieDetails/MovieDetails';
 
 class App extends Component {
 	constructor() {
@@ -82,6 +83,15 @@ class App extends Component {
 							changeUserId={this.changeUserId} 
 							getUsersRatings = {this.getUsersRatings} 
 						/>} 
+				/>
+				<Route
+					exact
+					path='/movie_details/:id'
+					render={ ({ match }) => {
+						const { id } = match.params;
+						const movieToRender = this.state.movies.find(movie => movie.id === parseInt(id));
+						return <MovieDetails {...movieToRender} />
+					}}
 				/>
 			</div>
 		)
