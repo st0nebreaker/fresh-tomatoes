@@ -79,7 +79,7 @@ class App extends Component {
 						<UserHome 
 							appState={this.state} 
 							changeUserId={this.changeUserId} 
-							getUsersRatings = {this.getUsersRatings} 
+							getUsersRatings={this.getUsersRatings} 
 						/>} 
 				/>
 				<Route

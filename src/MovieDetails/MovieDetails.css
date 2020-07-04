@@ -1,0 +1,22 @@
+img {
+	position: relative;
+	z-index: 4;
+	object-fit: cover;
+}
+
+h1 {
+
+}
+
+h3 {
+
+}
+
+ul {
+	text-align: left;
+}
+
+li {
+	list-style-type: none;
+	margin: 7px;
+}

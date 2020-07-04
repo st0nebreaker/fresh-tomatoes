@@ -13,7 +13,11 @@ const MovieCard = ({ userID, title, averageRating, poster, id, userRatings }) =>
 	return (
 		<section className='movie-card' id={id}>
 			<h3>{title}</h3>
-			<p>{foundRating ? `You Rated ${foundRating}` : `Average Rating ${Math.floor(averageRating)}`}/10</p>
+			<p className={averageRating > 5 ? 'green-rating' : 'red-rating'}>
+				{foundRating ? 
+					`You Rated ${foundRating}` : 
+					`Average Rating ${Math.floor(averageRating)}`}/10
+			</p>
 			<Link to={`/movie_details/${id}`} >
 				<img src={poster} alt='movie poster' />
 			</Link>

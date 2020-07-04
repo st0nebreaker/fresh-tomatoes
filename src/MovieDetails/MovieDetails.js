@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import './MovieDetails.css';
 
 class MovieDetails extends Component {
     constructor(props) {
@@ -55,18 +56,22 @@ class MovieDetails extends Component {
 							<section className="movie-details" >
 									{this.state.userID && <Link to={`/users/${this.state.userID}`} className='back-btn'> ◀ back </Link>}
 									{!this.state.userID && <Link to={`/`} className='back-btn'> ◀ back </Link>}
-									<h1> {this.state.title} </h1>
-									<h3> "{this.state.tagLine}" </h3>
-									<img src={this.state.backDrop} alt="movie poster"/>
-									<p> OVERVIEW: {this.state.overview} </p>
-									<p>
-											Release Date: {this.state.releaseDate}
-											Budget: ${this.state.budget}
-											Revenue: ${this.state.revenue}
-											Runtime: {this.state.runtime} Minutes
-											Genres: {this.state.genres}
-											Average Rating: {this.state.averageRating} /10
-									</p>
+									<section className='movie-img'>
+										<section className='movie-titles'>
+											<h1> {this.state.title} </h1>
+											<h3> "{this.state.tagLine}" </h3>
+										</section>
+										<img src={this.state.backDrop} alt="movie poster"/>
+									</section>
+									<p><b>OVERVIEW:</b> {this.state.overview} </p>
+									<ul>
+											<li><b>Release Date</b>: {this.state.releaseDate}</li>
+											<li><b>Budget</b>: ${this.state.budget}</li>
+											<li><b>Revenue</b>: ${this.state.revenue}</li>
+											<li><b>Runtime</b>: {this.state.runtime} Minutes</li>
+											<li><b>Genres</b>: {this.state.genres}</li>
+											<li><b>Average Rating</b>: {Math.floor(this.state.averageRating)} /10</li>
+									</ul>
 							</section>
 					)
 			}
