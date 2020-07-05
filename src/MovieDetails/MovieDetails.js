@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import './MovieDetails.css';
+import './MovieDetails.scss';
 
 class MovieDetails extends Component {
     constructor(props) {
@@ -53,25 +53,45 @@ class MovieDetails extends Component {
 				)
 			} else {
 					return (
-							<section className="movie-details" >
-									{this.state.userID && <Link to={`/users/${this.state.userID}`} className='back-btn'> ◀ back </Link>}
-									{!this.state.userID && <Link to={`/`} className='back-btn'> ◀ back </Link>}
+						<section className='movie-detail-page'>
+							<header className="App-header">
+								<h2 className='title'>
+									<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png' className='tomato-logo' alt='tomato logo' />
+									Fresh Tomatoes
+								</h2>
+							</header>
+							{this.state.userID && <Link to={`/users/${this.state.userID}`}><button className='back-btn'>◀ BACK</button></Link>}
+							{!this.state.userID && <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>}
+							<section className="movie-detail-container" >
 									<section className='movie-img'>
 										<section className='movie-titles'>
 											<h1> {this.state.title} </h1>
-											<h3> "{this.state.tagLine}" </h3>
+											<p className='tagline'> "{this.state.tagLine}" </p>
 										</section>
-										<img src={this.state.backDrop} alt="movie poster"/>
+										<img src={this.state.backDrop} alt="movie poster" className='movie-poster' />
 									</section>
-									<p><b>OVERVIEW:</b> {this.state.overview} </p>
+									<p className='overview'>{this.state.overview} </p>
 									<ul>
-											<li><b>Release Date</b>: {this.state.releaseDate}</li>
-											<li><b>Budget</b>: ${this.state.budget}</li>
-											<li><b>Revenue</b>: ${this.state.revenue}</li>
-											<li><b>Runtime</b>: {this.state.runtime} Minutes</li>
-											<li><b>Genres</b>: {this.state.genres}</li>
-											<li><b>Average Rating</b>: {Math.floor(this.state.averageRating)} /10</li>
+											<li><div className='label'><b>Release Date</b>: </div>
+												<div className='value'>{this.state.releaseDate}</div>
+											</li>
+											<li><div className='label'><b>Budget</b>: </div>
+												<div className='value'>${this.state.budget}</div>
+											</li>
+											<li><div className='label'><b>Revenue</b>: </div>
+												<div className='value'>${this.state.revenue}</div>
+											</li>
+											<li><div className='label'><b>Runtime</b>: </div>
+												<div className='value'>{this.state.runtime} minutes</div>
+											</li>
+											<li><div className='label'><b>Genres</b>: </div>
+												<div className='value'>{this.state.genres}</div>
+											</li>
+											<li><div className='label'><b>Average Rating</b>: </div>
+												<div className='value'>{Math.floor(this.state.averageRating)} /10</div>
+											</li>
 									</ul>
+							</section>
 							</section>
 					)
 			}

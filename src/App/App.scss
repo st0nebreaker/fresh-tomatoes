@@ -1,0 +1,25 @@
+button {
+	color: white;
+	border: none;
+	background-color: red;
+	font-weight: bolder;
+	border-radius: 2px;
+	&:hover {
+		color: red;
+		background-color: white;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 40px;
+  background-color: grey;
+  width: 40%;
+}

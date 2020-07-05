@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import { Route } from 'react-router-dom';
 import GuestHome from '../GuestHome/GuestHome';
 import UserHome from '../UserHome/UserHome';

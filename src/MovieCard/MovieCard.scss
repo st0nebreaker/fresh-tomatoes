@@ -1,0 +1,44 @@
+.movie-poster {
+	height: 400px;
+}
+
+.movie-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+	margin: 10px;
+	margin-bottom: 25px;
+	padding: 3px;
+	width: 300px;
+	background-color: white;
+}
+
+h3 {
+	margin: 3px;
+	margin-top: 10px;
+}
+
+p {
+	margin: 3px;
+	font-size: 14px;
+}
+
+.green-rating {
+	color: green;
+}
+
+.red-rating {
+	color: red;
+}
+
+.rating-button {
+	color: red;
+	background-color: white;
+	border: 1px grey solid;
+	height: 3vh;
+	&:hover {
+		color: white;
+		background-color: red;
+	}
+}
