@@ -59,7 +59,7 @@ class LoginPage extends Component {
 				<h2>LOGIN</h2>
 
 				<section className='form-input'>
-						<label htmlFor="email"> Email:</label>
+						<label htmlFor="email"> Email: </label>
 						<input 
 							type='email' 
 							aria-label="email-input" 
@@ -73,7 +73,7 @@ class LoginPage extends Component {
 				</section>
 
 				<section className='form-input'>
-						<label htmlFor="password">Password:</label>
+						<label htmlFor="password">Password: </label>
 						<input 
 							type='password' 
 							aria-label="password-input" 

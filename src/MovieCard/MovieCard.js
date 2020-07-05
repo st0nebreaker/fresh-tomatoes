@@ -1,5 +1,5 @@
 import React from 'react';
-import './MovieCard.css';
+import './MovieCard.scss';
 import { Link } from 'react-router-dom';
 
 const MovieCard = ({ userID, title, averageRating, poster, id, userRatings }) => {

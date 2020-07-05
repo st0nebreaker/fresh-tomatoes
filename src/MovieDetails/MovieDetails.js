@@ -70,14 +70,26 @@ class MovieDetails extends Component {
 										</section>
 										<img src={this.state.backDrop} alt="movie poster" className='movie-poster' />
 									</section>
-									<p><b>OVERVIEW:</b> {this.state.overview} </p>
+									<p className='overview'>{this.state.overview} </p>
 									<ul>
-											<li><b>Release Date</b>: {this.state.releaseDate}</li>
-											<li><b>Budget</b>: ${this.state.budget}</li>
-											<li><b>Revenue</b>: ${this.state.revenue}</li>
-											<li><b>Runtime</b>: {this.state.runtime} Minutes</li>
-											<li><b>Genres</b>: {this.state.genres}</li>
-											<li><b>Average Rating</b>: {Math.floor(this.state.averageRating)} /10</li>
+											<li><div className='label'><b>Release Date</b>: </div>
+												<div className='value'>{this.state.releaseDate}</div>
+											</li>
+											<li><div className='label'><b>Budget</b>: </div>
+												<div className='value'>${this.state.budget}</div>
+											</li>
+											<li><div className='label'><b>Revenue</b>: </div>
+												<div className='value'>${this.state.revenue}</div>
+											</li>
+											<li><div className='label'><b>Runtime</b>: </div>
+												<div className='value'>{this.state.runtime} minutes</div>
+											</li>
+											<li><div className='label'><b>Genres</b>: </div>
+												<div className='value'>{this.state.genres}</div>
+											</li>
+											<li><div className='label'><b>Average Rating</b>: </div>
+												<div className='value'>{Math.floor(this.state.averageRating)} /10</div>
+											</li>
 									</ul>
 							</section>
 							</section>
