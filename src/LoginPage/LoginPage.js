@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
-import './LoginPage.css';
+import './LoginPage.scss';
 
 class LoginPage extends Component {
 	constructor(props) {
@@ -48,8 +48,15 @@ class LoginPage extends Component {
 		
 	render() {
 		return (
+			<section className='login-page'>
+			<header className="App-header">
+					<h2 className='title'>
+					<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png' className='tomato-logo' alt='tomato logo' />
+					Fresh Tomatoes
+					</h2>
+			</header>
 			<form className="login-form"> 
-				<h2>Login</h2>
+				<h2>LOGIN</h2>
 
 				<section className='form-input'>
 						<label htmlFor="email"> Email:</label>
@@ -78,12 +85,13 @@ class LoginPage extends Component {
 							required 
 						/>
 				</section>
-				<button onClick={(event) => this.submitLogin(event)} className="login-btn" aria-label="submit-button">
+				<button onClick={(event) => this.submitLogin(event)} className="submit-login-btn" aria-label="submit-button">
 						Submit
 				</button>
 				{this.state.error && <div className="invalid-login">Incorrect username or password, please try again</div>}
 
 			</form>
+			</section>
 			)
 	}
 }

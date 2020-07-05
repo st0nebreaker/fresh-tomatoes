@@ -19,7 +19,7 @@ const MovieCard = ({ userID, title, averageRating, poster, id, userRatings }) =>
 					`Average Rating ${Math.floor(averageRating)}`}/10
 			</p>
 			<Link to={`/movie_details/${id}`} >
-				<img src={poster} alt='movie poster' />
+				<img src={poster} alt='movie poster' className='movie-poster' />
 			</Link>
 			{foundRating && 
 				<section className="rating-button-section">
