@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, Link } from 'react-router-dom';
 import './LoginPage.scss';
+import { verifyLogin } from '../apiCalls/apiCalls';
 
 class LoginPage extends Component {
 	constructor(props) {
@@ -20,22 +21,8 @@ class LoginPage extends Component {
 
 	submitLogin = (event) => {
 		event.preventDefault();
-		const verifyLogin = async () => {
-			const request = {
-				method: 'POST',
-				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({
-					email: this.state.email,
-					password: this.state.password
-				})
-			};
-
-			const response = await fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login", request);
-			const data = await response.json();
-			return data;
-		}
 		
-		verifyLogin()
+		verifyLogin(this.state.email, this.state.password)
 			.then((data) => {
 				this.setState({id: data.user.id, userName: data.user.name}, () => {
 					this.props.changeUserId(this.state);	
