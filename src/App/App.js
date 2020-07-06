@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Route } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import GuestHome from '../GuestHome/GuestHome';
 import UserHome from '../UserHome/UserHome';
 import LoginPage from '../LoginPage/LoginPage';
@@ -9,18 +9,18 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 class App extends Component {
 	constructor() {
 		super();
-		const savedStateJSON = localStorage.getItem('localStorageState');
-		const savedState = JSON.parse(savedStateJSON);
+		let savedState = JSON.parse(localStorage.getItem('localStorageState'));
 		this.state = {
 			movies: [],
 			error: null,
 			userID: savedState.id || null,
 			userName: savedState.userName || null,
+			savedState: savedState || null,
 			userRatings: []
 		}
-		this.getUsersRatings(savedState.id) 
+		if (this.savedState) this.getUsersRatings(this.savedState.id);
 	}
-
+	
 	changeUserId = (givenUser) => {
 		this.setState({
 			userID: givenUser.id,
@@ -31,8 +31,9 @@ class App extends Component {
 		let localStorageState = JSON.stringify(givenUser);
 		localStorage.setItem('localStorageState', localStorageState);
 	}
-
+	
 	componentDidMount = () => {
+		console.log('saved state', this.state.savedState);
 		const getAllMovies = async () => {
 			const response = await fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies');
 			const data = await response.json();
@@ -42,6 +43,12 @@ class App extends Component {
 		getAllMovies()
 			.then(data => this.setState({movies: data.movies}))
 			.catch(error => this.setState({error}));
+
+		if (this.state.savedState && this.state.userID) {
+			this.props.history.push(`/users/${this.state.userID}`);
+		} else if (!this.state.userID) {
+			this.props.history.push('/');
+		}
 	}
 
 	getUsersRatings = (id) => {
@@ -66,7 +73,7 @@ class App extends Component {
 					render={() =>
 						<GuestHome
 							appState={this.state}
-							getUsersRatings = {this.getUsersRatings} 
+							getUsersRatings={this.getUsersRatings} 
 						/>} 
 				/>
 				<Route 
@@ -78,26 +85,16 @@ class App extends Component {
 							getUsersRatings={this.getUsersRatings}
 						/>} 
 				/>
-				<Route 
+				{this.state.savedState && <Route 
 					exact 
 					path='/users/:id' 
-					render={() => {
-						if (this.state.userID){
-							return <UserHome 
-								appState={this.state} 
-								changeUserId={this.changeUserId} 
-								getUsersRatings={this.getUsersRatings} 
-							/>
-						} else {
-							return <GuestHome
-						 		appState={this.state}
-								getUsersRatings={this.getUsersRatings}
-							/>
-						}
-					} 
-						
-					}
-				/>
+					render={() =>
+						<UserHome 
+							appState={this.state} 
+							changeUserId={this.changeUserId} 
+							getUsersRatings={this.getUsersRatings} 
+						/>}
+				/>}
 				<Route
 					exact
 					path='/movie_details/:id'
@@ -112,4 +109,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default withRouter(App);

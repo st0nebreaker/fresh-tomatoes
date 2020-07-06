@@ -52,14 +52,15 @@ class LoginPage extends Component {
 			<section className='login-page'>
 			<header className="App-header">
 		
-				<section className='title-section'>
+				<Link to={`/`}>
+					<section className='title-section'>
 					<h2 className='title'>
 						<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png' className='tomato-logo' alt='tomato logo' />
 					Fresh Tomatoes
 					</h2>
-				</section>
+					</section>
+				</Link>
 			</header>
-			<Link to={`/users/${this.state.userID}`}><button className='back-btn'>◀ BACK</button></Link>
 			<form className="login-form"> 
 				<h2>LOGIN</h2>
 				<section>

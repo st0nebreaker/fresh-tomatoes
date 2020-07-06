@@ -1,5 +1,8 @@
 .movie-poster {
 	width: 89%;
+	&:hover {
+		opacity: 70%;
+	}
 }
 
 .movie-card {
@@ -29,9 +32,11 @@ p {
 	background-color: white;
 	border: 1px grey solid;
 	height: 3vh;
+	margin: 2px;
 	&:hover {
 		color: white;
 		background-color: red;
+		border: none;
 	}
 }
 
@@ -43,4 +48,8 @@ p {
 .rating-section {
 	display: flex;
 	justify-content: center;
+}
+
+.user-rating-msg {
+	color: blue;
 }
