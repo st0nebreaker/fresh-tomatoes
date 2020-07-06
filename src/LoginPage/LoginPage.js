@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import './LoginPage.scss';
 
 class LoginPage extends Component {
@@ -42,6 +42,7 @@ class LoginPage extends Component {
 				});
 				this.props.getUsersRatings(data.user.id);
 				this.props.history.push(`/users/${this.state.id}`);
+		
 			})
 			.catch(error => this.setState({error}))
 	}
@@ -50,41 +51,45 @@ class LoginPage extends Component {
 		return (
 			<section className='login-page'>
 			<header className="App-header">
+		
+				<section className='title-section'>
 					<h2 className='title'>
-					<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png' className='tomato-logo' alt='tomato logo' />
+						<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png' className='tomato-logo' alt='tomato logo' />
 					Fresh Tomatoes
 					</h2>
+				</section>
 			</header>
+			<Link to={`/users/${this.state.userID}`}><button className='back-btn'>◀ BACK</button></Link>
 			<form className="login-form"> 
 				<h2>LOGIN</h2>
-
-				<section className='form-input'>
-						<label htmlFor="email"> Email: </label>
-						<input 
-							type='email' 
-							aria-label="email-input" 
-							className='input' 
-							placeholder='example@turing.io' 
-							name='email' 
-							value={this.state.email}
-							onChange={event => this.handleChange(event)}
-							required
-						/>
+				<section>
+					<section className='form-input'>
+							<input 
+								type='email' 
+								aria-label="email-input" 
+								className='input' 
+								placeholder='email' 
+								name='email' 
+								value={this.state.email}
+								onChange={event => this.handleChange(event)}
+								required
+							/>
 				</section>
 
-				<section className='form-input'>
-						<label htmlFor="password">Password: </label>
-						<input 
-							type='password' 
-							aria-label="password-input" 
-							className='input' 
-							placeholder='password' 
-							name='password' 
-							value={this.state.password}
-							onChange={event => this.handleChange(event)}
-							required 
-						/>
+					<section className='form-input'>
+							<input 
+								type='password' 
+								aria-label="password-input" 
+								className='input' 
+								placeholder='password' 
+								name='password' 
+								value={this.state.password}
+								onChange={event => this.handleChange(event)}
+								required 
+							/>
+					</section>
 				</section>
+
 				<button onClick={(event) => this.submitLogin(event)} className="submit-login-btn" aria-label="submit-button">
 						Submit
 				</button>
