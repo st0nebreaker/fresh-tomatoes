@@ -18,7 +18,7 @@ const MovieCard = ({ userID, title, averageRating, poster, id, userRatings }) =>
 			<section className="rating-section">
 				<p>
 					{foundRating ? 
-						<b>Your Rating {foundRating} </b> : 
+						<b className='user-rating-msg'>You rated {foundRating} </b> : 
 						`Average Rating ${Math.floor(averageRating)}`}/10
 				</p>
 				{averageRating >= 5 && <img className="rating-img" src= 'https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png' alt= "Tomato" />}

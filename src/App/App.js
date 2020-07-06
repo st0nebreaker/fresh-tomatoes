@@ -9,18 +9,19 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 class App extends Component {
 	constructor() {
 		super();
-		const savedStateJSON = localStorage.getItem('localStorageState');
-		const savedState = JSON.parse(savedStateJSON);
+		let savedStateJSON = localStorage.getItem('localStorageState');
+		let savedState = JSON.parse(savedStateJSON);
 		this.state = {
 			movies: [],
 			error: null,
 			userID: savedState.id || null,
 			userName: savedState.userName || null,
+			savedState: savedState || null,
 			userRatings: []
 		}
-		this.getUsersRatings(savedState.id) 
+		if (this.savedState) this.getUsersRatings(this.savedState.id);
 	}
-
+	
 	changeUserId = (givenUser) => {
 		this.setState({
 			userID: givenUser.id,
@@ -31,8 +32,9 @@ class App extends Component {
 		let localStorageState = JSON.stringify(givenUser);
 		localStorage.setItem('localStorageState', localStorageState);
 	}
-
+	
 	componentDidMount = () => {
+		console.log('saved state', this.state.savedState);
 		const getAllMovies = async () => {
 			const response = await fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies');
 			const data = await response.json();
