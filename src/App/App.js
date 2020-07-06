@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Route } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import GuestHome from '../GuestHome/GuestHome';
 import UserHome from '../UserHome/UserHome';
 import LoginPage from '../LoginPage/LoginPage';
@@ -44,6 +44,12 @@ class App extends Component {
 		getAllMovies()
 			.then(data => this.setState({movies: data.movies}))
 			.catch(error => this.setState({error}));
+
+		if (this.state.savedState && this.state.userID) {
+			this.props.history.push(`/users/${this.state.userID}`);
+		} else if (!this.state.userID) {
+			this.props.history.push('/');
+		}
 	}
 
 	getUsersRatings = (id) => {
@@ -68,7 +74,7 @@ class App extends Component {
 					render={() =>
 						<GuestHome
 							appState={this.state}
-							getUsersRatings = {this.getUsersRatings} 
+							getUsersRatings={this.getUsersRatings} 
 						/>} 
 				/>
 				<Route 
@@ -80,26 +86,16 @@ class App extends Component {
 							getUsersRatings={this.getUsersRatings}
 						/>} 
 				/>
-				<Route 
+				{this.state.savedState && <Route 
 					exact 
 					path='/users/:id' 
-					render={() => {
-						if (this.state.userID){
-							return <UserHome 
-								appState={this.state} 
-								changeUserId={this.changeUserId} 
-								getUsersRatings={this.getUsersRatings} 
-							/>
-						} else {
-							return <GuestHome
-						 		appState={this.state}
-								getUsersRatings={this.getUsersRatings}
-							/>
-						}
-					} 
-						
-					}
-				/>
+					render={() =>
+						<UserHome 
+							appState={this.state} 
+							changeUserId={this.changeUserId} 
+							getUsersRatings={this.getUsersRatings} 
+						/>}
+				/>}
 				<Route
 					exact
 					path='/movie_details/:id'
@@ -114,4 +110,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default withRouter(App);
