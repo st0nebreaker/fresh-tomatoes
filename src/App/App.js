@@ -9,13 +9,16 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 class App extends Component {
 	constructor() {
 		super();
+		const savedStateJSON = localStorage.getItem('localStorageState');
+		const savedState = JSON.parse(savedStateJSON);
 		this.state = {
 			movies: [],
 			error: null,
-			userID: null,
-			userName: null,
+			userID: savedState.id || null,
+			userName: savedState.userName || null,
 			userRatings: []
 		}
+		this.getUsersRatings(savedState.id) 
 	}
 
 	changeUserId = (givenUser) => {
@@ -24,6 +27,9 @@ class App extends Component {
 			userName: givenUser.userName,
 			userRatings: [],
 		})
+		console.log(this.state)
+		let localStorageState = JSON.stringify(givenUser);
+		localStorage.setItem('localStorageState', localStorageState);
 	}
 
 	componentDidMount = () => {
@@ -75,12 +81,22 @@ class App extends Component {
 				<Route 
 					exact 
 					path='/users/:id' 
-					render={() => 
-						<UserHome 
-							appState={this.state} 
-							changeUserId={this.changeUserId} 
-							getUsersRatings={this.getUsersRatings} 
-						/>} 
+					render={() => {
+						if (this.state.userID){
+							return <UserHome 
+								appState={this.state} 
+								changeUserId={this.changeUserId} 
+								getUsersRatings={this.getUsersRatings} 
+							/>
+						} else {
+							return <GuestHome
+						 		appState={this.state}
+								getUsersRatings={this.getUsersRatings}
+							/>
+						}
+					} 
+						
+					}
 				/>
 				<Route
 					exact

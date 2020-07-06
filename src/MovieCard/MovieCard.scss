@@ -1,5 +1,5 @@
 .movie-poster {
-	height: 400px;
+	width: 89%;
 }
 
 .movie-card {
@@ -24,14 +24,6 @@ p {
 	font-size: 14px;
 }
 
-.green-rating {
-	color: green;
-}
-
-.red-rating {
-	color: red;
-}
-
 .rating-button {
 	color: red;
 	background-color: white;
@@ -41,4 +33,14 @@ p {
 		color: white;
 		background-color: red;
 	}
+}
+
+.rating-img {
+	height: 20px;
+	width: 20px;
+}
+
+.rating-section {
+	display: flex;
+	justify-content: center;
 }
