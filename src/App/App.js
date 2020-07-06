@@ -9,8 +9,7 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 class App extends Component {
 	constructor() {
 		super();
-		let savedStateJSON = localStorage.getItem('localStorageState');
-		let savedState = JSON.parse(savedStateJSON);
+		let savedState = JSON.parse(localStorage.getItem('localStorageState'));
 		this.state = {
 			movies: [],
 			error: null,
