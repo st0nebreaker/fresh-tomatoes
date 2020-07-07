@@ -10,16 +10,13 @@ import { getAllMovies, getUserRatedMovies } from '../apiCalls/apiCalls';
 class App extends Component {
 	constructor() {
 		super();
-		let loggedUserId = JSON.parse(localStorage.getItem('loggedInUserId'));
-		let loggedUserName = JSON.parse(localStorage.getItem('loggedInUserName'));
-		let loggedRatings = JSON.parse(localStorage.getItem('loggedRatings'));
-
 		this.state = {
 			movies: [],
 			error: null,
-			userID: loggedUserId ? loggedUserId : null,
-			userName: loggedUserName ? loggedUserName : null,
-			userRatings: loggedRatings ? loggedRatings : []
+			userID: null,
+			userName: null,
+			userRatings: [],
+			localStorage: null
 		}
 	}
 	
@@ -32,15 +29,28 @@ class App extends Component {
 	}
 	
 	componentDidMount = () => {
+		this.verifyLoginLocalStorage();
 		getAllMovies()
 		.then(data => this.setState({movies: data.movies}))
 		.catch(error => this.setState({error}));
+		this.changeUrl();
+	}
 
-		if (this.state.userID) {
-			this.props.history.push(`/users/${this.state.userID}`);
-		} else if (!this.state.userID) {
+	changeUrl = () => {
+		if (this.verifyLoginLocalStorage() || this.state.userID) {
+			const id = this.state.userID || this.verifyLoginLocalStorage();
+			this.props.history.push(`/users/${id}`);
+		} else {
 			this.props.history.push('/');
 		}
+	}
+
+	verifyLoginLocalStorage = () => {
+		let loggedUserId = JSON.parse(localStorage.getItem('loggedInUserId'));
+		let loggedUserName = JSON.parse(localStorage.getItem('loggedInUserName'));
+		let loggedRatings = JSON.parse(localStorage.getItem('loggedRatings'));
+		this.setState({ userID: loggedUserId, userName: loggedUserName, userRatings: loggedRatings, localStorage: true});
+		return loggedUserId;
 	}
 	
 	componentDidUpdate = () => {
@@ -63,7 +73,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
+			<div className="App"> 
 				<Route 
 					exact 
 					path="/" 
