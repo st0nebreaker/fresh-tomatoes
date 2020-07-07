@@ -10,17 +10,17 @@ import { getAllMovies, getUserRatedMovies } from '../apiCalls/apiCalls';
 class App extends Component {
 	constructor() {
 		super();
-		
-		let savedState = JSON.parse(localStorage.getItem('localStorageState'));
+		let loggedUserId = JSON.parse(localStorage.getItem('loggedInUserId'));
+		let loggedUserName = JSON.parse(localStorage.getItem('loggedInUserName'));
+		let loggedRatings = JSON.parse(localStorage.getItem('loggedRatings'));
+
 		this.state = {
 			movies: [],
 			error: null,
-			userID: savedState.id || null,
-			userName: savedState.userName || null,
-			savedState: savedState || null,
-			userRatings: []
+			userID: loggedUserId ? loggedUserId : null,
+			userName: loggedUserName ? loggedUserName : null,
+			userRatings: loggedRatings ? loggedRatings : []
 		}
-		if (this.savedState) this.getUsersRatings(this.savedState.id);
 	}
 	
 	changeUserId = (givenUser) => {
@@ -28,21 +28,29 @@ class App extends Component {
 			userID: givenUser.id,
 			userName: givenUser.userName,
 			userRatings: [],
-		})
-		let localStorageState = JSON.stringify(givenUser);
-		localStorage.setItem('localStorageState', localStorageState);
+		});
 	}
 	
 	componentDidMount = () => {
 		getAllMovies()
-			.then(data => this.setState({movies: data.movies}))
-			.catch(error => this.setState({error}));
+		.then(data => this.setState({movies: data.movies}))
+		.catch(error => this.setState({error}));
 
-		if (this.state.savedState && this.state.userID) {
+		if (this.state.userID) {
 			this.props.history.push(`/users/${this.state.userID}`);
 		} else if (!this.state.userID) {
 			this.props.history.push('/');
 		}
+	}
+	
+	componentDidUpdate = () => {
+		let loggedUserId = JSON.stringify(this.state.userID);
+		let loggedUserName = JSON.stringify(this.state.userName);
+		let loggedRatings = JSON.stringify(this.state.userRatings);
+
+		localStorage.setItem('loggedInUserId', loggedUserId);
+		localStorage.setItem('loggedInUserName', loggedUserName);
+		localStorage.setItem('loggedRatings', loggedRatings);
 	}
 
 	getUsersRatings = (id) => {
@@ -74,9 +82,9 @@ class App extends Component {
 							getUsersRatings={this.getUsersRatings}
 						/>} 
 				/>
-				{this.state.savedState && <Route 
+				{this.state.userID && <Route 
 					exact 
-					path='/users/:id' 
+					path='/users/:id'
 					render={() =>
 						<UserHome 
 							appState={this.state} 

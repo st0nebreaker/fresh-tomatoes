@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const MovieCard = ({ userID, title, averageRating, poster, id, userRatings }) => {
 	let foundRating = null;
+	// console.log(userRatings)
 	if (userRatings) {
 		if (userRatings.find(rating => rating.movie_id === id)) {
 			foundRating = userRatings.find(rating => rating.movie_id === id).rating
