@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import { postRating } from "../apiCalls/apiCalls"
 
 class MovieCard extends Component {
-	constructor({userID, title, averageRating, poster, id, userRatings}) {
+	constructor({userID, title, averageRating, poster, id, userRatings, getUsersRatings}) {
 		super()
 		this.state = {
 			foundRating: null,
 			rating: null,
+			clicked: false,
 		}
 		this.userID = userID
 		this.title = title
@@ -16,6 +17,7 @@ class MovieCard extends Component {
 		this.poster = poster;
 		this.id = id;
 		this.userRatings = userRatings;
+		this.getUsersRatings = getUsersRatings;
 	}
 
 	componentDidMount = () => {
@@ -29,18 +31,25 @@ class MovieCard extends Component {
 
 	handleClick = (event) => {
 		event.preventDefault();
-		postRating(Number(this.state.rating), this.id, this.userID)
+		postRating(Number(this.state.rating), this.id, this.userID);
+		this.displayRatingForm();
+		this.getUsersRatings(this.userID);
 	}
 
 	handleChange = (event) => {
 		this.setState({[event.target.name]: event.target.value})
 	}
 
+	displayRatingForm = () => {
+		this.setState({clicked: !this.state.clicked});
+	}
+
 	render = () => {
+		var className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
 	
     return (
       <section className="movie-card-container" id={this.id}>
-        <section className="rating-form-container hide">
+        <section className={className}>
           <div>
             <form className="rating-form">
               <div className="inputs">
@@ -197,7 +206,11 @@ class MovieCard extends Component {
           )}
           {!this.state.foundRating && this.userID && (
             <section className="rating-button-section">
-              <button className="rating-button">Add rating</button>
+							<button 
+								className="rating-button"
+								onClick={this.displayRatingForm}
+							>Add rating
+							</button>
             </section>
           )}
         </section>

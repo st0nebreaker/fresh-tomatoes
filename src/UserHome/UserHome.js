@@ -18,7 +18,7 @@ const UserHome = ({ appState, changeUserId, getUsersRatings }) => {
 				</p>
 			</header>
 			{appState.error && <div className="error">Error: {appState.error.message}</div> }
-			<MovieContainer appState={appState} />
+			<MovieContainer appState={appState} getUsersRatings={getUsersRatings} />
 		</>
 	)
 	

@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 import './MovieContainer.css';
 
-const MovieContainer = ({appState}) => {
+const MovieContainer = ({appState, getUsersRatings}) => {
 	let movieCards;
 
 	movieCards = appState.movies.map((movie, i) => {
@@ -15,6 +15,7 @@ const MovieContainer = ({appState}) => {
 				id={movie.id}
 				userRatings={appState.userRatings}
 				key={i}
+				getUsersRatings={getUsersRatings}
 			/>
 		)
 	})

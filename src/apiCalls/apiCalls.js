@@ -29,7 +29,6 @@ export const verifyLogin = async (givenEmail, givenPassword) => {
 };
 
 export const postRating = async (rating, movieID, userID) => {
-  console.log(rating, movieID, userID)
   const request = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
