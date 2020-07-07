@@ -68,7 +68,7 @@ class MovieDetails extends Component {
 									<h1> {this.state.title} </h1>
 									<p className='tagline'> "{this.state.tagLine}" </p>
 								</section>
-								<img src={this.state.backDrop} alt="movie poster" className='movie-poster' />
+								<img src={this.state.backDrop} alt="movie poster" className='movie-backdrop' />
 							</section>
 							<p className='overview'>{this.state.overview} </p>
 							<ul>
