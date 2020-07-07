@@ -3,7 +3,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { Link } from "react-router-dom";
 import './UserHome.scss';
 
-const UserHome = ({ appState, changeUserId}) => {
+const UserHome = ({ appState, changeUserId, getUsersRatings }) => {
 	return (
 		<>
 			<header className="App-header">
