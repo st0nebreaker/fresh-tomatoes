@@ -18,6 +18,37 @@
 	background-color: white;
 }
 
+.inputs {
+	display: flex;
+	justify-content: space-between;
+	width: 270px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.rating-form {
+	height: 100px;
+	width: 27vw;
+	border: 1px solid grey;
+}
+
+.rating-form-container {
+	position: absolute;
+	z-index: 15;
+	margin: 0;
+	width: 290px;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 15%;
+	margin-left: 2%;
+}
+
+.hide {
+	// display: none;
+}
+
 h3 {
 	margin: 3px;
 	margin-top: 10px;
