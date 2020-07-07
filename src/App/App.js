@@ -64,9 +64,8 @@ class App extends Component {
 	}
 
 	getUsersRatings = (id) => {
-		const url = `https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`;
 
-		getUserRatedMovies(url)
+		getUserRatedMovies(id)
 			.then(data => this.setState({ userRatings: data.ratings }))
 			.catch(error => console.log(error.message));
 	}

@@ -1,10 +1,13 @@
+const rootUrl = 'https://rancid-tomatillos.herokuapp.com/api/v2/'
+
 export const getAllMovies = async () => {
-	const response = await fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies');
+	const response = await fetch(`${rootUrl}/movies`);
 	const data = await response.json();
 	return data;
 }
 
-export const getUserRatedMovies = async (url) => {
+export const getUserRatedMovies = async (id) => {
+	const url = `${rootUrl}/users/${id}/ratings`;
 	const response = await fetch(url);
 	const data = await response.json();
 	return data;
@@ -20,7 +23,7 @@ export const verifyLogin = async (givenEmail, givenPassword) => {
 		})
 	}
 
-		const response = await fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login", request);
+	const response = await fetch(`${rootUrl}/login`, request);
 		const data = await response.json();
 		return data;
 }
