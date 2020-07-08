@@ -29,8 +29,8 @@ class LoginPage extends Component {
 				})
 				return data;
 			})
-			.then((data) => {
-				this.props.getUsersRatings(data.user.id);
+			.then(async (data) => {
+				await this.props.getUsersRatings(data.user.id);
 				this.props.history.push(`/users/${this.state.id}`)})
       .catch((error) => this.setState({ error }));
   };
