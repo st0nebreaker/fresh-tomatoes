@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./MovieCard.scss";
 import { Link, Redirect } from "react-router-dom";
-import { postRating } from "../apiCalls/apiCalls"
+import { postRating, deleteRatingApi } from "../apiCalls/apiCalls";
 
 class MovieCard extends Component {
 	constructor({userID, title, averageRating, poster, id, userRatings, getUsersRatings}, props) {
@@ -38,7 +38,14 @@ class MovieCard extends Component {
 		this.displayRatingForm();
 		// this.props.history.push(`/users/${this.userID}`);
 		// this.getUsersRatings(this.userID);
-	}
+  }
+  
+  deleteRating = (event) => {
+    const ratingToDelete = this.userRatings.find(userRating => userRating.movie_id === this.id);
+    deleteRatingApi(this.userID, ratingToDelete.id)
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error.message))
+  }
 
 	handleInputChange = (event) => {
 		this.setState({[event.target.name]: event.target.value})
@@ -159,14 +166,14 @@ class MovieCard extends Component {
                 </label>
               </div>
               <Link to={`/`}>
-								<button
-                onClick={(event) => this.submitRating(event)}
-                className="submit-rating-btn"
-                aria-label="submit-button"
-              	>
-                Submit
-              	</button>
-							</Link>
+                <button
+                  onClick={(event) => this.submitRating(event)}
+                  className="submit-rating-btn"
+                  aria-label="submit-button"
+                >
+                  Submit
+                </button>
+              </Link>
             </form>
           </div>
         </section>
@@ -177,7 +184,9 @@ class MovieCard extends Component {
           <section className="rating-section">
             <p>
               {this.state.foundRating ? (
-                <b className="user-rating-msg">You rated {this.state.foundRating} </b>
+                <b className="user-rating-msg">
+                  You rated {this.state.foundRating}{" "}
+                </b>
               ) : (
                 `Average Rating ${Math.floor(this.averageRating)}`
               )}
@@ -207,16 +216,21 @@ class MovieCard extends Component {
           </Link>
           {this.state.foundRating && (
             <section className="rating-button-section">
-              <button className="rating-button">Delete rating</button>
+              <button
+                className="rating-button"
+                onClick={this.deleteRating}              >
+                Delete rating
+              </button>
             </section>
           )}
           {!this.state.foundRating && this.userID && (
             <section className="rating-button-section">
-							<button 
-								className="rating-button"
-								onClick={this.displayRatingForm}
-							>Add rating
-							</button>
+              <button
+                className="rating-button"
+                onClick={this.displayRatingForm}
+              >
+                Add rating
+              </button>
             </section>
           )}
         </section>
