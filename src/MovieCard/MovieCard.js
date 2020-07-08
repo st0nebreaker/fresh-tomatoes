@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./MovieCard.scss";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postRating } from "../apiCalls/apiCalls"
 
 class MovieCard extends Component {
-	constructor({userID, title, averageRating, poster, id, userRatings, getUsersRatings}, props) {
+	constructor(props) {
 		super()
 		this.state = {
 			foundRating: null,
@@ -12,32 +12,38 @@ class MovieCard extends Component {
 			clicked: false,
 			error: null,
 		}
-		this.userID = userID
-		this.title = title
-		this.averageRating = averageRating;
-		this.poster = poster;
-		this.id = id;
-		this.userRatings = userRatings;
-		this.getUsersRatings = getUsersRatings;
 	}
 
 	componentDidMount = () => {
-		if (this.userRatings) {
-		  if (this.userRatings.find((rating) => rating.movie_id === this.id)) {
-        	let foundRating = this.userRatings.find((rating) => rating.movie_id === this.id);
+		this.checkForUserRating();
+	}
+
+	submitRating = async (event) => {
+		event.preventDefault();
+		// postRating(Number(this.state.rating), this.props.id, this.props.userID)
+		// 	.then(() => {this.props.getUsersRatings(this.props.userID)})
+		// 	.then(this.checkForUserRating())
+		// 	.catch((error) => this.setState({ error }));
+		try {
+			await postRating(Number(this.state.rating), this.props.id, this.props.userID)
+			await this.props.getUsersRatings(this.props.userID); 
+			this.checkForUserRating();
+		}
+		catch(e){
+			console.log();
+		}
+
+		this.displayRatingForm();
+	}
+
+	checkForUserRating = () => {
+		if (this.props.userRatings) {
+			console.log(this.props.userRatings)
+		  if (this.props.userRatings.find((rating) => rating.movie_id === this.props.id)) {
+        	let foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
         	this.setState({ foundRating: foundRating.rating });
       		}
 		}
-	}
-
-	submitRating = (event) => {
-		event.preventDefault();
-		postRating(Number(this.state.rating), this.id, this.userID)
-			.then(() => {this.getUsersRatings(this.userID)})
-			.catch((error) => this.setState({ error }));
-		this.displayRatingForm();
-		// this.props.history.push(`/users/${this.userID}`);
-		// this.getUsersRatings(this.userID);
 	}
 
 	handleInputChange = (event) => {
@@ -52,7 +58,7 @@ class MovieCard extends Component {
 		var className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
 	
     return (
-      <section className="movie-card-container" id={this.id}>
+      <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
           <div>
             <form className="rating-form">
@@ -170,27 +176,27 @@ class MovieCard extends Component {
             </form>
           </div>
         </section>
-        <section onClick={this.displayRatingForm} className="movie-card" id={this.id}>
+        <section onClick={this.displayRatingForm} className="movie-card" id={this.props.id}>
           <section className="title-section">
-            <h3>{this.title}</h3>
+            <h3>{this.props.title}</h3>
           </section>
           <section className="rating-section">
             <p>
               {this.state.foundRating ? (
                 <b className="user-rating-msg">You rated {this.state.foundRating} </b>
               ) : (
-                `Average Rating ${Math.floor(this.averageRating)}`
+                `Average Rating ${Math.floor(this.props.averageRating)}`
               )}
               /10
             </p>
-            {this.averageRating >= 5 && (
+            {this.props.averageRating >= 5 && (
               <img
                 className="rating-img"
                 src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
                 alt="Tomato"
               />
             )}
-            {this.averageRating < 5 && (
+            {this.props.averageRating < 5 && (
               <img
                 className="rating-img"
                 src="https://i.pinimg.com/originals/58/e0/a9/58e0a9b572353c77bb1a4b3f802f4cb8.png"
@@ -198,9 +204,9 @@ class MovieCard extends Component {
               />
             )}
           </section>
-          <Link to={`/movie_details/${this.id}`}>
+          <Link to={`/movie_details/${this.props.id}`}>
             <img
-              src={this.poster}
+              src={this.props.poster}
               alt="movie poster"
               className="movie-poster"
             />
@@ -210,7 +216,7 @@ class MovieCard extends Component {
               <button className="rating-button">Delete rating</button>
             </section>
           )}
-          {!this.state.foundRating && this.userID && (
+          {!this.state.foundRating && this.props.userID && (
             <section className="rating-button-section">
 							<button 
 								className="rating-button"
