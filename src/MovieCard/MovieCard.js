@@ -10,7 +10,8 @@ class MovieCard extends Component {
 			foundRating: null,
 			rating: null,
 			clicked: false,
-			error: null,
+      error: null,
+      deleted: false
 		}
 	}
 
@@ -38,22 +39,31 @@ class MovieCard extends Component {
 
 	checkForUserRating = () => {
 		if (this.props.userRatings) {
-			console.log(this.props.userRatings)
 		  if (this.props.userRatings.find((rating) => rating.movie_id === this.props.id)) {
-        	let foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
+          let foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
+          console.log(foundRating)
         	this.setState({ foundRating: foundRating.rating });
-      		}
-		}
-	}
+          }
+      else {
+        	this.setState({ foundRating: null })
+      }
+		} 
+  }
 	
-  deleteRating = (event) => {
-    const ratingToDelete = this.userRatings.find(userRating => userRating.movie_id === this.id);
-    deleteRatingApi(this.userID, ratingToDelete.id)
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error.message))
+  deleteRating = async (event) => {
+    const ratingToDelete = this.props.userRatings.find(userRating => userRating.movie_id === this.props.id);
+    	try {
+        await deleteRatingApi(this.props.userID, ratingToDelete.id);
+        await this.props.getUsersRatings(this.props.userID);
+			  this.checkForUserRating();
+      } catch (e) {
+        console.log(e);
+      }
+      this.displayRatingForm();
   }
 
 	handleInputChange = (event) => {
+ 
 		this.setState({[event.target.name]: event.target.value})
 	}
 
@@ -223,7 +233,7 @@ class MovieCard extends Component {
           {this.state.foundRating && (
             <section className="rating-button-section">
               <button
-                className="rating-button"
+                className="rating-button" id="delete-button"
                 onClick={this.deleteRating}              >
                 Delete rating
               </button>

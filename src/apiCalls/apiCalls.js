@@ -44,7 +44,6 @@ export const postRating = async (rating, movieID, userID) => {
 };
 
 export const deleteRatingApi = async (userID, movieID) => {
-  console.log(userID, movieID)
   const url = `${rootUrl}users/${userID}/ratings/${movieID}`;
   const response = await fetch(url, {method: "DELETE"});
   const data = await response;
