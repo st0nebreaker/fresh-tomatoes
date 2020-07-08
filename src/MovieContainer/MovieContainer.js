@@ -3,9 +3,7 @@ import MovieCard from '../MovieCard/MovieCard';
 import './MovieContainer.css';
 
 const MovieContainer = ({appState, getUsersRatings}) => {
-	let movieCards;
-
-	movieCards = appState.movies.map((movie, i) => {
+	const movieCards = appState.movies.map((movie, i) => {
 		return (
 			<MovieCard
 				userID={appState.userID}

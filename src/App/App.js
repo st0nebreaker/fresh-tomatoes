@@ -56,7 +56,7 @@ class App extends Component {
     }
   };
 
-  verifyLoginLocalStorage = () => {
+  verifyLoginLocalStorage() {
     let loggedUserId = JSON.parse(localStorage.getItem("loggedInUserId"));
     let loggedUserName = JSON.parse(localStorage.getItem("loggedInUserName"));
     let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
@@ -70,10 +70,9 @@ class App extends Component {
   };
 
   getUsersRatings = (id) => {
-		console.log('called');
-    getUserRatedMovies(id)
-      .then((data) => this.setState({ userRatings: data.ratings }))
-      .catch((error) => console.log(error.message));
+		return getUserRatedMovies(id)
+		.then((data) => this.setState({ userRatings: data.ratings }))
+		.catch((error) => console.log(error.message));
   };
 
   render() {
