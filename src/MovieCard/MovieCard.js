@@ -84,7 +84,7 @@ class MovieCard extends Component {
     return radioButtons
   }
 
-  insertTomato = () => {
+  createTomatoElement = () => {
     const tomato = <img
           className="rating-img"
           src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
@@ -106,7 +106,8 @@ class MovieCard extends Component {
 
 	render = () => {
     const className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
-    const tomatoElement = this.insertTomato()
+    const tomatoElement = this.createTomatoElement()
+    const radioButtons = this.createRadioButtons();
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
@@ -115,7 +116,7 @@ class MovieCard extends Component {
               <div className="exit-btn" onClick={this.displayRatingForm}>
                 x
               </div>
-              <div className="inputs">{this.createRadioButtons()}</div>
+              <div className="inputs">{radioButtons}</div>
               <button
                 onClick={(event) => this.submitRating(event)}
                 className="submit-rating-btn"
