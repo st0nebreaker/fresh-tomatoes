@@ -65,7 +65,24 @@ class MovieCard extends Component {
 	}
 
 	render = () => {
-		var className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
+    var className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
+    let radioButtons = [];
+    for(let i = 1; i <= 10; i++) {
+      radioButtons.push(
+        <label htmlFor={i} className="radio-btn-label">
+          <input
+            className="radio-button"
+            onChange={(event) => this.handleInputChange(event)}
+            type="radio"
+            id={i}
+            name="rating"
+            value={i}
+          />
+          {i}
+        </label>
+      );
+    }
+    
 	
     return (
       <section className="movie-card-container" id={this.props.id}>
@@ -74,106 +91,7 @@ class MovieCard extends Component {
             <form className="rating-form">
 							<div className='exit-btn' onClick={this.displayRatingForm}>x</div>
               <div className="inputs">
-                <label htmlFor="1">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="1"
-                    name="rating"
-                    value="1"
-                  />
-                  1
-                </label>
-                <label htmlFor="2">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="2"
-                    name="rating"
-                    value="2"
-                  />
-                  2
-                </label>
-                <label htmlFor="3">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="3"
-                    name="rating"
-                    value="3"
-                  />
-                  3
-                </label>
-                <label htmlFor="4">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="4"
-                    name="rating"
-                    value="4"
-                  />
-                  4
-                </label>
-                <label htmlFor="5">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="5"
-                    name="rating"
-                    value="5"
-                  />
-                  5
-                </label>
-                <label htmlFor="6">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="6"
-                    name="rating"
-                    value="6"
-                  />
-                  6
-                </label>
-                <label htmlFor="7">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="7"
-                    name="rating"
-                    value="7"
-                  />
-                  7
-                </label>
-                <label htmlFor="8">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="8"
-                    name="rating"
-                    value="8"
-                  />
-                  8
-                </label>
-                <label htmlFor="9">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="9"
-                    name="rating"
-                    value="9"
-                  />
-                  9
-                </label>
-                <label htmlFor="10">
-                  <input
-                    onChange={(event) => this.handleInputChange(event)}
-                    type="radio"
-                    id="10"
-                    name="rating"
-                    value="10"
-                  />
-                  10
-                </label>
+                {radioButtons}
               </div>
                 <button
                   onClick={(event) => this.submitRating(event)}
