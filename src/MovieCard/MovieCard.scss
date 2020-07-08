@@ -22,16 +22,23 @@
 	display: flex;
 	justify-content: space-between;
 	width: 270px;
-	margin-top: 20px;
-	margin-bottom: 10px;
+	margin-top: 27px;
+	margin-bottom: 8px;
 }
 
 .rating-form {
-	height: 100px;
+	height: 105px;
 	width: 33vw;
 	min-width: 300px;
 	max-width: 300px;
 	border: 1px solid grey;
+}
+
+.exit-btn {
+	left: 0;
+	position: absolute;
+	color: red;
+	font-weight: bolder;
 }
 
 .rating-form-container {
@@ -43,7 +50,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 15%;
+	margin-top: 31%;
 	margin-left: 2%;
 }
 
@@ -61,7 +68,7 @@ p {
 	font-size: 14px;
 }
 
-.rating-button {
+.rating-button, .delete-button {
 	color: red;
 	background-color: white;
 	border: 1px grey solid;
@@ -86,4 +93,9 @@ p {
 
 .user-rating-msg {
 	color: blue;
+}
+
+.submit-rating-btn {
+	height: 2vh;
+	width: 6vw;
 }

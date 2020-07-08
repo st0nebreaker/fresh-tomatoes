@@ -25,16 +25,11 @@ class MovieCard extends Component {
 			await postRating(Number(this.state.rating), this.props.id, this.props.userID)
 			await this.props.getUsersRatings(this.props.userID); 
 			this.checkForUserRating();
+			this.displayRatingForm();
 		}
 		catch(e){
 			console.log(e);
 		}
-		// postRating(Number(this.state.rating), this.props.id, this.props.userID)
-		// 	.then(() => {this.props.getUsersRatings(this.props.userID)})
-		// 	.then(this.checkForUserRating())
-		// 	.catch((error) => this.setState({ error }));
-
-		this.displayRatingForm();
 	}
 
 	checkForUserRating = () => {
@@ -59,11 +54,9 @@ class MovieCard extends Component {
       } catch (e) {
         console.log(e);
       }
-      this.displayRatingForm();
   }
 
 	handleInputChange = (event) => {
- 
 		this.setState({[event.target.name]: event.target.value})
 	}
 
@@ -79,6 +72,7 @@ class MovieCard extends Component {
         <section className={className}>
           <div>
             <form className="rating-form">
+							<div className='exit-btn' onClick={this.displayRatingForm}>x</div>
               <div className="inputs">
                 <label htmlFor="1">
                   <input
@@ -181,7 +175,6 @@ class MovieCard extends Component {
                   10
                 </label>
               </div>
-              <Link to={`/`}>
                 <button
                   onClick={(event) => this.submitRating(event)}
                   className="submit-rating-btn"
@@ -189,11 +182,10 @@ class MovieCard extends Component {
                 >
                   Submit
                 </button>
-              </Link>
             </form>
           </div>
         </section>
-        <section onClick={this.displayRatingForm} className="movie-card" id={this.props.id}>
+        <section className="movie-card" id={this.props.id}>
           <section className="title-section">
             <h3>{this.props.title}</h3>
           </section>
@@ -233,7 +225,7 @@ class MovieCard extends Component {
           {this.state.foundRating && (
             <section className="rating-button-section">
               <button
-                className="rating-button" id="delete-button"
+                className="delete-button" id="delete-button"
                 onClick={this.deleteRating}              >
                 Delete rating
               </button>

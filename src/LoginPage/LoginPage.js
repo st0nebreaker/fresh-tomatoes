@@ -54,7 +54,7 @@ class LoginPage extends Component {
         </header>
         <form className="login-form">
           <h2>LOGIN</h2>
-          <section>
+          <section className='input-container'>
             <section className="form-input">
               <input
                 type="email"
