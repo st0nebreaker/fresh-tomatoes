@@ -26,7 +26,7 @@ class MovieCard extends Component {
 			this.checkForUserRating();
 		}
 		catch(e){
-			console.log();
+			console.log(e);
 		}
 		// postRating(Number(this.state.rating), this.props.id, this.props.userID)
 		// 	.then(() => {this.props.getUsersRatings(this.props.userID)})
