@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MovieCard.scss";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postRating, deleteRatingApi } from "../apiCalls/apiCalls";
 
 class MovieCard extends Component {
