@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import "./MovieCard.scss";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { postRating } from "../apiCalls/apiCalls"
 
 class MovieCard extends Component {
-	constructor({userID, title, averageRating, poster, id, userRatings, getUsersRatings}) {
+	constructor({userID, title, averageRating, poster, id, userRatings, getUsersRatings}, props) {
 		super()
 		this.state = {
 			foundRating: null,
 			rating: null,
 			clicked: false,
+			error: null,
 		}
 		this.userID = userID
 		this.title = title
@@ -29,14 +30,17 @@ class MovieCard extends Component {
 		}
 	}
 
-	handleClick = (event) => {
+	submitRating = (event) => {
 		event.preventDefault();
-		postRating(Number(this.state.rating), this.id, this.userID);
+		postRating(Number(this.state.rating), this.id, this.userID)
+			.then(() => {this.getUsersRatings(this.userID)})
+			.catch((error) => this.setState({ error }));
 		this.displayRatingForm();
-		this.getUsersRatings(this.userID);
+		// this.props.history.push(`/users/${this.userID}`);
+		// this.getUsersRatings(this.userID);
 	}
 
-	handleChange = (event) => {
+	handleInputChange = (event) => {
 		this.setState({[event.target.name]: event.target.value})
 	}
 
@@ -55,7 +59,7 @@ class MovieCard extends Component {
               <div className="inputs">
                 <label htmlFor="1">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="1"
                     name="rating"
@@ -65,7 +69,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="2">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="2"
                     name="rating"
@@ -75,7 +79,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="3">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="3"
                     name="rating"
@@ -85,7 +89,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="4">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="4"
                     name="rating"
@@ -95,7 +99,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="5">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="5"
                     name="rating"
@@ -105,7 +109,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="6">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="6"
                     name="rating"
@@ -115,7 +119,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="7">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="7"
                     name="rating"
@@ -125,7 +129,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="8">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="8"
                     name="rating"
@@ -135,7 +139,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="9">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="9"
                     name="rating"
@@ -145,7 +149,7 @@ class MovieCard extends Component {
                 </label>
                 <label htmlFor="10">
                   <input
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={(event) => this.handleInputChange(event)}
                     type="radio"
                     id="10"
                     name="rating"
@@ -154,13 +158,15 @@ class MovieCard extends Component {
                   10
                 </label>
               </div>
-              <button
-                onClick={(event) => this.handleClick(event)}
+              <Link to={`/`}>
+								<button
+                onClick={(event) => this.submitRating(event)}
                 className="submit-rating-btn"
                 aria-label="submit-button"
-              >
+              	>
                 Submit
-              </button>
+              	</button>
+							</Link>
             </form>
           </div>
         </section>

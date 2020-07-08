@@ -19,6 +19,24 @@ class App extends Component {
       localStorage: null,
     };
   }
+	
+	componentDidMount = () => {
+		this.verifyLoginLocalStorage();
+		getAllMovies()
+			.then((data) => this.setState({ movies: data.movies }))
+			.catch((error) => this.setState({ error }));
+		this.changeUrl();
+	};
+
+	componentDidUpdate = () => {
+    let loggedUserId = JSON.stringify(this.state.userID);
+    let loggedUserName = JSON.stringify(this.state.userName);
+    let loggedRatings = JSON.stringify(this.state.userRatings);
+
+    localStorage.setItem("loggedInUserId", loggedUserId);
+    localStorage.setItem("loggedInUserName", loggedUserName);
+		localStorage.setItem("loggedRatings", loggedRatings);
+  };
 
   changeUserId = (givenUser) => {
     this.setState({
@@ -26,14 +44,6 @@ class App extends Component {
       userName: givenUser.userName,
       userRatings: [],
     });
-  };
-
-  componentDidMount = () => {
-    this.verifyLoginLocalStorage();
-    getAllMovies()
-      .then((data) => this.setState({ movies: data.movies }))
-      .catch((error) => this.setState({ error }));
-    this.changeUrl();
   };
 
   changeUrl = () => {
@@ -59,17 +69,8 @@ class App extends Component {
     return loggedUserId;
   };
 
-  componentDidUpdate = () => {
-    let loggedUserId = JSON.stringify(this.state.userID);
-    let loggedUserName = JSON.stringify(this.state.userName);
-    let loggedRatings = JSON.stringify(this.state.userRatings);
-
-    localStorage.setItem("loggedInUserId", loggedUserId);
-    localStorage.setItem("loggedInUserName", loggedUserName);
-    localStorage.setItem("loggedRatings", loggedRatings);
-  };
-
   getUsersRatings = (id) => {
+		console.log('called');
     getUserRatedMovies(id)
       .then((data) => this.setState({ userRatings: data.ratings }))
       .catch((error) => console.log(error.message));
