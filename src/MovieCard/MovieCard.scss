@@ -28,7 +28,9 @@
 
 .rating-form {
 	height: 100px;
-	width: 27vw;
+	width: 33vw;
+	min-width: 300px;
+	max-width: 300px;
 	border: 1px solid grey;
 }
 

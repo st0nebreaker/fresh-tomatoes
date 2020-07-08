@@ -170,7 +170,7 @@ class MovieCard extends Component {
             </form>
           </div>
         </section>
-        <section className="movie-card" id={this.id}>
+        <section onClick={this.displayRatingForm} className="movie-card" id={this.id}>
           <section className="title-section">
             <h3>{this.title}</h3>
           </section>
