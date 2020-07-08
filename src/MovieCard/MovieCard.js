@@ -20,10 +20,6 @@ class MovieCard extends Component {
 
 	submitRating = async (event) => {
 		event.preventDefault();
-		// postRating(Number(this.state.rating), this.props.id, this.props.userID)
-		// 	.then(() => {this.props.getUsersRatings(this.props.userID)})
-		// 	.then(this.checkForUserRating())
-		// 	.catch((error) => this.setState({ error }));
 		try {
 			await postRating(Number(this.state.rating), this.props.id, this.props.userID)
 			await this.props.getUsersRatings(this.props.userID); 
@@ -32,6 +28,10 @@ class MovieCard extends Component {
 		catch(e){
 			console.log();
 		}
+		// postRating(Number(this.state.rating), this.props.id, this.props.userID)
+		// 	.then(() => {this.props.getUsersRatings(this.props.userID)})
+		// 	.then(this.checkForUserRating())
+		// 	.catch((error) => this.setState({ error }));
 
 		this.displayRatingForm();
 	}

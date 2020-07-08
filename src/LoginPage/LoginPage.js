@@ -22,14 +22,16 @@ class LoginPage extends Component {
   submitLogin = (event) => {
     event.preventDefault();
 
-    verifyLogin(this.state.email, this.state.password)
+    return verifyLogin(this.state.email, this.state.password)
       .then((data) => {
         this.setState({ id: data.user.id, userName: data.user.name }, () => {
           this.props.changeUserId(this.state);
-        });
-        this.props.getUsersRatings(data.user.id);
-        this.props.history.push(`/users/${this.state.id}`);
-      })
+				})
+				return data;
+			})
+			.then((data) => {
+				this.props.getUsersRatings(data.user.id);
+				this.props.history.push(`/users/${this.state.id}`)})
       .catch((error) => this.setState({ error }));
   };
 
