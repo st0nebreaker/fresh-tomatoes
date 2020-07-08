@@ -18,6 +18,10 @@
 	background-color: white;
 }
 
+.radio-btn-label{
+	text-align: center;
+}
+
 .title-section {
  	height: 6vh;
 }
@@ -36,6 +40,10 @@
 	min-width: 300px;
 	max-width: 300px;
 	border: 1px solid grey;
+	margin-top: 0px;
+}
+.radio-button {
+	margin-left: 2px;
 }
 
 .exit-btn {
@@ -43,6 +51,7 @@
 	position: absolute;
 	color: red;
 	font-weight: bolder;
+	cursor: pointer;
 }
 
 .rating-form-container {
@@ -54,8 +63,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 31%;
-	margin-left: 2%;
+	margin-top: 25%;
+	margin-left: 1.3%;
 }
 
 .hide {

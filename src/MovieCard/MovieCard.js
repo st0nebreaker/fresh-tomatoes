@@ -65,7 +65,24 @@ class MovieCard extends Component {
 	}
 
 	render = () => {
-		var className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
+    var className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
+    let radioButtons = [];
+    for(let i = 1; i <= 10; i++) {
+      radioButtons.push(
+        <label htmlFor={i} className="radio-btn-label">
+          <input
+            className="radio-button"
+            onChange={(event) => this.handleInputChange(event)}
+            type="radio"
+            id={i}
+            name="rating"
+            value={i}
+          />
+          {i}
+        </label>
+      );
+    }
+    
 	
     return (
       <section className="movie-card-container" id={this.props.id}>
@@ -74,7 +91,8 @@ class MovieCard extends Component {
             <form className="rating-form">
 							<div className='exit-btn' onClick={this.displayRatingForm}>x</div>
               <div className="inputs">
-                <label htmlFor="1">
+                {radioButtons}
+                {/* <label htmlFor="1">
                   <input
                     onChange={(event) => this.handleInputChange(event)}
                     type="radio"
@@ -82,7 +100,6 @@ class MovieCard extends Component {
                     name="rating"
                     value="1"
                   />
-                  1
                 </label>
                 <label htmlFor="2">
                   <input
@@ -173,7 +190,7 @@ class MovieCard extends Component {
                     value="10"
                   />
                   10
-                </label>
+                </label> */}
               </div>
                 <button
                   onClick={(event) => this.submitRating(event)}
