@@ -31,7 +31,7 @@ class LoginPage extends Component {
 			})
 			.then(async (data) => {
 				await this.props.getUsersRatings(data.user.id);
-				this.props.history.push(`/users/${this.state.id}`)})
+				this.props.history.push(`/`)})
       .catch((error) => this.setState({ error }));
   };
 
@@ -41,14 +41,14 @@ class LoginPage extends Component {
         <header className="App-header">
           <Link to={`/`}>
             <section className="title-section">
-              <h2 className="title">
+              <h1 className="title">
                 <img
                   src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
                   className="tomato-logo"
                   alt="tomato logo"
                 />
                 Fresh Tomatoes
-              </h2>
+              </h1>
             </section>
           </Link>
         </header>

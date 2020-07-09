@@ -100,9 +100,7 @@ class MovieCard extends Component {
     } else {
       return this.props.averageRating >= 5 ? tomato : greenPaint
     }
-
   }
-
 
 	render = () => {
     const className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
@@ -111,7 +109,6 @@ class MovieCard extends Component {
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
-          {/* <div> */}
           <form className="rating-form">
             <div className="exit-btn" onClick={this.displayRatingForm}>
               x
@@ -125,25 +122,20 @@ class MovieCard extends Component {
               Submit
             </button>
           </form>
-          {/* </div> */}
         </section>
         <section className="movie-card" id={this.props.id}>
           <section className="title-section">
             <h3>{this.props.title}</h3>
             <section className="rating-section">
-              <p>
-                {this.state.foundRating ? (
+              <p>{this.state.foundRating ? (
                   <b className="user-rating-msg">
                     Your Score: {this.state.foundRating}{" "}
                   </b>
-                ) : (
-                  `Audience Score: ${Math.floor(this.props.averageRating)}`
-                )}
-                /10
-              </p>
+                ) : (`Audience Score: ${Math.floor(this.props.averageRating)}`)}
+              /10 </p>
             {tomatoElement}
             </section>
-            <Link to={`/movie_details/${this.props.id}`}>
+            <Link to={`/movies/${this.props.id}`}>
               <img
                 src={this.props.poster}
                 alt="movie poster"
@@ -175,7 +167,6 @@ class MovieCard extends Component {
         </section>
       </section>
     );
-
 }
 };
 

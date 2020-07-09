@@ -60,7 +60,7 @@ class MovieDetails extends Component {
 							Fresh Tomatoes
 						</h2>
 					</header>
-					{this.state.userID && <Link to={`/users/${this.state.userID}`}><button className='back-btn'>◀ BACK</button></Link>}
+					{this.state.userID && <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>}
 					{!this.state.userID && <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>}
 					<section className="movie-detail-container" >
 							<section className='movie-img'>

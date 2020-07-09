@@ -50,7 +50,7 @@ class App extends Component {
     let loggedUserId = this.verifyLoginLocalStorage(); 
     if (loggedUserId || this.state.userID) {
       const id = this.state.userID || this.verifyLoginLocalStorage();
-      this.props.history.push(`/users/${id}`);
+      this.props.history.push(`/`);
     } else {
       this.props.history.push("/");
     }
@@ -78,17 +78,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <GuestHome
-                appState={this.state}
-                getUsersRatings={this.getUsersRatings}
-              />
-            )}
-          />
+				{!this.state.userID && <Route
+					exact
+					path="/"
+					render={() => (
+						<GuestHome
+							appState={this.state}
+							getUsersRatings={this.getUsersRatings}
+						/>
+					)}
+				/>}
           <Route
             exact
             path="/login"
@@ -102,7 +101,7 @@ class App extends Component {
           {this.state.userID && (
             <Route
               exact
-              path="/users/:id"
+              path="/"
               render={() => (
                 <UserHome
                   appState={this.state}
@@ -114,7 +113,7 @@ class App extends Component {
           )}
           <Route
             exact
-            path="/movie_details/:id"
+            path="/movies/:id"
             render={({ match }) => {
               const { id } = match.params;
               const movieToRender = this.state.movies.find(
@@ -123,7 +122,6 @@ class App extends Component {
               return <MovieDetails appState={this.state} {...movieToRender} />;
             }}
           />
-        </Switch>
       </div>
     );
   }
