@@ -21,6 +21,7 @@ header {
 	position: absolute;
 	margin: 5px;
 	height: 2vh;
+	text-shadow: 1px 1px 1px black;
 }
 
 h2 {
@@ -28,10 +29,11 @@ h2 {
 	margin-left: 10px;
 }
 
-h2, .title {
+ .title {
 	font-family: 'Ultra', serif;
 	font-weight: 100;
 	margin-top: 20px;
+	text-shadow: 2px 2px 0px black;
 }
 
 .title {

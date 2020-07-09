@@ -13,7 +13,7 @@ const GuestHome = ({ appState }) => {
             className="tomato-logo"
             alt="tomato logo"
           />
-          <b>Fresh Tomatoes</b>
+          Fresh Tomatoes
         </h2>
         <Link to={`/login`}>
           <button href="/login" className="login-btn">
