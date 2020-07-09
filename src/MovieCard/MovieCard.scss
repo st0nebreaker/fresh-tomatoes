@@ -20,7 +20,7 @@
 	margin-bottom: 25px;
 	padding: 3px;
 	width: 300px;
-	height: 567px;
+	height: 505px;
 	background-color: white;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .title-section {
- 	height: 6vh;
+ 	height: 1vh;
 }
 
 .inputs {
@@ -85,7 +85,7 @@ p {
 	font-size: 14px;
 }
 
-.rating-button, .delete-button {
+.rating-button {
 	color: red;
 	background-color: white;
 	border: 1px grey solid;
@@ -95,6 +95,18 @@ p {
 		color: white;
 		background-color: red;
 		border: none;
+	}
+}
+
+.delete-button {
+	color: white;
+	background-color: red;
+	border: 1px grey solid;
+	height: 3vh;
+	margin: 2px;
+	&:hover {
+		color: red;
+		background-color:white;
 	}
 }
 
@@ -117,4 +129,6 @@ p {
 	width: 6vw;
 	min-width: 85px;
 	cursor: pointer;
+	border: 1px grey solid;
+
 }

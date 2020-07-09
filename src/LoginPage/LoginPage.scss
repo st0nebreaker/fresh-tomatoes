@@ -5,19 +5,29 @@ form {
 	margin: 0 auto;
 	width: 50vw;
 	background-color: white;
-	margin-top: 70px;
+	margin-bottom: 75px;
 	box-shadow: 3px 3px 15px 0px rgba(87,87,87,1);
 
 }
 
 h2 {
+	font-family: 'Ultra', serif;
 	margin-top: 50px;
 }
-
+.login-title {
+  font-size: 30px;
+  font-weight: 100;
+  font-family: inherit;
+  font-weight: bolder;
+}
 a {
 	text-decoration: none;
 }
 
+.login-form {
+	width: 24vw;
+	margin-top: 100px;
+}
 .form-input {
 	margin: 15px;
 }
@@ -29,6 +39,7 @@ a {
 	margin-bottom: 25px;
 	color: red;
 	background-color: white;
+	border: 1px solid black;
 	&:hover {
 		color: white;
 		background-color: red;
@@ -52,7 +63,7 @@ input {
 }
 
 .input-container {
-	width: 34vw;
+	width: 18vw;
 }
 
 .title {

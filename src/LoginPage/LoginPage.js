@@ -53,7 +53,7 @@ class LoginPage extends Component {
           </Link>
         </header>
         <form className="login-form">
-          <h2>LOGIN</h2>
+          <h2 className="login-title">LOGIN</h2>
           <section className='input-container'>
             <section className="form-input">
               <input
