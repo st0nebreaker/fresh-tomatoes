@@ -36,7 +36,6 @@ class MovieCard extends Component {
 		if (this.props.userRatings) {
 		  if (this.props.userRatings.find((rating) => rating.movie_id === this.props.id)) {
           let foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
-          console.log(foundRating)
         	this.setState({ foundRating: foundRating.rating });
           }
       else {
