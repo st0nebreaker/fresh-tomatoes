@@ -157,7 +157,7 @@ class MovieCard extends Component {
                   id="delete-button"
                   onClick={this.deleteRating}
                 >
-                  Delete rating
+                  Delete score
                 </button>
               </section>
             )}
@@ -167,7 +167,7 @@ class MovieCard extends Component {
                   className="rating-button"
                   onClick={this.displayRatingForm}
                 >
-                  Add rating
+                  Add score
                 </button>
               </section>
             )}

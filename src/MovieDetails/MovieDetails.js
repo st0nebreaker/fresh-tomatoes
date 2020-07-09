@@ -87,7 +87,7 @@ class MovieDetails extends Component {
 									<li><div className='label'><b>Genres</b>: </div>
 										<div className='value'>{this.state.genres && this.state.genres.map(genre => genre + ' ' )}</div>
 									</li>
-									<li><div className='label'><b>Average Rating</b>: </div>
+									<li><div className='label'><b>Average Score</b>: </div>
 										<div className='value'>{Math.floor(this.state.averageRating)} /10</div>
 									</li>
 							</ul>
