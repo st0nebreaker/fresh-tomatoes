@@ -85,7 +85,7 @@ p {
 	font-size: 14px;
 }
 
-.rating-button, .delete-button {
+.rating-button {
 	color: red;
 	background-color: white;
 	border: 1px grey solid;
@@ -94,6 +94,19 @@ p {
 	&:hover {
 		color: white;
 		background-color: red;
+		border: none;
+	}
+}
+
+.delete-button {
+	color: white;
+	background-color: red;
+	border: 1px grey solid;
+	height: 3vh;
+	margin: 2px;
+	&:hover {
+		color: red;
+		background-color:white;
 		border: none;
 	}
 }
