@@ -44,6 +44,7 @@
 }
 .radio-button {
 	margin-left: 2px;
+	cursor: pointer;
 }
 
 .exit-btn {
@@ -58,8 +59,7 @@
 	position: absolute;
 	z-index: 15;
 	margin: 0;
-	width: 290px;
-	height: 200px;
+	width: 300px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -109,6 +109,7 @@ p {
 }
 
 .submit-rating-btn {
-	height: 2vh;
+	height: 3vh;
 	width: 6vw;
+	cursor: pointer;
 }

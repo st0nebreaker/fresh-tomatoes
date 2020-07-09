@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MovieCard.scss";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postRating, deleteRatingApi } from "../apiCalls/apiCalls";
 
 class MovieCard extends Component {
@@ -62,12 +62,11 @@ class MovieCard extends Component {
 
 	displayRatingForm = () => {
 		this.setState({clicked: !this.state.clicked});
-	}
-
-	render = () => {
-    var className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
+  }
+  
+  createRadioButtons = () => {
     let radioButtons = [];
-    for(let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 10; i++) {
       radioButtons.push(
         <label htmlFor={i} className="radio-btn-label">
           <input
@@ -82,24 +81,49 @@ class MovieCard extends Component {
         </label>
       );
     }
-    
-	
+    return radioButtons
+  }
+
+  createTomatoElement = () => {
+    const tomato = <img
+          className="rating-img"
+          src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
+          alt="Tomato"
+        />
+    const greenPaint = <img
+          className="rating-img"
+          src="https://i.pinimg.com/originals/58/e0/a9/58e0a9b572353c77bb1a4b3f802f4cb8.png"
+          alt="Green Paint Splatter"
+        />
+    if(this.state.foundRating) {
+      return this.state.foundRating >= 5 ? tomato : greenPaint
+    } else {
+      return this.props.averageRating >= 5 ? tomato : greenPaint
+    }
+
+  }
+
+
+	render = () => {
+    const className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
+    const tomatoElement = this.createTomatoElement()
+    const radioButtons = this.createRadioButtons();
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
           <div>
             <form className="rating-form">
-							<div className='exit-btn' onClick={this.displayRatingForm}>x</div>
-              <div className="inputs">
-                {radioButtons}
+              <div className="exit-btn" onClick={this.displayRatingForm}>
+                x
               </div>
-                <button
-                  onClick={(event) => this.submitRating(event)}
-                  className="submit-rating-btn"
-                  aria-label="submit-button"
-                >
-                  Submit
-                </button>
+              <div className="inputs">{radioButtons}</div>
+              <button
+                onClick={(event) => this.submitRating(event)}
+                className="submit-rating-btn"
+                aria-label="submit-button"
+              >
+                Submit
+              </button>
             </form>
           </div>
         </section>
@@ -118,20 +142,7 @@ class MovieCard extends Component {
               )}
               /10
             </p>
-            {this.props.averageRating >= 5 && (
-              <img
-                className="rating-img"
-                src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
-                alt="Tomato"
-              />
-            )}
-            {this.props.averageRating < 5 && (
-              <img
-                className="rating-img"
-                src="https://i.pinimg.com/originals/58/e0/a9/58e0a9b572353c77bb1a4b3f802f4cb8.png"
-                alt="Green Paint Splatter"
-              />
-            )}
+            {tomatoElement}
           </section>
           <Link to={`/movie_details/${this.props.id}`}>
             <img
@@ -143,8 +154,10 @@ class MovieCard extends Component {
           {this.state.foundRating && (
             <section className="rating-button-section">
               <button
-                className="delete-button" id="delete-button"
-                onClick={this.deleteRating}              >
+                className="delete-button"
+                id="delete-button"
+                onClick={this.deleteRating}
+              >
                 Delete rating
               </button>
             </section>
