@@ -111,7 +111,7 @@ class MovieCard extends Component {
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
-          <div>
+          {/* <div> */}
             <form className="rating-form">
               <div className="exit-btn" onClick={this.displayRatingForm}>
                 x
@@ -125,7 +125,7 @@ class MovieCard extends Component {
                 Submit
               </button>
             </form>
-          </div>
+          {/* </div> */}
         </section>
         <section className="movie-card" id={this.props.id}>
           <section className="title-section">

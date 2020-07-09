@@ -5,6 +5,11 @@
 	}
 }
 
+.movie-card-container {
+	display: flex;
+  justify-content: center;
+}
+
 .movie-card {
 	box-shadow: 3px 3px 15px 0px rgba(87,87,87,1);
 	display: flex;
@@ -15,6 +20,7 @@
 	margin-bottom: 25px;
 	padding: 3px;
 	width: 300px;
+	height: 567px;
 	background-color: white;
 }
 
@@ -31,7 +37,7 @@
 	justify-content: space-between;
 	width: 270px;
 	margin-top: 27px;
-	margin-bottom: 8px;
+	margin-bottom: 7px;
 }
 
 .rating-form {
@@ -40,7 +46,6 @@
 	min-width: 300px;
 	max-width: 300px;
 	border: 1px solid grey;
-	margin-top: 0px;
 }
 .radio-button {
 	margin-left: 2px;
@@ -48,7 +53,7 @@
 }
 
 .exit-btn {
-	left: 0;
+	left: 7px;
 	position: absolute;
 	color: red;
 	font-weight: bolder;
@@ -59,12 +64,11 @@
 	position: absolute;
 	z-index: 15;
 	margin: 0;
-	width: 300px;
+	width: 307px;
+	height: 583px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 25%;
-	margin-left: 1.3%;
+	justify-content: flex-end;
+	flex-direction: column
 }
 
 .hide {
@@ -109,7 +113,8 @@ p {
 }
 
 .submit-rating-btn {
-	height: 3vh;
+	height: 2vh;
 	width: 6vw;
+	min-width: 85px;
 	cursor: pointer;
 }
