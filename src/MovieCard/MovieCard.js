@@ -112,66 +112,66 @@ class MovieCard extends Component {
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
           {/* <div> */}
-            <form className="rating-form">
-              <div className="exit-btn" onClick={this.displayRatingForm}>
-                x
-              </div>
-              <div className="inputs">{radioButtons}</div>
-              <button
-                onClick={(event) => this.submitRating(event)}
-                className="submit-rating-btn"
-                aria-label="submit-button"
-              >
-                Submit
-              </button>
-            </form>
+          <form className="rating-form">
+            <div className="exit-btn" onClick={this.displayRatingForm}>
+              x
+            </div>
+            <div className="inputs">{radioButtons}</div>
+            <button
+              onClick={(event) => this.submitRating(event)}
+              className="submit-rating-btn"
+              aria-label="submit-button"
+            >
+              Submit
+            </button>
+          </form>
           {/* </div> */}
         </section>
         <section className="movie-card" id={this.props.id}>
           <section className="title-section">
             <h3>{this.props.title}</h3>
-          </section>
-          <section className="rating-section">
-            <p>
-              {this.state.foundRating ? (
-                <b className="user-rating-msg">
-                  You rated {this.state.foundRating}{" "}
-                </b>
-              ) : (
-                `Average Rating ${Math.floor(this.props.averageRating)}`
-              )}
-              /10
-            </p>
+            <section className="rating-section">
+              <p>
+                {this.state.foundRating ? (
+                  <b className="user-rating-msg">
+                    Your Score: {this.state.foundRating}{" "}
+                  </b>
+                ) : (
+                  `Audience Score: ${Math.floor(this.props.averageRating)}`
+                )}
+                /10
+              </p>
             {tomatoElement}
+            </section>
+            <Link to={`/movie_details/${this.props.id}`}>
+              <img
+                src={this.props.poster}
+                alt="movie poster"
+                className="movie-poster"
+              />
+            </Link>
+            {this.state.foundRating && (
+              <section className="rating-button-section">
+                <button
+                  className="delete-button"
+                  id="delete-button"
+                  onClick={this.deleteRating}
+                >
+                  Delete rating
+                </button>
+              </section>
+            )}
+            {!this.state.foundRating && this.props.userID && (
+              <section className="rating-button-section">
+                <button
+                  className="rating-button"
+                  onClick={this.displayRatingForm}
+                >
+                  Add rating
+                </button>
+              </section>
+            )}
           </section>
-          <Link to={`/movie_details/${this.props.id}`}>
-            <img
-              src={this.props.poster}
-              alt="movie poster"
-              className="movie-poster"
-            />
-          </Link>
-          {this.state.foundRating && (
-            <section className="rating-button-section">
-              <button
-                className="delete-button"
-                id="delete-button"
-                onClick={this.deleteRating}
-              >
-                Delete rating
-              </button>
-            </section>
-          )}
-          {!this.state.foundRating && this.props.userID && (
-            <section className="rating-button-section">
-              <button
-                className="rating-button"
-                onClick={this.displayRatingForm}
-              >
-                Add rating
-              </button>
-            </section>
-          )}
         </section>
       </section>
     );
