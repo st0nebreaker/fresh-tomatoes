@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/user-event": "^7.2.1",
-    "express": "^4.17.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -13,7 +12,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "devstart": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject"
@@ -39,18 +37,5 @@
     "@testing-library/react": "^9.5.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "prettier": "2.0.5"
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/b-stein/fresh-tomatoes.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/b-stein/fresh-tomatoes/issues"
-  },
-  "homepage": "https://github.com/b-stein/fresh-tomatoes#readme"
+  }
 }
