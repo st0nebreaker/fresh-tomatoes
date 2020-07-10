@@ -21,7 +21,6 @@ class LoginPage extends Component {
 
   submitLogin = (event) => {
     event.preventDefault();
-    this.props.getUsersFavorites();
     return verifyLogin(this.state.email, this.state.password)
       .then((data) => {
         this.setState({ id: data.user.id, userName: data.user.name }, () => {
@@ -30,7 +29,8 @@ class LoginPage extends Component {
 				return data;
 			})
 			.then(async (data) => {
-				await this.props.getUsersRatings(data.user.id);
+        await this.props.getUsersRatings(data.user.id);
+        await this.props.getAllFavorites();
 				this.props.history.push(`/`)})
       .catch((error) => this.setState({ error }));
   };

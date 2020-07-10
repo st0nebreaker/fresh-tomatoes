@@ -50,7 +50,7 @@ export const deleteRatingApi = async (userID, movieID) => {
   return data;
 } 
 
-export const getUsersFavoritesApi = async () => {
+export const getAllFavoritesApi = async () => {
   const response = await fetch("http://localhost:3001/api/v1/favorites");
   const data = await response.json();
   return data

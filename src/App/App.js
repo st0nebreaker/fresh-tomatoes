@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.scss";
-import { withRouter, Route, Switch } from "react-router-dom";
+import { withRouter, Route } from "react-router-dom";
 import GuestHome from "../GuestHome/GuestHome";
 import UserHome from "../UserHome/UserHome";
 import LoginPage from "../LoginPage/LoginPage";
 import MovieDetails from "../MovieDetails/MovieDetails";
-import { getAllMovies, getUserRatedMovies, getUsersFavoritesApi } from "../apiCalls/apiCalls";
+import { getAllMovies, getUserRatedMovies, getAllFavoritesApi } from "../apiCalls/apiCalls";
 
 class App extends Component {
   constructor() {
@@ -26,7 +26,6 @@ class App extends Component {
 		getAllMovies()
 			.then((data) => this.setState({ movies: data.movies }))
 			.catch((error) => this.setState({ error }));
-		this.changeUrl();
 	};
 
 	componentDidUpdate = () => {
@@ -71,10 +70,10 @@ class App extends Component {
 		.catch((error) => console.log(error.message));
   };
 
-  getUsersFavorites = () => {
-	  return getUsersFavoritesApi()
+  getAllFavorites = () => {
+	  return getAllFavoritesApi()
 	  	.then(favorites => {
-			this.setState({userFavorites: favorites})
+			this.setState({usersFavorites: favorites})
 		  })
   }
 
@@ -100,7 +99,7 @@ class App extends Component {
             <LoginPage
               changeUserId={this.changeUserId}
               getUsersRatings={this.getUsersRatings}
-              getUsersFavorites={this.getUsersFavorites}
+              getAllFavorites={this.getAllFavorites}
             />
           )}
         />
