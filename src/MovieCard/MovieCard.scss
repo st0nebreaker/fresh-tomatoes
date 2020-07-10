@@ -1,5 +1,6 @@
 .movie-poster {
 	width: 89%;
+	max-width: 259px;
 	&:hover {
 		opacity: 70%;
 	}
@@ -29,7 +30,8 @@
 }
 
 .title-section {
- 	height: 1vh;
+	 height: 1vh;
+	 min-height: 47px;
 }
 
 .inputs {
@@ -65,7 +67,7 @@
 	z-index: 15;
 	margin: 0;
 	width: 307px;
-	height: 583px;
+	height: 593px;
 	display: flex;
 	justify-content: flex-end;
 	flex-direction: column
@@ -125,7 +127,7 @@ p {
 }
 
 .submit-rating-btn {
-	height: 2vh;
+	height: 3vh;
 	width: 6vw;
 	min-width: 85px;
 	cursor: pointer;
