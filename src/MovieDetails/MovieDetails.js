@@ -22,10 +22,10 @@ class MovieDetails extends Component {
     }
 
     componentDidMount() {
-		const fetchOneMovie = async () => {
-			const response = await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.id}`)
-			const data = await response.json();
-			return data;
+			const fetchOneMovie = async () => {
+				const response = await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.id}`)
+				const data = await response.json();
+				return data;
 		}
 
 		fetchOneMovie()
@@ -40,11 +40,25 @@ class MovieDetails extends Component {
 						revenue: data.movie.revenue,
 						runtime: data.movie.runtime,
 						tagLine: data.movie.tagline,
-						averageRating: data.movie.average_rating
+						averageRating: data.movie.average_rating,
+						foundRating: null
 				})
 			})
+			.then(() => {
+				this.checkForUserRating();
+			})
 			.catch(error => this.setState({error}));
-    }
+		}
+		
+		checkForUserRating = () => {
+			if (this.props.appState.userRatings) {
+				if (this.props.appState.userRatings.find((rating) => rating.movie_id === this.props.id)) {
+						let foundRating = this.props.appState.userRatings.find((rating) => rating.movie_id === this.props.id);
+						this.setState({foundRating: foundRating.rating});
+						}
+				else { this.setState({foundRating: null}) }
+			} 
+		}
 
     render() {
 		if (this.state.error) {
@@ -90,6 +104,11 @@ class MovieDetails extends Component {
 									<li><div className='label'><b>Audience Score</b>: </div>
 										<div className='value'>{Math.floor(this.state.averageRating)} /10</div>
 									</li>
+									{this.state.foundRating && 
+										<li><div className='label user-score-label'><b>Your Score</b>: </div>
+											<div className='value'>{this.state.foundRating} /10</div>
+										</li>
+									}
 							</ul>
 					</section>
 				</section>

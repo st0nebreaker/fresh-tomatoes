@@ -88,40 +88,40 @@ class App extends Component {
 						/>
 					)}
 				/>}
-          <Route
-            exact
-            path="/login"
-            render={() => (
-              <LoginPage
-                changeUserId={this.changeUserId}
-                getUsersRatings={this.getUsersRatings}
-              />
-            )}
-          />
-          {this.state.userID && (
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <UserHome
-                  appState={this.state}
-                  changeUserId={this.changeUserId}
-                  getUsersRatings={this.getUsersRatings}
-                />
-              )}
-            />
-          )}
-          <Route
-            exact
-            path="/movies/:id"
-            render={({ match }) => {
-              const { id } = match.params;
-              const movieToRender = this.state.movies.find(
-                (movie) => movie.id === parseInt(id)
-              );
-              return <MovieDetails appState={this.state} {...movieToRender} />;
-            }}
-          />
+				<Route
+					exact
+					path="/login"
+					render={() => (
+						<LoginPage
+							changeUserId={this.changeUserId}
+							getUsersRatings={this.getUsersRatings}
+						/>
+					)}
+				/>
+				{this.state.userID && (
+					<Route
+						exact
+						path="/"
+						render={() => (
+							<UserHome
+								appState={this.state}
+								changeUserId={this.changeUserId}
+								getUsersRatings={this.getUsersRatings}
+							/>
+						)}
+					/>
+				)}
+				<Route
+					exact
+					path="/movies/:id"
+					render={({ match }) => {
+						const { id } = match.params;
+						const movieToRender = this.state.movies.find(
+							(movie) => movie.id === parseInt(id)
+						);
+						return <MovieDetails appState={this.state} {...movieToRender} />;
+					}}
+				/>
       </div>
     );
   }

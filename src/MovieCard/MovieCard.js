@@ -38,9 +38,7 @@ class MovieCard extends Component {
           let foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
         	this.setState({ foundRating: foundRating.rating });
           }
-      else {
-        	this.setState({ foundRating: null })
-      }
+      else { this.setState({ foundRating: null }) }
 		} 
   }
 	
@@ -123,48 +121,46 @@ class MovieCard extends Component {
           </form>
         </section>
         <section className="movie-card" id={this.props.id}>
-          <section className="title-section">
-            <h3>{this.props.title}</h3>
-            <section className="rating-section">
-              <p>{this.state.foundRating ? (
-                  <b className="user-rating-msg">
-                    Your Score: {this.state.foundRating}{" "}
-                  </b>
-                ) : (`Audience Score: ${Math.floor(this.props.averageRating)}`)}
-              /10 </p>
-            {tomatoElement}
-            </section>
-            <Link to={`/movies/${this.props.id}`}>
-              <img
-                src={this.props.poster}
-                alt="movie poster"
-                className="movie-poster"
-              />
-            </Link>
-            {this.state.foundRating && (
-              <section className="rating-button-section">
-                <button
-                  className="delete-button"
-                  id="delete-button"
-                  onClick={this.deleteRating}
-                >
-                  Delete score
-                </button>
-              </section>
-            )}
-            {!this.state.foundRating && this.props.userID && (
-              <section className="rating-button-section">
-                <button
-                  className="rating-button"
-                  onClick={this.displayRatingForm}
-                >
-                  Add score
-                </button>
-              </section>
-            )}
-          </section>
-        </section>
-      </section>
+          <section className="title-section"><h3>{this.props.title}</h3></section>
+          <section className="rating-section">
+						<p>{this.state.foundRating ? (
+								<b className="user-rating-msg">
+									Your Score: {this.state.foundRating}
+								</b>
+							) : (`Audience Score: ${Math.floor(this.props.averageRating)}`)}
+						/10 </p>
+					{tomatoElement}
+					</section>
+					<Link to={`/movies/${this.props.id}`}>
+						<img
+							src={this.props.poster}
+							alt="movie poster"
+							className="movie-poster"
+						/>
+					</Link>
+					{this.state.foundRating && (
+						<section className="rating-button-section">
+							<button
+								className="delete-button"
+								id="delete-button"
+								onClick={this.deleteRating}
+							>
+								Delete score
+							</button>
+						</section>
+					)}
+					{!this.state.foundRating && this.props.userID && (
+						<section className="rating-button-section">
+							<button
+								className="rating-button"
+								onClick={this.displayRatingForm}
+							>
+								Add score
+							</button>
+						</section>
+					)}
+				</section>
+			</section>
     );
 }
 };
