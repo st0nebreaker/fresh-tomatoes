@@ -5,7 +5,7 @@ import GuestHome from "../GuestHome/GuestHome";
 import UserHome from "../UserHome/UserHome";
 import LoginPage from "../LoginPage/LoginPage";
 import MovieDetails from "../MovieDetails/MovieDetails";
-import { getAllMovies, getUserRatedMovies } from "../apiCalls/apiCalls";
+import { getAllMovies, getUserRatedMovies, getUsersFavoritesApi } from "../apiCalls/apiCalls";
 
 class App extends Component {
   constructor() {
@@ -16,7 +16,8 @@ class App extends Component {
       userID: null,
       userName: null,
       userRatings: [],
-      localStorage: null,
+	  localStorage: null,
+	  usersFavorites: null,
     };
   }
 	
@@ -32,10 +33,12 @@ class App extends Component {
     let loggedUserId = JSON.stringify(this.state.userID);
     let loggedUserName = JSON.stringify(this.state.userName);
     let loggedRatings = JSON.stringify(this.state.userRatings);
+    let loggedFavorites = JSON.stringify(this.state.usersFavorites);
 
     localStorage.setItem("loggedInUserId", loggedUserId);
     localStorage.setItem("loggedInUserName", loggedUserName);
-		localStorage.setItem("loggedRatings", loggedRatings);
+	localStorage.setItem("loggedRatings", loggedRatings);
+	localStorage.setItem("loggedFavorites", loggedFavorites);
   };
 
   changeUserId = (givenUser) => {
@@ -59,12 +62,15 @@ class App extends Component {
   verifyLoginLocalStorage() {
     let loggedUserId = JSON.parse(localStorage.getItem("loggedInUserId"));
     let loggedUserName = JSON.parse(localStorage.getItem("loggedInUserName"));
-    let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
+	let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
+	let loggedFavorites = JSON.parse(localStorage.getItem("loggedFavorites"));
+
     this.setState({
       userID: loggedUserId,
       userName: loggedUserName,
       userRatings: loggedRatings,
       localStorage: true,
+      usersFavorites: loggedFavorites
     });
     return loggedUserId;
   };
@@ -75,53 +81,63 @@ class App extends Component {
 		.catch((error) => console.log(error.message));
   };
 
+  getUsersFavorites = () => {
+	  return getUsersFavoritesApi()
+	  	.then(favorites => {
+			this.setState({userFavorites: favorites})
+		  })
+  }
+
   render() {
     return (
       <div className="App">
-				{!this.state.userID && <Route
-					exact
-					path="/"
-					render={() => (
-						<GuestHome
-							appState={this.state}
-							getUsersRatings={this.getUsersRatings}
-						/>
-					)}
-				/>}
-				<Route
-					exact
-					path="/login"
-					render={() => (
-						<LoginPage
-							changeUserId={this.changeUserId}
-							getUsersRatings={this.getUsersRatings}
-						/>
-					)}
-				/>
-				{this.state.userID && (
-					<Route
-						exact
-						path="/"
-						render={() => (
-							<UserHome
-								appState={this.state}
-								changeUserId={this.changeUserId}
-								getUsersRatings={this.getUsersRatings}
-							/>
-						)}
-					/>
-				)}
-				<Route
-					exact
-					path="/movies/:id"
-					render={({ match }) => {
-						const { id } = match.params;
-						const movieToRender = this.state.movies.find(
-							(movie) => movie.id === parseInt(id)
-						);
-						return <MovieDetails appState={this.state} {...movieToRender} />;
-					}}
-				/>
+        {!this.state.userID && (
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <GuestHome
+                appState={this.state}
+                getUsersRatings={this.getUsersRatings}
+              />
+            )}
+          />
+        )}
+        <Route
+          exact
+          path="/login"
+          render={() => (
+            <LoginPage
+              changeUserId={this.changeUserId}
+              getUsersRatings={this.getUsersRatings}
+              getUsersFavorites={this.getUsersFavorites}
+            />
+          )}
+        />
+        {this.state.userID && (
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <UserHome
+                appState={this.state}
+                changeUserId={this.changeUserId}
+                getUsersRatings={this.getUsersRatings}
+              />
+            )}
+          />
+        )}
+        <Route
+          exact
+          path="/movies/:id"
+          render={({ match }) => {
+            const { id } = match.params;
+            const movieToRender = this.state.movies.find(
+              (movie) => movie.id === parseInt(id)
+            );
+            return <MovieDetails appState={this.state} {...movieToRender} />;
+          }}
+        />
       </div>
     );
   }

@@ -21,7 +21,7 @@ class LoginPage extends Component {
 
   submitLogin = (event) => {
     event.preventDefault();
-
+    this.props.getUsersFavorites();
     return verifyLogin(this.state.email, this.state.password)
       .then((data) => {
         this.setState({ id: data.user.id, userName: data.user.name }, () => {
