@@ -14,6 +14,7 @@ header {
 	min-width: 45px;
 	margin-left: 2px;
 	margin-right: 5px;
+	margin-bottom: 7px;
 }
 
 .login-btn {
@@ -31,13 +32,11 @@ h2 {
 }
 
  .title {
+	 display: flex;
+	 align-items: flex-end;
 	font-family: 'Ultra', serif;
 	font-weight: 100;
 	margin-top: 20px;
+	font-size: 3vh;
 	text-shadow: 2px 2px 0px black;
-}
-
-.title {
-	display: flex;
-	align-items: flex-end;
 }
