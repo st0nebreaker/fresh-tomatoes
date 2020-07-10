@@ -69,10 +69,10 @@ class MovieDetails extends Component {
 			return (
 				<section className='movie-detail-page'>
 					<header className="App-header">
-						<h2 className='title'>
+						<h1 className='title'>
 							<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png' className='tomato-logo' alt='tomato logo' />
 							Fresh Tomatoes
-						</h2>
+						</h1>
 					</header>
 					{this.state.userID && <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>}
 					{!this.state.userID && <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>}

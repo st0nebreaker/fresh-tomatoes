@@ -36,8 +36,8 @@ class App extends Component {
 
     localStorage.setItem("loggedInUserId", loggedUserId);
     localStorage.setItem("loggedInUserName", loggedUserName);
-	localStorage.setItem("loggedRatings", loggedRatings);
-	localStorage.setItem("loggedFavorites", loggedFavorites);
+	  localStorage.setItem("loggedRatings", loggedRatings);
+	  localStorage.setItem("loggedFavorites", loggedFavorites);
   };
 
   changeUserId = (givenUser) => {
@@ -72,9 +72,8 @@ class App extends Component {
 
   getAllFavorites = () => {
 	  return getAllFavoritesApi()
-	  	.then(favorites => {
-			this.setState({usersFavorites: favorites})
-		  })
+      .then(favorites => this.setState({usersFavorites: favorites}))
+      .catch((error) => console.log(error.message))
   }
 
   render() {
