@@ -36,8 +36,8 @@ class App extends Component {
 
     localStorage.setItem("loggedInUserId", loggedUserId);
     localStorage.setItem("loggedInUserName", loggedUserName);
-	localStorage.setItem("loggedRatings", loggedRatings);
-	localStorage.setItem("loggedFavorites", loggedFavorites);
+	  localStorage.setItem("loggedRatings", loggedRatings);
+	  localStorage.setItem("loggedFavorites", loggedFavorites);
   };
 
   changeUserId = (givenUser) => {
