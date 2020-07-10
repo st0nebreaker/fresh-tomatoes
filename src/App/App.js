@@ -49,16 +49,6 @@ class App extends Component {
     });
   };
 
-  changeUrl = () => {
-    let loggedUserId = this.verifyLoginLocalStorage(); 
-    if (loggedUserId || this.state.userID) {
-      const id = this.state.userID || this.verifyLoginLocalStorage();
-      this.props.history.push(`/`);
-    } else {
-      this.props.history.push("/");
-    }
-  };
-
   verifyLoginLocalStorage() {
     let loggedUserId = JSON.parse(localStorage.getItem("loggedInUserId"));
     let loggedUserName = JSON.parse(localStorage.getItem("loggedInUserName"));
