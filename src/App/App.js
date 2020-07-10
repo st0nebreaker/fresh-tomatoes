@@ -5,7 +5,7 @@ import GuestHome from "../GuestHome/GuestHome";
 import UserHome from "../UserHome/UserHome";
 import LoginPage from "../LoginPage/LoginPage";
 import MovieDetails from "../MovieDetails/MovieDetails";
-import { getAllMovies, getUserRatedMovies, getAllFavoritesApi } from "../apiCalls/apiCalls";
+import { getAllMovies, getUserRatedMovies, getAllFavoritesApi, getAllComments } from "../apiCalls/apiCalls";
 
 class App extends Component {
   constructor() {
@@ -16,8 +16,9 @@ class App extends Component {
       userID: null,
       userName: null,
       userRatings: [],
-	  localStorage: null,
-	  usersFavorites: null,
+			usersFavorites: null,
+			comments: null,
+	  	localStorage: null,
     };
   }
 	
@@ -51,8 +52,8 @@ class App extends Component {
   verifyLoginLocalStorage() {
     let loggedUserId = JSON.parse(localStorage.getItem("loggedInUserId"));
     let loggedUserName = JSON.parse(localStorage.getItem("loggedInUserName"));
-	let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
-	let loggedFavorites = JSON.parse(localStorage.getItem("loggedFavorites"));
+		let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
+		let loggedFavorites = JSON.parse(localStorage.getItem("loggedFavorites"));
 
     this.setState({
       userID: loggedUserId,
@@ -60,7 +61,8 @@ class App extends Component {
       userRatings: loggedRatings,
       localStorage: true,
       usersFavorites: loggedFavorites
-    });
+		});
+		
     return loggedUserId;
   };
 
@@ -74,7 +76,13 @@ class App extends Component {
 	  return getAllFavoritesApi()
       .then(favorites => this.setState({usersFavorites: favorites}))
       .catch((error) => console.log(error.message))
-  }
+	}
+	
+	getAllComments = () => {
+		return getAllComments()
+			.then(comments => this.setState({comments: comments}))
+			.catch((error) => console.log(error.message))
+	}
 
   render() {
     return (
