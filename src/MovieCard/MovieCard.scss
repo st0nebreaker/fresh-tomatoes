@@ -91,7 +91,7 @@ p {
 	color: red;
 	background-color: white;
 	border: 1px grey solid;
-	height: 3vh;
+	height: 2vh;
 	margin: 2px;
 	&:hover {
 		color: white;
@@ -104,7 +104,7 @@ p {
 	color: white;
 	background-color: red;
 	border: 1px grey solid;
-	height: 3vh;
+	height: 2vh;
 	margin: 2px;
 	&:hover {
 		color: red;
@@ -127,7 +127,7 @@ p {
 }
 
 .submit-rating-btn {
-	height: 3vh;
+	height: 2vh;
 	width: 6vw;
 	min-width: 85px;
 	cursor: pointer;
