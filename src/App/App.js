@@ -72,9 +72,8 @@ class App extends Component {
 
   getAllFavorites = () => {
 	  return getAllFavoritesApi()
-	  	.then(favorites => {
-			this.setState({usersFavorites: favorites})
-		  })
+      .then(favorites => this.setState({usersFavorites: favorites}))
+      .catch((error) => console.log(error.message))
   }
 
   render() {
