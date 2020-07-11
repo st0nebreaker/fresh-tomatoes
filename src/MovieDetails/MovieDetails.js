@@ -8,6 +8,7 @@ class MovieDetails extends Component {
 		super(props);
 		this.state = {
 			userID: this.props.appState.userID,
+			userName: this.props.appState.userName,
 			error: null,
 			title: null,
 			releaseDate: null,
@@ -74,8 +75,7 @@ class MovieDetails extends Component {
 						Fresh Tomatoes
 					</h1>
 				</header>
-				{this.state.userID && <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>}
-				{!this.state.userID && <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>}
+				<Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>
 				<section className="movie-detail-container" >
 						<section className='movie-img'>
 							<section className='movie-titles'>
