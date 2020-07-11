@@ -80,7 +80,7 @@ class MovieCard extends Component {
 
   createFavoriteBtn = () => {
     const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
-    const favoriteMovieIDs = userFavorites.movie_ids;
+    const favoriteMovieIDs = userFavorites ? userFavorites.movie_ids : [];
     const favoritedBtn = (
       <button
         className="delete-button"
