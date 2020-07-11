@@ -134,3 +134,17 @@ p {
 	border: 1px grey solid;
 
 }
+
+.not-favorited {
+	border: none;
+	background-color: white;
+	color: red;
+	height: 2vh;
+}
+
+.favorited {
+	border: none;
+	background-color: white;
+	color: red;
+	height: 2vh;
+}

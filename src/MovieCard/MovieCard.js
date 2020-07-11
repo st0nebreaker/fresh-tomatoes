@@ -87,25 +87,25 @@ class MovieCard extends Component {
   createFavoriteBtn = () => {
     const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
     const favoriteMovieIDs = userFavorites ? userFavorites.movie_ids : [];
-    const favoritedBtn = (
+    const favorited = (
       <button
-        className="delete-button"
+        className="favorited"
         id={this.props.id}
         onClick={this.deleteFavorite}
       >
-        Favorited
+        ★
       </button>
     );
-    const notFavoritedBtn = (
+    const notFavorited = (
       <button
-        className="rating-button"
+        className="not-favorited"
         id={this.props.id}
         onClick={this.addsFavorite}
       >
-        Add Favorite
+        ☆
       </button>
     );
-    return favoriteMovieIDs.includes(this.props.id) ? favoritedBtn : notFavoritedBtn
+    return favoriteMovieIDs.includes(this.props.id) ? favorited : notFavorited
   } 
   
   createRadioButtons = () => {
