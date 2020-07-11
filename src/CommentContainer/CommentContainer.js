@@ -39,7 +39,6 @@ class CommentContainer extends Component {
 
 	render () {
 		let commentCards;
-		console.log(this.state.comments)
 		if (this.state.comments.length) {
 			// let sortedCards = this.state.comments.sort((a, b) => b.date - a.date);
 			commentCards = this.state.comments.map((movie) => {

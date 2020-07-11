@@ -54,7 +54,6 @@ class MovieCard extends Component {
   }
 
   addsFavorite = async (event) => {
-		debugger;
     try {
       const movieIdToUpdate = event.target.id;
       await postFavorite(movieIdToUpdate, this.props.userID)
