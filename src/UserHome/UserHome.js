@@ -32,6 +32,11 @@ const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites, fa
               View Favorites
             </button>
           </Link>}
+          {favorites && <Link to={`/`}>
+            <button className="view-favorites">
+              View All
+            </button>
+          </Link>}
         </div>
       </header>
       {appState.error && (
