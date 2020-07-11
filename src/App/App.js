@@ -16,7 +16,7 @@ class App extends Component {
       userID: null,
       userName: null,
       userRatings: [],
-			usersFavorites: [603],
+			usersFavorites: [],
 			comments: null,
 	  	localStorage: null,
     };
