@@ -63,7 +63,6 @@ export const getAllFavoritesApi = async () => {
 }
 
 export const postFavorite = async (movieID, userID) => {
-  console.log(movieID, userID)
   const request = {
     method: "POST",
     headers: { "Content-Type": "application/json" },

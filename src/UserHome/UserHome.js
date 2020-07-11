@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import './UserHome.scss';
 
 const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites}) => {
-	console.log('userHome appState', appState)
 	return (
     <>
       <header className="App-header">
