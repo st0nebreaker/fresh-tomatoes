@@ -151,7 +151,7 @@ class MovieCard extends Component {
     const tomatoElement = this.createTomatoElement()
     const radioButtons = this.createRadioButtons();
     const favoritedElement = this.props.userID ? this.createFavoriteBtn() : null
-    
+    const movieCardClass = this.props.userID ? 'movie-card' : 'movie-card shorter'
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
@@ -169,7 +169,7 @@ class MovieCard extends Component {
             </button>
           </form>
         </section>
-        <section className="movie-card" id={this.props.id}>
+        <section className={movieCardClass} id={this.props.id}>
           <section className="title-section">
             <h3>{this.props.title}</h3>
           </section>
