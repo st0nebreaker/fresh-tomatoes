@@ -14,6 +14,7 @@ const MovieContainer = ({appState, getUsersRatings}) => {
 				userRatings={appState.userRatings}
 				key={i}
 				getUsersRatings={getUsersRatings}
+				usersFavorites={appState.usersFavorites}
 			/>
 		)
 	})

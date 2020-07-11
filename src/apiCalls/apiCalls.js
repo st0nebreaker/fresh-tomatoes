@@ -52,7 +52,6 @@ export const deleteRatingApi = async (userID, movieID) => {
 
 export const fetchOneMovie = async (givenID) => {
 	const response = await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${givenID}`)
-	console.log('response', response)
 	const data = await response.json();
 	return data;
 }
