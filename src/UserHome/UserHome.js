@@ -3,7 +3,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import { Link } from "react-router-dom";
 import './UserHome.scss';
 
-const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites}) => {
+const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites, favorites}) => {
 	return (
     <>
       <header className="App-header">
@@ -26,6 +26,13 @@ const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites}) =
             </button>
           </Link>
         </p>
+        <div className="favorites">
+          {!favorites && <Link to={`/favorites`}>
+            <button onClick={() => console.log("yay")} className="view-favorites">
+              View Favorites
+            </button>
+          </Link>}
+        </div>
       </header>
       {appState.error && (
         <div className="error">Error: {appState.error.message}</div>
@@ -34,6 +41,7 @@ const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites}) =
         appState={appState}
         getUsersRatings={getUsersRatings}
         getAllFavorites={getAllFavorites}
+        favorites={favorites}
       />
     </>
   );
