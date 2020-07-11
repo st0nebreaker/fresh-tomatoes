@@ -12,7 +12,7 @@ const MovieContainer = ({ appState, getUsersRatings, getAllFavorites, favorites 
   } else {
     movies = appState.movies.filter(movie => user.movie_ids.includes(movie.id))
   }
-  
+
   movieCards = movies.map((movie, i) => {
       return (
         <MovieCard
@@ -40,8 +40,8 @@ const MovieContainer = ({ appState, getUsersRatings, getAllFavorites, favorites 
   }
   return (
     <>
-      {favorites && movies.length && <h3 className="your-favorites-title">Your Favorites:</h3>}
-      <div className="movie-container">{movieCards}</div>;
+      {favorites && movies.length ? <h3 className="your-favorites-title">Your Favorites:</h3> : null}
+      <div className="movie-container">{movieCards}</div>
     </>
   );
 };
