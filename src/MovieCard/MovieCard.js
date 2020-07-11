@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./MovieCard.scss";
 import { Link } from "react-router-dom";
-import { postRating, deleteRatingApi, postFavorite} from "../apiCalls/apiCalls";
+import { postRating, deleteRatingApi, postFavorite, removeFavorite} from "../apiCalls/apiCalls";
 
 class MovieCard extends Component {
 	constructor(props) {
@@ -66,8 +66,14 @@ class MovieCard extends Component {
   }
 
   deleteFavorite = async (event) => {
-    const movieIdToUpdate = event.target.id;
-    console.log(movieIdToUpdate);
+    try {
+      const movieIdToUpdate = event.target.id;
+      await removeFavorite(movieIdToUpdate, this.props.userID);
+      this.props.getAllFavorites();
+    }
+    catch(e) {
+      console.log(e)
+    }
   }
 
 	handleInputChange = (event) => {

@@ -16,7 +16,7 @@ class App extends Component {
       userID: null,
       userName: null,
       userRatings: [],
-			usersFavorites: [],
+			usersFavorites: [603],
 			comments: null,
 	  	localStorage: null,
     };
@@ -46,6 +46,7 @@ class App extends Component {
       userID: givenUser.id,
       userName: givenUser.userName,
       userRatings: [],
+      usersFavorites: []
     });
   };
 
@@ -53,7 +54,7 @@ class App extends Component {
     let loggedUserId = JSON.parse(localStorage.getItem("loggedInUserId"));
     let loggedUserName = JSON.parse(localStorage.getItem("loggedInUserName"));
 		let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
-		let loggedFavorites = JSON.parse(localStorage.getItem("loggedFavorites"));
+		let loggedFavorites = JSON.parse(localStorage.getItem("loggedFavorites")) || [];
 
     this.setState({
       userID: loggedUserId,
