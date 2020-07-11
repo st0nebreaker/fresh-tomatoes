@@ -68,8 +68,10 @@ class MovieCard extends Component {
 
   checkIfFavorited = () => {
     const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
-    const favoriteMovieIDs = userFavorites.movie_ids;
-    if (favoriteMovieIDs.includes(this.props.id)) return <button id={this.props.id}onClick= {this.addFavorited}>Favorited</button>
+		if (userFavorites) {
+			const favoriteMovieIDs = userFavorites.movie_ids;
+			if (favoriteMovieIDs.includes(this.props.id)) return <button id={this.props.id}onClick= {this.addFavorited}>Favorited</button>
+		}
   }
   
   createRadioButtons = () => {

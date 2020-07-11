@@ -2,3 +2,33 @@
 	width: 50%;
 	margin: 0 auto;
 }
+
+.comment-form {
+	display: flex;
+	flex-direction: row;
+}
+
+.comment-form-container {
+	display: flex;
+	flex-direction: row;
+	height: 6vh;
+	box-shadow: none;
+}
+
+.comment-input {
+	width: 73%;
+	margin-left: 10px;
+}
+
+.username {
+	margin-top: 29px;
+	padding-left: 10px;
+	font-weight: bold;
+	color: gray;
+}
+
+.comment-btn {
+	height: 2vh;
+	width: 5vw;
+	margin-left: 15px;
+}

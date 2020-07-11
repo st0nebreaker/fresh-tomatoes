@@ -15,6 +15,15 @@ const CommentContainer = ({ appState }) => {
 
 	return (
 		<div className='comment-container'>
+			{appState.userID && 
+				<section className='comment-form comment-card'>
+					<p className='username'>{appState.userName}</p>
+					<form className='comment-form-container'>
+						<input className='comment-input' placeholder='Write a comment...' />
+						<button className='comment-btn'>Post</button>
+					</form>
+				</section>
+			}
 			{commentCards}
 		</div>
 	)
