@@ -12,7 +12,6 @@ class MovieCard extends Component {
 			clicked: false,
       error: null,
       deleted: false,
-      favorites: [],
 		};
 	}
 
@@ -79,7 +78,7 @@ class MovieCard extends Component {
 		this.setState({clicked: !this.state.clicked});
   }
 
-  checkIfFavorited = () => {
+  createFavoriteBtn = () => {
     const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
     const favoriteMovieIDs = userFavorites.movie_ids;
     const favoritedBtn = (
@@ -145,7 +144,7 @@ class MovieCard extends Component {
     const className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
     const tomatoElement = this.createTomatoElement()
     const radioButtons = this.createRadioButtons();
-    const favoritedElement = this.props.userID ? this.checkIfFavorited() : null
+    const favoritedElement = this.props.userID ? this.createFavoriteBtn() : null
     
     return (
       <section className="movie-card-container" id={this.props.id}>
