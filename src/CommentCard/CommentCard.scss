@@ -1,0 +1,28 @@
+.comment-card {
+	background-color: white;
+	height: 6vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin-bottom: 15px;
+	box-shadow: 1px 1px 3px grey;
+	font-style: italic;
+}
+
+.poster-info {
+	display: flex;
+	padding: 10px 10px 0px 10px;
+}
+
+.comment-body {
+	padding: 0px 10px 10px 10px;
+}
+
+.poster {
+	font-weight: bold;
+	margin-right: 17px;
+}
+
+.date {
+	color: grey;
+}

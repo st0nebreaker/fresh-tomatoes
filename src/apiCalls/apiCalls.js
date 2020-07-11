@@ -52,7 +52,6 @@ export const deleteRatingApi = async (userID, movieID) => {
 
 export const fetchOneMovie = async (givenID) => {
 	const response = await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${givenID}`)
-	console.log('response', response)
 	const data = await response.json();
 	return data;
 }
@@ -70,11 +69,8 @@ export const getAllComments = async () => {
 }
 
 export const fetchMovieComments = async (givenID) => {
-	console.log('givenID', givenID)
 	const response = await fetch(`http://localhost:3001/api/v1/comments/${givenID}`);
-	console.log('response', response)
 	const data = await response.json();
-	console.log('data', data)
 	return data
 }
 
