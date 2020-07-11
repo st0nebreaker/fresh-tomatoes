@@ -59,7 +59,7 @@ export const fetchOneMovie = async (givenID) => {
 export const getAllFavoritesApi = async () => {
   const response = await fetch("http://localhost:3001/api/v1/favorites");
   const data = await response.json();
-  return data
+  return data;
 }
 
 export const postFavorite = async (movieID, userID) => {
@@ -99,12 +99,27 @@ export const removeFavorite = async (movieID, userID) => {
 export const getAllComments = async () => {
 	const response = await fetch("http://localhost:3001/api/v1/comments");
 	const data = await response.json();
-	return data
+	return data;
 }
 
 export const fetchMovieComments = async (givenID) => {
 	const response = await fetch(`http://localhost:3001/api/v1/comments/${givenID}`);
 	const data = await response.json();
-	return data
+	return data;
 }
 
+export const postNewComment = async (givenID, userID, comment, userName) => {
+	const request = {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			user_id: userID,
+			comment: comment,
+			user_name: userName,
+			movie_id: givenID
+		})
+	}
+	const response = await fetch(`http://localhost:3001/api/v1/comments/${givenID}`, request);
+	const data = await response.json();
+	return data;
+}

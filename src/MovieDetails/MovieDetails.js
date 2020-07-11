@@ -9,6 +9,7 @@ class MovieDetails extends Component {
 		this.state = {
 			userID: this.props.appState.userID,
 			userName: this.props.appState.userName,
+			movieID: this.props.id,
 			error: null,
 			title: null,
 			releaseDate: null,
@@ -25,26 +26,30 @@ class MovieDetails extends Component {
   }
 
 	componentDidMount() {
+		this.fetchData();
+	}
+
+	fetchData = () => {
 		fetchOneMovie(this.props.id)
-			.then(data => {
-				this.setState({
-						title: data.movie.title,
-						releaseDate: data.movie.release_date,
-						backDrop: data.movie.backdrop_path,
-						overview: data.movie.overview,
-						genres: data.movie.genres,
-						budget: data.movie.budget,
-						revenue: data.movie.revenue,
-						runtime: data.movie.runtime,
-						tagLine: data.movie.tagline,
-						averageRating: data.movie.average_rating,
-						foundRating: null
-				})
+		.then(data => {
+			this.setState({
+					title: data.movie.title,
+					releaseDate: data.movie.release_date,
+					backDrop: data.movie.backdrop_path,
+					overview: data.movie.overview,
+					genres: data.movie.genres,
+					budget: data.movie.budget,
+					revenue: data.movie.revenue,
+					runtime: data.movie.runtime,
+					tagLine: data.movie.tagline,
+					averageRating: data.movie.average_rating,
+					foundRating: null
 			})
-			.then(() => {
-				this.checkForUserRating();
-			})
-			.catch(error => this.setState({error}));
+		})
+		.then(() => {
+			this.checkForUserRating();
+		})
+		.catch(error => this.setState({error}));
 
 		fetchMovieComments(this.props.id)
 			.then(data => this.setState({ comments: data[this.props.id] }))
@@ -111,7 +116,7 @@ class MovieDetails extends Component {
 								}
 						</ul>
 				</section>
-				<CommentContainer appState={this.state} />
+				<CommentContainer appState={this.state} fetchData={this.fetchData} />
 			</section>
 		)
 	}
