@@ -19,7 +19,7 @@ class MovieDetails extends Component {
 			runtime: null,
 			tagLine: null,
 			averageRating: null,
-			comments: null
+			comments: []
 		}
   }
 
@@ -111,7 +111,7 @@ class MovieDetails extends Component {
 								}
 						</ul>
 				</section>
-				<CommentContainer />
+				<CommentContainer appState={this.state} />
 			</section>
 		)
 	}

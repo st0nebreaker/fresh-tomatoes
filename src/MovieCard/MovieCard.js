@@ -5,14 +5,14 @@ import { postRating, deleteRatingApi } from "../apiCalls/apiCalls";
 
 class MovieCard extends Component {
 	constructor(props) {
-		super()
+		super();
 		this.state = {
 			foundRating: null,
 			rating: null,
 			clicked: false,
       error: null,
       deleted: false
-		}
+		};
 	}
 
 	componentDidMount = () => {
@@ -101,8 +101,9 @@ class MovieCard extends Component {
 
 	render = () => {
     const className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
-    const tomatoElement = this.createTomatoElement()
-    const radioButtons = this.createRadioButtons();
+    const tomatoElement = this.createTomatoElement();
+		const radioButtons = this.createRadioButtons();
+		
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
