@@ -78,12 +78,6 @@ class App extends Component {
       .then(favorites => this.setState({usersFavorites: favorites}))
       .catch((error) => console.log(error.message))
 	}
-	
-	getAllComments = () => {
-		return getAllComments()
-			.then(comments => this.setState({comments: comments}))
-			.catch((error) => console.log(error.message))
-	}
 
   render() {
     return (
