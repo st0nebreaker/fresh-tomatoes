@@ -62,6 +62,22 @@ export const getAllFavoritesApi = async () => {
   return data
 }
 
+export const postFavorite = async (movieID, userID) => {
+  console.log(movieID, userID)
+  const request = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user_id: userID,
+      movie_id: movieID
+    }),
+  };
+
+  const response = await fetch("http://localhost:3001/api/v1/favorites", request);
+  const data = await response.json();
+  return data;
+};
+
 export const getAllComments = async () => {
 	const response = await fetch("http://localhost:3001/api/v1/comments");
 	const data = await response.json();

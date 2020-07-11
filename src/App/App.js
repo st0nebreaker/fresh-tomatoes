@@ -119,6 +119,7 @@ class App extends Component {
                 appState={this.state}
                 changeUserId={this.changeUserId}
                 getUsersRatings={this.getUsersRatings}
+                getAllFavorites={this.getAllFavorites}
               />
             )}
           />

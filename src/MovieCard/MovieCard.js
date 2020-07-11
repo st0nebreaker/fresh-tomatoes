@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./MovieCard.scss";
 import { Link } from "react-router-dom";
-import { postRating, deleteRatingApi } from "../apiCalls/apiCalls";
+import { postRating, deleteRatingApi, postFavorite} from "../apiCalls/apiCalls";
 
 class MovieCard extends Component {
 	constructor(props) {
@@ -11,7 +11,8 @@ class MovieCard extends Component {
 			rating: null,
 			clicked: false,
       error: null,
-      deleted: false
+      deleted: false,
+      favorites: [],
 		};
 	}
 
@@ -53,7 +54,19 @@ class MovieCard extends Component {
       }
   }
 
-  addFavorited = async(event) => {
+  addsFavorite = async (event) => {
+    try {
+      const movieIdToUpdate = event.target.id;
+      await postFavorite(movieIdToUpdate, this.props.userID)
+      this.props.getAllFavorites();
+    }
+    catch(e){
+			console.log(e);
+		}
+ 
+  }
+
+  deleteFavorite = async (event) => {
     const movieIdToUpdate = event.target.id;
     console.log(movieIdToUpdate);
   }
@@ -69,8 +82,26 @@ class MovieCard extends Component {
   checkIfFavorited = () => {
     const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
     const favoriteMovieIDs = userFavorites.movie_ids;
-    if (favoriteMovieIDs.includes(this.props.id)) return <button id={this.props.id}onClick= {this.addFavorited}>Favorited</button>
-  }
+    const favoritedBtn = (
+      <button
+        className="delete-button"
+        id={this.props.id}
+        onClick={this.deleteFavorite}
+      >
+        Favorited
+      </button>
+    );
+    const notFavoritedBtn = (
+      <button
+        className="rating-button"
+        id={this.props.id}
+        onClick={this.addsFavorite}
+      >
+        Add Favorite
+      </button>
+    );
+    return favoriteMovieIDs.includes(this.props.id) ? favoritedBtn : notFavoritedBtn
+  } 
   
   createRadioButtons = () => {
     let radioButtons = [];
@@ -134,47 +165,54 @@ class MovieCard extends Component {
           </form>
         </section>
         <section className="movie-card" id={this.props.id}>
-          <section className="title-section"><h3>{this.props.title}</h3></section>
+          <section className="title-section">
+            <h3>{this.props.title}</h3>
+          </section>
           <section className="rating-section">
-						<p>{this.state.foundRating ? (
-								<b className="user-rating-msg">
-									Your Score: {this.state.foundRating}
-								</b>
-							) : (`Audience Score: ${Math.floor(this.props.averageRating)}`)}
-						/10 </p>
-					{tomatoElement}
-					</section>
-					<Link to={`/movies/${this.props.id}`}>
-						<img
-							src={this.props.poster}
-							alt="movie poster"
-							className="movie-poster"
-						/>
-					</Link>
-					{this.state.foundRating && (
-						<section className="rating-button-section">
-							<button
-								className="delete-button"
-								id="delete-button"
-								onClick={this.deleteRating}
-							>
-								Delete score
-							</button>
-						</section>
-					)}
-					{!this.state.foundRating && this.props.userID && (
-						<section className="rating-button-section">
-							<button
-								className="rating-button"
-								onClick={this.displayRatingForm}
-							>
-								Add score
-							</button>
+            <p>
+              {this.state.foundRating ? (
+                <b className="user-rating-msg">
+                  Your Score:{this.state.foundRating}
+                </b>
+              ) : (
+                `Audience Score: ${Math.floor(this.props.averageRating)}`
+              )}
+              /10{" "}
+            </p>
+            {tomatoElement}
+          </section>
+          <Link to={`/movies/${this.props.id}`}>
+            <img
+              src={this.props.poster}
+              alt="movie poster"
+              className="movie-poster"
+            />
+          </Link>
+          {this.state.foundRating && (
+            <section className="rating-button-section">
+              <button
+                className="delete-button"
+                id="delete-button"
+                onClick={this.deleteRating}
+              >
+                Delete score
+              </button>
               {favoritedElement}
-						</section>
-					)}
-				</section>
-			</section>
+            </section>
+          )}
+          {!this.state.foundRating && this.props.userID && (
+            <section className="rating-button-section">
+              <button
+                className="rating-button"
+                onClick={this.displayRatingForm}
+              >
+                Add score
+              </button>
+              {favoritedElement}
+            </section>
+          )}
+        </section>
+      </section>
     );
 }
 };
