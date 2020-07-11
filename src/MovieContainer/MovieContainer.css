@@ -3,3 +3,12 @@
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
+
+.no-favorites-container {
+	display: flex;
+	align-items: baseline;
+}
+
+.your-favorites-title {
+	text-align: center;
+}
