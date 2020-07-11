@@ -28,7 +28,7 @@ const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites, fa
         </p>
         <div className="favorites">
           {!favorites && <Link to={`/favorites`}>
-            <button onClick={() => console.log("yay")} className="view-favorites">
+            <button className="view-favorites">
               View Favorites
             </button>
           </Link>}
