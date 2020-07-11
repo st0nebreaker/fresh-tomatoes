@@ -29,7 +29,7 @@ const MovieContainer = ({ appState, getUsersRatings, getAllFavorites, favorites 
         />
       );
   })
-  
+
   if(!movies.length) {
     movieCards = (
     <div className="no-favorites-container">
@@ -38,7 +38,12 @@ const MovieContainer = ({ appState, getUsersRatings, getAllFavorites, favorites 
     </ div>
     )
   }
-  return <div className="movie-container">{movieCards}</div>;
+  return (
+    <>
+      {favorites && movies.length && <h3 className="your-favorites-title">Your Favorites:</h3>}
+      <div className="movie-container">{movieCards}</div>;
+    </>
+  );
 };
 
 export default MovieContainer;
