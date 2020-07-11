@@ -53,12 +53,23 @@ class MovieCard extends Component {
       }
   }
 
+  addFavorited = async(event) => {
+    const movieIdToUpdate = event.target.id;
+    console.log(movieIdToUpdate);
+  }
+
 	handleInputChange = (event) => {
 		this.setState({[event.target.name]: event.target.value})
 	}
 
 	displayRatingForm = () => {
 		this.setState({clicked: !this.state.clicked});
+  }
+
+  checkIfFavorited = () => {
+    const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
+    const favoriteMovieIDs = userFavorites.movie_ids;
+    if (favoriteMovieIDs.includes(this.props.id)) return <button id={this.props.id}onClick= {this.addFavorited}>Favorited</button>
   }
   
   createRadioButtons = () => {
@@ -101,9 +112,10 @@ class MovieCard extends Component {
 
 	render = () => {
     const className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
-    const tomatoElement = this.createTomatoElement();
-		const radioButtons = this.createRadioButtons();
-		
+    const tomatoElement = this.createTomatoElement()
+    const radioButtons = this.createRadioButtons();
+    const favoritedElement = this.props.userID ? this.checkIfFavorited() : null
+    
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
@@ -158,6 +170,7 @@ class MovieCard extends Component {
 							>
 								Add score
 							</button>
+              {favoritedElement}
 						</section>
 					)}
 				</section>
