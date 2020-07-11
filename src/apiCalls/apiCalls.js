@@ -69,11 +69,8 @@ export const getAllComments = async () => {
 }
 
 export const fetchMovieComments = async (givenID) => {
-	console.log('givenID', givenID)
 	const response = await fetch(`http://localhost:3001/api/v1/comments/${givenID}`);
-	console.log('response', response)
 	const data = await response.json();
-	console.log('data', data)
 	return data
 }
 
