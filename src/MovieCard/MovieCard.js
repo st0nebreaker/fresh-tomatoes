@@ -87,25 +87,25 @@ class MovieCard extends Component {
   createFavoriteBtn = () => {
     const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
     const favoriteMovieIDs = userFavorites ? userFavorites.movie_ids : [];
-    const favoritedBtn = (
+    const favorited = (
       <button
-        className="delete-button"
+        className="favorited"
         id={this.props.id}
         onClick={this.deleteFavorite}
       >
-        Favorited
+        ★
       </button>
     );
-    const notFavoritedBtn = (
+    const notFavorited = (
       <button
-        className="rating-button"
+        className="not-favorited"
         id={this.props.id}
         onClick={this.addsFavorite}
       >
-        Add Favorite
+        ☆
       </button>
     );
-    return favoriteMovieIDs.includes(this.props.id) ? favoritedBtn : notFavoritedBtn
+    return favoriteMovieIDs.includes(this.props.id) ? favorited : notFavorited
   } 
   
   createRadioButtons = () => {
@@ -151,7 +151,7 @@ class MovieCard extends Component {
     const tomatoElement = this.createTomatoElement()
     const radioButtons = this.createRadioButtons();
     const favoritedElement = this.props.userID ? this.createFavoriteBtn() : null
-    
+    const movieCardClass = this.props.userID ? 'movie-card' : 'movie-card shorter'
     return (
       <section className="movie-card-container" id={this.props.id}>
         <section className={className}>
@@ -169,7 +169,7 @@ class MovieCard extends Component {
             </button>
           </form>
         </section>
-        <section className="movie-card" id={this.props.id}>
+        <section className={movieCardClass} id={this.props.id}>
           <section className="title-section">
             <h3>{this.props.title}</h3>
           </section>

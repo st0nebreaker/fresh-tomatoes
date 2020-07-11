@@ -8,3 +8,7 @@
 	display: flex;
 	align-items: baseline;
 }
+
+.your-favorites-title {
+	text-align: center;
+}
