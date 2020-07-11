@@ -177,7 +177,7 @@ class MovieCard extends Component {
             <p>
               {this.state.foundRating ? (
                 <b className="user-rating-msg">
-                  Your Score:{this.state.foundRating}
+                  Your Score: {this.state.foundRating}
                 </b>
               ) : (
                 `Audience Score: ${Math.floor(this.props.averageRating)}`

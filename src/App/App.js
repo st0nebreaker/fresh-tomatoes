@@ -136,6 +136,21 @@ class App extends Component {
             return <MovieDetails appState={this.state} {...movieToRender} />;
           }}
         />
+        <Route
+          exact
+          path="/favorites/"
+          render={() => {
+            return (
+              <UserHome
+                appState={this.state}
+                changeUserId={this.changeUserId}
+                getUsersRatings={this.getUsersRatings}
+                getAllFavorites={this.getAllFavorites}
+                favorites={true}
+              />
+            );
+          }}
+        />
       </div>
     );
   }
