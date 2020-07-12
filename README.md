@@ -4,4 +4,4 @@
 
 ![](https://media.giphy.com/media/fUjp3cq9gW0bmRDmQ6/giphy.gif)
 
-![](https://media.giphy.com/media/fUjp3cq9gW0bmRDmQ6/giphy.mp4)
+![](https://media.giphy.com/media/fUjp3cq9gW0bmRDmQ6/giphy.gif)
