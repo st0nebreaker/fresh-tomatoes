@@ -95,7 +95,8 @@ p {
 	color: red;
 	background-color: white;
 	border: 1px grey solid;
-	height: 2vh;
+	height: 3vh;
+	font-size: 13px;
 	margin: 2px;
 	&:hover {
 		color: white;
@@ -108,7 +109,8 @@ p {
 	color: white;
 	background-color: red;
 	border: 1px grey solid;
-	height: 2vh;
+	font-size: 13px;
+	height: 3vh;
 	margin: 2px;
 	&:hover {
 		color: red;
@@ -131,24 +133,34 @@ p {
 }
 
 .submit-rating-btn {
-	height: 2vh;
+	height: 3vh;
 	width: 6vw;
 	min-width: 85px;
+	font-size: 13px;
 	cursor: pointer;
 	border: 1px grey solid;
-
 }
 
 .not-favorited {
 	border: none;
 	background-color: white;
 	color: red;
-	height: 2vh;
+	height: 3vh;
+	font-size: 19px;
+	margin-left: 24px;
 }
 
 .favorited {
 	border: none;
 	background-color: white;
 	color: red;
-	height: 2vh;
+	height: 3vh;
+	font-size: 19px;
+	margin-left: 24px;
+}
+
+.rating-button-section {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 4px;
 }
