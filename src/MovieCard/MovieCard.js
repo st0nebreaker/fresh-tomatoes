@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./MovieCard.scss";
 import { Link } from "react-router-dom";
 import { postRating, deleteRatingApi, postFavorite, removeFavorite} from "../apiCalls/apiCalls";
-
 class MovieCard extends Component {
 	constructor(props) {
 		super();
@@ -13,35 +12,32 @@ class MovieCard extends Component {
       error: null,
       deleted: false,
 		};
+		this.ratingButtons = this.createRadioButtons();
 	}
-
 	componentDidMount = () => {
 		this.checkForUserRating();
 	}
-
 	submitRating = async (event) => {
 		event.preventDefault();
 		try {
-			await postRating(Number(this.state.rating), this.props.id, this.props.userID)
-			await this.props.getUsersRatings(this.props.userID); 
+		  await postRating(Number(this.state.rating), this.props.id, this.props.userID);
+      await this.props.getUsersRatings(this.props.userID);
 			this.checkForUserRating();
 			this.displayRatingForm();
-		}
-		catch(e){
+		} catch(e){
 			console.log(e);
 		}
 	}
-
 	checkForUserRating = () => {
 		if (this.props.userRatings) {
 		  if (this.props.userRatings.find((rating) => rating.movie_id === this.props.id)) {
-          let foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
+          const foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
         	this.setState({ foundRating: foundRating.rating });
-          }
-      else { this.setState({ foundRating: null }) }
+      } else {
+        this.setState({ foundRating: null })
+      }
 		} 
   }
-	
   deleteRating = async (event) => {
     const ratingToDelete = this.props.userRatings.find(userRating => userRating.movie_id === this.props.id);
     	try {
@@ -52,38 +48,31 @@ class MovieCard extends Component {
         console.log(e);
       }
   }
-
   addsFavorite = async (event) => {
     try {
-      const movieIdToUpdate = event.target.id;
-      await postFavorite(movieIdToUpdate, this.props.userID)
+      const { id } = event.target;
+      await postFavorite(id, this.props.userID)
       this.props.getAllFavorites();
-    }
-    catch(e){
+    } catch(e) {
 			console.log(e);
 		}
- 
   }
-
   deleteFavorite = async (event) => {
     try {
-      const movieIdToUpdate = event.target.id;
-      await removeFavorite(movieIdToUpdate, this.props.userID);
+      const { id } = event.target;
+      await removeFavorite(id, this.props.userID);
       this.props.getAllFavorites();
     }
     catch(e) {
       console.log(e)
     }
   }
-
 	handleInputChange = (event) => {
 		this.setState({[event.target.name]: event.target.value})
 	}
-
 	displayRatingForm = () => {
 		this.setState({clicked: !this.state.clicked});
   }
-
   createFavoriteBtn = () => {
     const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
     const favoriteMovieIDs = userFavorites ? userFavorites.movie_ids : [];
@@ -105,11 +94,10 @@ class MovieCard extends Component {
         ☆
       </button>
     );
-    return favoriteMovieIDs.includes(this.props.id) ? favorited : notFavorited
+    return favoriteMovieIDs.includes(this.props.id) ? favorited : notFavorited;
   } 
-  
   createRadioButtons = () => {
-    let radioButtons = [];
+    const radioButtons = [];
     for (let i = 1; i <= 10; i++) {
       radioButtons.push(
         <label htmlFor={i} className="radio-btn-label">
@@ -127,39 +115,29 @@ class MovieCard extends Component {
     }
     return radioButtons
   }
-
   createTomatoElement = () => {
-    const tomato = <img
+    const tomato = 
+			<img
           className="rating-img"
           src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
           alt="Tomato"
-        />
-    const greenPaint = <img
+       />
+    const greenPaint = 
+      <img
           className="rating-img"
           src="https://i.pinimg.com/originals/58/e0/a9/58e0a9b572353c77bb1a4b3f802f4cb8.png"
           alt="Green Paint Splatter"
-        />
-    if(this.state.foundRating) {
-      return this.state.foundRating >= 5 ? tomato : greenPaint
-    } else {
-      return this.props.averageRating >= 5 ? tomato : greenPaint
-    }
+      />
+    if (this.state.foundRating) return this.state.foundRating >= 5 ? tomato : greenPaint;
+    return this.props.averageRating >= 5 ? tomato : greenPaint;
   }
-
-	render = () => {
-    const className = this.state.clicked ? 'rating-form-container' : 'rating-form-container hide';
-    const tomatoElement = this.createTomatoElement()
-    const radioButtons = this.createRadioButtons();
-    const favoritedElement = this.props.userID ? this.createFavoriteBtn() : null
-    const movieCardClass = this.props.userID ? 'movie-card' : 'movie-card shorter'
+	render = () => { 
     return (
       <section className="movie-card-container" id={this.props.id}>
-        <section className={className}>
+        <section className={this.state.clicked ? 'rating-form-container' : 'rating-form-container hide'}>
           <form className="rating-form">
-            <div className="exit-btn" onClick={this.displayRatingForm}>
-              x
-            </div>
-            <div className="inputs">{radioButtons}</div>
+            <div className="exit-btn" onClick={this.displayRatingForm}>x</div>
+            <div className="inputs">{this.ratingButtons}</div>
             <button
               onClick={(event) => this.submitRating(event)}
               className="submit-rating-btn"
@@ -169,7 +147,7 @@ class MovieCard extends Component {
             </button>
           </form>
         </section>
-        <section className={movieCardClass} id={this.props.id}>
+        <section className={this.props.userID ? 'movie-card' : 'movie-card shorter'} id={this.props.id}>
           <section className="title-section">
             <h3>{this.props.title}</h3>
           </section>
@@ -184,7 +162,7 @@ class MovieCard extends Component {
               )}
               /10{" "}
             </p>
-            {tomatoElement}
+            {this.createTomatoElement()}
           </section>
           <Link to={`/movies/${this.props.id}`}>
             <img
@@ -202,7 +180,7 @@ class MovieCard extends Component {
               >
                 Delete score
               </button>
-              {favoritedElement}
+              {this.props.userID ? this.createFavoriteBtn() : null}
             </section>
           )}
           {!this.state.foundRating && this.props.userID && (
@@ -213,7 +191,7 @@ class MovieCard extends Component {
               >
                 Add score
               </button>
-              {favoritedElement}
+              {this.props.userID ? this.createFavoriteBtn() : null}
             </section>
           )}
         </section>
@@ -221,5 +199,4 @@ class MovieCard extends Component {
     );
 }
 };
-
 export default MovieCard;
