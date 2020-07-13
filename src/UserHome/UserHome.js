@@ -29,7 +29,7 @@ const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites, fa
         <div className="favorites">
           {!favorites && <Link to={`/favorites`}>
             <button className="view-favorites">
-              View Favorites
+              VIEW FAVORITES
             </button>
           </Link>}
           {favorites && <Link to={`/`}>

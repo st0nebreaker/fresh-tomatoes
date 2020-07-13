@@ -15,8 +15,8 @@ h2 {
 	margin-top: 50px;
 }
 .login-title {
-  font-size: 30px;
-  font-weight: 100;
+	font-size: 21px;
+	font-weight: 100;
   font-family: inherit;
   font-weight: bolder;
 }
@@ -35,12 +35,13 @@ a {
 
 .submit-login-btn {
 	height: 3vh;
-	width: 6vw;
+	width: 7vw;
 	margin: 5px;
+	font-size: 12px;
 	margin-bottom: 25px;
 	color: red;
 	background-color: white;
-	border: 1px solid black;
+	border: 1px solid gray;
 	&:hover {
 		color: white;
 		background-color: red;

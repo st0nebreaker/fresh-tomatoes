@@ -8,17 +8,21 @@
 
 .logout-btn {
 	margin-left: 50px;
-	height: 2vh;
+	height: 3vh;
+	font-size: 12px;
 	text-shadow: 1px 1px 1px black;
 }
 
 .view-favorites {
-	width: 11vh;
-	height: 2vh;
+	width: 14vh;
+	height: 3vh;
+	font-size: 12px;
 	align-self: flex-end;
 	text-shadow: 1px 1px 1px black;
 }
 
 .favorites {
 	align-self: flex-end;
+	margin-top: 25px;
+	margin-right: 5px;
 }
