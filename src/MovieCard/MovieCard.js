@@ -12,6 +12,7 @@ class MovieCard extends Component {
       error: null,
       deleted: false,
 		};
+		this.ratingButtons = this.createRadioButtons();
 	}
 	componentDidMount = () => {
 		this.checkForUserRating();
@@ -115,17 +116,18 @@ class MovieCard extends Component {
     return radioButtons
   }
   createTomatoElement = () => {
-    const tomato = <img
+    const tomato = 
+			<img
           className="rating-img"
           src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
           alt="Tomato"
-        />
+       />
     const greenPaint = 
       <img
           className="rating-img"
           src="https://i.pinimg.com/originals/58/e0/a9/58e0a9b572353c77bb1a4b3f802f4cb8.png"
           alt="Green Paint Splatter"
-        />
+      />
     if (this.state.foundRating) return this.state.foundRating >= 5 ? tomato : greenPaint;
     return this.props.averageRating >= 5 ? tomato : greenPaint;
   }
@@ -135,7 +137,7 @@ class MovieCard extends Component {
         <section className={this.state.clicked ? 'rating-form-container' : 'rating-form-container hide'}>
           <form className="rating-form">
             <div className="exit-btn" onClick={this.displayRatingForm}>x</div>
-            <div className="inputs">{this.createRadioButtons}</div>
+            <div className="inputs">{this.ratingButtons}</div>
             <button
               onClick={(event) => this.submitRating(event)}
               className="submit-rating-btn"
@@ -160,7 +162,7 @@ class MovieCard extends Component {
               )}
               /10{" "}
             </p>
-            {this.createTomatoElement}
+            {this.createTomatoElement()}
           </section>
           <Link to={`/movies/${this.props.id}`}>
             <img
