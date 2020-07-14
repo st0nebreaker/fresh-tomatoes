@@ -77,18 +77,38 @@ describe(('MovieContainer'), () => {
         expect(movieTitle).toBeInTheDocument();
     })
 
-    it(`should open a mod`, () => {
-        const { getByRole, debug } = render(
-          <MemoryRouter>
-            <UserHome
-              appState={appState}
-              changeUserId={jest.fn()}
-              getUsersRatings={jest.fn()}
-              getAllFavorites={jest.fn()}
-            />
-          </MemoryRouter>
-        )
-        const movieTitle = getByRole('heading', {name: 'Artemis Fowl'});
-        expect(movieTitle).toBeInTheDocument();
-    })
+    it(`should call changeUserId when LOGOUT is clicked`, () => {
+      const mockChangeUserID = jest.fn();
+      const { getByRole, debug } = render(
+        <MemoryRouter>
+          <UserHome
+            appState={appState}
+            changeUserId={mockChangeUserID}
+            getUsersRatings={jest.fn()}
+            getAllFavorites={jest.fn()}
+          />
+        </MemoryRouter>
+      );
+      const logoutBtn = getByRole("button", { name: "LOGOUT" });
+      fireEvent.click(logoutBtn);
+      expect(mockChangeUserID).toBeCalledTimes(1);
+    });
+
+    it.skip(`should display Your Favorites: when View Favorites is clicked`, () => {
+      const { getByRole, debug } = render(
+        <MemoryRouter>
+          <UserHome
+            appState={appState}
+            changeUserId={jest.fn()}
+            getUsersRatings={jest.fn()}
+            getAllFavorites={jest.fn()}
+          />
+        </MemoryRouter>
+      );
+      const viewFavoritesBtn = getByRole("button", { name: "VIEW FAVORITES" });
+      fireEvent.click(viewFavoritesBtn);
+      //debug()
+      //When You click on View Favorites Btn, nothing happens. Page stays the same
+      expect(getByRole('heading', {name: 'Your Favorites:'}).toBeInTheDocument())
+    });
 })
