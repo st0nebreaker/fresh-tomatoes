@@ -5,22 +5,22 @@ import { verifyLogin } from '../apiCalls/apiCalls';
 
 import '@testing-library/jest-dom';
 import { render, waitFor, fireEvent, getByPlaceholderText } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 jest.mock('../apiCalls/apiCalls');
 
-// verifyLogin.mockImplementationOnce(() => {
-// 	return Promise.resolve({
-// 		"user": {
-// 				"id": 60,
-// 				"name": "Charlie",
-// 				"email": "charlie@turing.io"
-// 		}
-// 	})
-// })
+verifyLogin.mockResolvedValue(() => {
+	return Promise.resolve({
+		"user": {
+				"id": 60,
+				"name": "Charlie",
+				"email": "charlie@turing.io"
+		}
+	})
+});
 
 describe('LoginPage', () => {
 	it('should render page', async () => {
-		const { getByRole, getByPlaceholderText } = render(<BrowserRouter><LoginPage /></BrowserRouter>);
+		const { getByRole, getByPlaceholderText } = render(<MemoryRouter><LoginPage /></MemoryRouter>);
 
 		const emailInput = await waitFor(() => getByPlaceholderText('email'));
 		const passwordInput = await waitFor(() => getByPlaceholderText('password'));
@@ -33,34 +33,40 @@ describe('LoginPage', () => {
 	});
 
 	it('should render login form inputs', () => {
-		const { getByLabelText, getByRole } = render(<BrowserRouter><LoginPage
-			
-			submitLogin={jest.fn()}
-		/></BrowserRouter>)
+		const changeUserId = jest.fn();
+		const { getByLabelText, getByRole, debug } = render(
+		<MemoryRouter>
+			<LoginPage changeUserId={changeUserId} />
+		</MemoryRouter>
+    	);
 
-		const button = getByRole('button');
+		const button = getByRole("button", { name: "submit-button" });
 		const emailInput = getByLabelText('email-input')
 		const passwordInput = getByLabelText('password-input')
 
-		expect(button).toBeInTheDocument();
-		expect(emailInput).toBeInTheDocument();
-		expect(passwordInput).toBeInTheDocument();
+		fireEvent.change(emailInput, {target: {value: 'charlie@turing.io'}})
+		fireEvent.change(passwordInput, {target: {value: 'qwerty'}})
+
+		fireEvent.click(button)
+		debug()
+		expect(changeUserId).toBeCalledTimes(1);
+		// expect(button).toBeInTheDocument();
+		// expect(emailInput).toBeInTheDocument();
+		// expect(passwordInput).toBeInTheDocument();
 	});
 
-	it('should be able to login', () => {
-		const mockLogIn = jest.fn();
+	it.skip('should be able to login', () => {
+		const changeUserId = jest.fn();
 		const { getByRole } = render(
-			<BrowserRouter>
-					<LoginPage 
-							verifyLogin={mockLogIn}
-					/>
-			</BrowserRouter>
-		);
+      <MemoryRouter>
+        <LoginPage changeUserId={changeUserId} />
+      </MemoryRouter>
+    );
 
 		const button = getByRole('button');
 		fireEvent.click(button);
 
-		expect(mockLogIn).toBeCalledTimes(1);
+		expect(changeUserId).toBeCalledTimes(1);
 	});
 
 	// it.skip('Should fetch users information upon login', async () => {
