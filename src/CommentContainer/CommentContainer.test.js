@@ -67,29 +67,29 @@ describe('CommentContainer', () => {
 
 	});
 
-	// it.skip('a new comment submitted will render to the page', async () => {
-	// 	postNewComment.mockResolvedValue([
-	// 		{
-	// 				"user_id": 16,
-	// 				"comment": "I believe in my voice, keyboard warrior",
-	// 				"user_name": "Steve",
-	// 				"date": 1594763731688
-	// 		}
-	// 	]);
-	// 	const { debug, getByText, getByPlaceholderText, getByRole } = render(
-	// 		<MemoryRouter>
-	// 			<CommentContainer appState={appState} fetchData={jest.fn()} />
-	// 		</MemoryRouter>
-	// 	);
+	it('a new comment submitted will render to the page', async () => {
+		postNewComment.mockResolvedValue([
+			{
+					"user_id": 16,
+					"comment": "I believe in my voice, keyboard warrior",
+					"user_name": "Steve",
+					"date": 1594763731688
+			}
+		]);
+		const { debug, getByText, getByPlaceholderText, getByRole } = render(
+			<MemoryRouter>
+				<CommentContainer appState={appState} fetchData={jest.fn()} />
+			</MemoryRouter>
+		);
 
-	// 	const commentInput = getByPlaceholderText('Write a comment...');
-	// 	const commentBtn = getByText('Post');
+		const commentInput = getByPlaceholderText('Write a comment...');
+		const commentBtn = getByText('Post');
 	
-	// 	fireEvent.change(commentInput, {target: {value: "I believe in my voice, keyboard warrior"}});
-	// 	fireEvent.click(commentBtn);
+		fireEvent.change(commentInput, {target: {value: "I believe in my voice, keyboard warrior"}});
+		fireEvent.click(commentBtn);
 
-	// 	const newComment = await waitFor(() => getByText("I believe in my voice, keyboard warrior"));
-	// 	debug();
-	// 	expect(newComment).toBeInTheDocument();
-	// })
+		const newComment = await waitFor(() => getByText("I believe in my voice, keyboard warrior"));
+		debug();
+		expect(newComment).toBeInTheDocument();
+	})
 })
