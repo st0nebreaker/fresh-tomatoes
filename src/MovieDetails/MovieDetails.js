@@ -145,7 +145,6 @@ class MovieDetails extends Component {
       </section>
     )
   }
-  }
 }
 
 export default MovieDetails;
