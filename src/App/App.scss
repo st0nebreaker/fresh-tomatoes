@@ -1,15 +1,15 @@
 button {
-	cursor: pointer;
-	color: white;
-	border: none;
-	background-color: red;
-	font-weight: bolder;
-	font-size: x-small;
-	border-radius: 2px;
-	&:hover {
-		color: red;
-		background-color: white;
-	}
+  cursor: pointer;
+  color: white;
+  border: none;
+  background-color: red;
+  font-weight: bolder;
+  font-size: x-small;
+  border-radius: 2px;
+  &:hover {
+    color: red;
+    background-color: white;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

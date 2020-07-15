@@ -1,14 +1,14 @@
 .movie-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .no-favorites-container {
-	display: flex;
-	align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 
 .your-favorites-title {
-	text-align: center;
+  text-align: center;
 }
