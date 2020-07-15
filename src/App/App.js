@@ -28,7 +28,7 @@ class App extends Component {
       const data = await getAllMovies();
       this.setState({movies: data.movies});
     } catch (error) {
-      console.log(error);
+      this.setState({error: error});
     }
   };
 
@@ -75,7 +75,7 @@ class App extends Component {
       const data = await getUserRatedMovies(id);
       this.setState({userRatings: data.ratings});
     } catch (error) {
-      console.log(error);
+      this.setState({ error: error });
     }
   };
 
@@ -84,7 +84,7 @@ class App extends Component {
       const favorites = await getAllFavoritesApi();
       this.setState({usersFavorites: favorites});
     } catch (error) {
-      console.log(error);
+      this.setState({ error: error });
     }
   };
 
