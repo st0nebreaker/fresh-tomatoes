@@ -50,6 +50,6 @@ const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites, fa
       />
     </>
   );
-  
-}
+};
+
 export default UserHome;

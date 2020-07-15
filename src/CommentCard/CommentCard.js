@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import './CommentCard.scss';
 
 class CommentCard extends Component {
@@ -9,7 +8,7 @@ class CommentCard extends Component {
       comment: comment,
       userName: userName,
       date: new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(date)
-    }
+    };
   }
 
   render = () => {
@@ -21,7 +20,7 @@ class CommentCard extends Component {
         </section>
         <p className='comment-body'>{this.state.comment}</p>
       </section>
-    )
+    );
   }
 }
 

@@ -10,7 +10,7 @@ class MovieCard extends Component {
       rating: null,
       clicked: false,
       error: null,
-      deleted: false,
+      deleted: false
     };
     this.ratingButtons = this.createRadioButtons();
   }
@@ -22,11 +22,11 @@ class MovieCard extends Component {
   submitRating = async (event) => {
     event.preventDefault();
     try {
-        await postRating(Number(this.state.rating), this.props.id, this.props.userID);
-        await this.props.getUsersRatings(this.props.userID);
+      await postRating(Number(this.state.rating), this.props.id, this.props.userID);
+      await this.props.getUsersRatings(this.props.userID);
       this.checkForUserRating();
       this.displayRatingForm();
-    } catch(e){
+    } catch (e){
       console.log(e);
     }
   }
@@ -34,31 +34,31 @@ class MovieCard extends Component {
   checkForUserRating = () => {
     if (this.props.userRatings) {
       if (this.props.userRatings.find((rating) => rating.movie_id === this.props.id)) {
-              const foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
-            this.setState({ foundRating: foundRating.rating });
+        const foundRating = this.props.userRatings.find((rating) => rating.movie_id === this.props.id);
+        this.setState({ foundRating: foundRating.rating });
       } else {
-        this.setState({ foundRating: null })
+        this.setState({ foundRating: null });
       }
     } 
   }
   
-  deleteRating = async (event) => {
+  deleteRating = async () => {
     const ratingToDelete = this.props.userRatings.find(userRating => userRating.movie_id === this.props.id);
-      try {
-        await deleteRatingApi(this.props.userID, ratingToDelete.id);
-        await this.props.getUsersRatings(this.props.userID);
-        this.checkForUserRating();
-      } catch (e) {
-        console.log(e);
-      }
+    try {
+      await deleteRatingApi(this.props.userID, ratingToDelete.id);
+      await this.props.getUsersRatings(this.props.userID);
+      this.checkForUserRating();
+    } catch (e) {
+      console.log(e);
+    }
   }
   
   addsFavorite = async (event) => {
     try {
       const { id } = event.target;
-      await postFavorite(id, this.props.userID)
+      await postFavorite(id, this.props.userID);
       this.props.getAllFavorites();
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -68,12 +68,13 @@ class MovieCard extends Component {
       const { id } = event.target;
       await removeFavorite(id, this.props.userID);
       this.props.getAllFavorites();
+    } catch (e) {
+      console.log(e);
     }
-    catch(e) { console.log(e) }
   }
   
   handleInputChange = (event) => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({[event.target.name]: event.target.value});
   }
 
   displayRatingForm = () => {
@@ -81,7 +82,7 @@ class MovieCard extends Component {
   }
   
   createFavoriteBtn = () => {
-    const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID)
+    const userFavorites = this.props.usersFavorites.find(favorites => favorites.user_id === this.props.userID);
     const favoriteMovieIDs = userFavorites ? userFavorites.movie_ids : [];
     const favorited = (
       <button
@@ -121,22 +122,22 @@ class MovieCard extends Component {
         </label>
       );
     }
-    return radioButtons
+    return radioButtons;
   }
   
   createTomatoElement = () => {
     const tomato = 
       <img
-          className="rating-img"
-          src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
-          alt="Tomato"
-       />
+        className="rating-img"
+        src="https://cdn.iconscout.com/icon/premium/png-256-thumb/tomato-1640383-1391081.png"
+        alt="Tomato"
+      />;
     const greenPaint = 
       <img
-          className="rating-img"
-          src="https://i.pinimg.com/originals/58/e0/a9/58e0a9b572353c77bb1a4b3f802f4cb8.png"
-          alt="Green Paint Splatter"
-      />
+        className="rating-img"
+        src="https://i.pinimg.com/originals/58/e0/a9/58e0a9b572353c77bb1a4b3f802f4cb8.png"
+        alt="Green Paint Splatter"
+      />;
     if (this.state.foundRating) return this.state.foundRating >= 5 ? tomato : greenPaint;
     return this.props.averageRating >= 5 ? tomato : greenPaint;
   }
@@ -207,6 +208,6 @@ class MovieCard extends Component {
         </section>
       </section>
     );
+  }
 }
-};
 export default MovieCard;
