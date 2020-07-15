@@ -19,20 +19,32 @@ class LoginPage extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  submitLogin = (event) => {
+  submitLogin = async (event) => {
     event.preventDefault();
-    return verifyLogin(this.state.email, this.state.password)
-      .then((data) => {
-        this.setState({ id: data.user.id, userName: data.user.name }, () => {
-          this.props.changeUserId(this.state);
-        })
-        return data;
+    try {
+      const data = await verifyLogin(this.state.email, this.state.password);
+      this.setState({ id: data.user.id, userName: data.user.name }, () => {
+        this.props.changeUserId(this.state);
       })
-      .then(async (data) => {
-        await this.props.getUsersRatings(data.user.id);
-        await this.props.getAllFavorites();
-        this.props.history.push(`/`)})
-      .catch((error) => this.setState({ error }));
+      await this.props.getUsersRatings(data.user.id);
+      await this.props.getAllFavorites();
+      this.props.history.push(`/`);
+    } catch (error) {
+      this.setState({error});
+    }
+
+    // return verifyLogin(this.state.email, this.state.password)
+    //   .then((data) => {
+    //     this.setState({ id: data.user.id, userName: data.user.name }, () => {
+    //       this.props.changeUserId(this.state);
+    //     })
+    //     return data;
+    //   })
+    //   .then(async (data) => {
+    //     await this.props.getUsersRatings(data.user.id);
+    //     await this.props.getAllFavorites();
+    //     this.props.history.push(`/`)})
+    //   .catch((error) => this.setState({ error }));
   };
 
   render() {

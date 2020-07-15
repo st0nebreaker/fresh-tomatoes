@@ -22,11 +22,17 @@ class App extends Component {
     };
   }
   
-  componentDidMount = () => {
+  componentDidMount = async () => {
     this.verifyLoginLocalStorage();
-    getAllMovies()
-      .then((data) => this.setState({ movies: data.movies }))
-      .catch((error) => this.setState({ error }));
+    try {
+      const data = await getAllMovies()
+      this.setState({movies: data.movies})
+    } catch (error) {
+      console.log(error);
+    }
+    // getAllMovies()
+    //   .then((data) => this.setState({ movies: data.movies }))
+    //   .catch((error) => this.setState({ error }));
   };
 
   componentDidUpdate = () => {
@@ -67,16 +73,28 @@ class App extends Component {
     return loggedUserId;
   };
 
-  getUsersRatings = (id) => {
-    return getUserRatedMovies(id)
-    .then((data) => this.setState({ userRatings: data.ratings }))
-    .catch((error) => console.log(error.message));
+  getUsersRatings = async (id) => {
+    try {
+      const data = await getUserRatedMovies(id)
+      this.setState({userRatings: data.ratings})
+    } catch(error) {
+      console.log(error)
+    }
+    // return getUserRatedMovies(id)
+    // .then((data) => this.setState({ userRatings: data.ratings }))
+    // .catch((error) => console.log(error.message));
   };
 
-  getAllFavorites = () => {
-    return getAllFavoritesApi()
-      .then(favorites => this.setState({usersFavorites: favorites}))
-      .catch((error) => console.log(error.message))
+  getAllFavorites = async () => {
+    try {
+      const favorites = await getAllFavoritesApi();
+      this.setState({usersFavorites: favorites});
+    } catch (error) {
+      console.log(error);
+    }
+    // return getAllFavoritesApi()
+    //   .then(favorites => this.setState({usersFavorites: favorites}))
+    //   .catch((error) => console.log(error.message))
   }
 
   render() {

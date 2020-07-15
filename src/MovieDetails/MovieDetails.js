@@ -29,31 +29,58 @@ class MovieDetails extends Component {
     this.fetchData();
   }
 
-  fetchData = () => {
-    fetchOneMovie(this.props.id)
-    .then(data => {
+  fetchData = async () => {
+    try {
+      const data = await fetchOneMovie(this.props.id);
       this.setState({
-          title: data.movie.title,
-          releaseDate: data.movie.release_date,
-          backDrop: data.movie.backdrop_path,
-          overview: data.movie.overview,
-          genres: data.movie.genres,
-          budget: data.movie.budget,
-          revenue: data.movie.revenue,
-          runtime: data.movie.runtime,
-          tagLine: data.movie.tagline,
-          averageRating: data.movie.average_rating,
-          foundRating: null
-      })
-    })
-    .then(() => {
+        title: data.movie.title,
+        releaseDate: data.movie.release_date,
+        backDrop: data.movie.backdrop_path,
+        overview: data.movie.overview,
+        genres: data.movie.genres,
+        budget: data.movie.budget,
+        revenue: data.movie.revenue,
+        runtime: data.movie.runtime,
+        tagLine: data.movie.tagline,
+        averageRating: data.movie.average_rating,
+        foundRating: null
+      });
       this.checkForUserRating();
-    })
-    .catch(error => this.setState({error}));
+    } catch (error) {
+      this.setState({error});
+    }
 
-    fetchMovieComments(this.props.id)
-      .then(data => this.setState({ comments: data[this.props.id] }))
-      .catch(error => console.log(error.message))
+    try {
+      const data = fetchMovieComments(this.props.id);
+      this.setState({ comments: data[this.props.id] });
+    } catch(error) {
+      console.log(error.message);
+    }
+
+    // fetchOneMovie(this.props.id)
+    // .then(data => {
+    //   this.setState({
+    //       title: data.movie.title,
+    //       releaseDate: data.movie.release_date,
+    //       backDrop: data.movie.backdrop_path,
+    //       overview: data.movie.overview,
+    //       genres: data.movie.genres,
+    //       budget: data.movie.budget,
+    //       revenue: data.movie.revenue,
+    //       runtime: data.movie.runtime,
+    //       tagLine: data.movie.tagline,
+    //       averageRating: data.movie.average_rating,
+    //       foundRating: null
+    //   })
+    // })
+    // .then(() => {
+    //   this.checkForUserRating();
+    // })
+    // .catch(error => this.setState({error}));
+
+    // fetchMovieComments(this.props.id)
+    //   .then(data => this.setState({ comments: data[this.props.id] }))
+    //   .catch(error => console.log(error.message))
   }
   
   checkForUserRating = () => {
