@@ -94,11 +94,6 @@ class MovieDetails extends Component {
   }
 
   render() {
-  if (this.state.error) {
-    return (
-      <div className="error-message">{this.state.error.message}</div>
-    )
-  } else {
     return (
       <section className='movie-detail-page'>
         <header className="App-header">
@@ -107,6 +102,9 @@ class MovieDetails extends Component {
             Fresh Tomatoes
           </h1>
         </header>
+        {this.state.error &&
+          <div className="error-message">{this.state.error.message}</div>
+        }
         <Link to={`/`}><button className='back-btn'>◀ BACK</button></Link>
         <section className="movie-detail-container" >
             <section className='movie-img'>
