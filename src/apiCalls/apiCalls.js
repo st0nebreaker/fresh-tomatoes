@@ -19,8 +19,8 @@ export const verifyLogin = async (givenEmail, givenPassword) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       email: givenEmail,
-      password: givenPassword,
-    }),
+      password: givenPassword
+    })
   };
 
   const response = await fetch(`${rootUrl}/login`, request);
@@ -34,8 +34,8 @@ export const postRating = async (rating, movieID, userID) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       movie_id: movieID,
-      rating: rating,
-    }),
+      rating: rating
+    })
   };
 
   const response = await fetch(`${rootUrl}users/${userID}/ratings`, request);
@@ -83,8 +83,8 @@ export const removeFavorite = async (movieID, userID) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       user_id: userID,
-      movie_id: movieID,
-    }),
+      movie_id: movieID
+    })
   };
 
   const response = await fetch(
@@ -100,13 +100,13 @@ export const getAllComments = async () => {
   const response = await fetch("http://localhost:3001/api/v1/comments");
   const data = await response.json();
   return data;
-}
+};
 
 export const fetchMovieComments = async (givenID) => {
   const response = await fetch(`http://localhost:3001/api/v1/comments/${givenID}`);
   const data = await response.json();
   return data;
-}
+};
 
 export const postNewComment = async (givenID, userID, comment, userName) => {
   const request = {
@@ -118,8 +118,8 @@ export const postNewComment = async (givenID, userID, comment, userName) => {
       user_name: userName,
       movie_id: givenID
     })
-  }
+  };
   const response = await fetch(`http://localhost:3001/api/v1/comments/${givenID}`, request);
   const data = await response.json();
   return data;
-}
+};

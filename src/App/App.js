@@ -5,7 +5,7 @@ import GuestHome from "../GuestHome/GuestHome";
 import UserHome from "../UserHome/UserHome";
 import LoginPage from "../LoginPage/LoginPage";
 import MovieDetails from "../MovieDetails/MovieDetails";
-import { getAllMovies, getUserRatedMovies, getAllFavoritesApi, getAllComments } from "../apiCalls/apiCalls";
+import { getAllMovies, getUserRatedMovies, getAllFavoritesApi } from "../apiCalls/apiCalls";
 
 class App extends Component {
   constructor() {
@@ -18,21 +18,18 @@ class App extends Component {
       userRatings: [],
       usersFavorites: [],
       comments: null,
-      localStorage: null,
+      localStorage: null
     };
   }
   
   componentDidMount = async () => {
     this.verifyLoginLocalStorage();
     try {
-      const data = await getAllMovies()
-      this.setState({movies: data.movies})
+      const data = await getAllMovies();
+      this.setState({movies: data.movies});
     } catch (error) {
       console.log(error);
     }
-    // getAllMovies()
-    //   .then((data) => this.setState({ movies: data.movies }))
-    //   .catch((error) => this.setState({ error }));
   };
 
   componentDidUpdate = () => {
@@ -75,14 +72,11 @@ class App extends Component {
 
   getUsersRatings = async (id) => {
     try {
-      const data = await getUserRatedMovies(id)
-      this.setState({userRatings: data.ratings})
-    } catch(error) {
-      console.log(error)
+      const data = await getUserRatedMovies(id);
+      this.setState({userRatings: data.ratings});
+    } catch (error) {
+      console.log(error);
     }
-    // return getUserRatedMovies(id)
-    // .then((data) => this.setState({ userRatings: data.ratings }))
-    // .catch((error) => console.log(error.message));
   };
 
   getAllFavorites = async () => {
@@ -92,10 +86,7 @@ class App extends Component {
     } catch (error) {
       console.log(error);
     }
-    // return getAllFavoritesApi()
-    //   .then(favorites => this.setState({usersFavorites: favorites}))
-    //   .catch((error) => console.log(error.message))
-  }
+  };
 
   render() {
     return (

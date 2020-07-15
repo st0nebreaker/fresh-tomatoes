@@ -1,27 +1,44 @@
 {
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
+  ],
   "env": {
     "browser": true,
-    "commonjs": true,
-    "es6": true,
     "mocha": true,
-    "jquery": true
+    "node": true,
+		"es6": true,
+		"jest": true
   },
-  "extends": "eslint:recommended",
-  "parserOptions": { "sourceType": "module" },
+  // Having a problem with one of these rules? Learn more about it here: https://eslint.org/docs/rules/
   "rules": {
     "eqeqeq": ["error", "always"],
-    "brace-style": "error",
-    "comma-spacing": ["warn", { "before": false, "after": true }],
-    "curly": "error",
-    "semi-spacing": ["error", { "before": false, "after": true }],
+    "getter-return": ["error", { "allowImplicit": true }],
     "indent": ["warn", 2],
-    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "no-template-curly-in-string": "error",
+    "semi": ["error", "always"],
+    "array-bracket-spacing": ["error", "never"],
+    "block-spacing": ["error", "always"],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "comma-dangle": ["error", "never"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "comma-style": ["error", "last"],
+    "computed-property-spacing": ["error", "never"],
+    "func-call-spacing": ["error", "never"],
     "keyword-spacing": ["error", { "before": true, "after": true }],
-    "linebreak-style": ["error", "unix"],
-    "max-len": ["warn", 150],
-    "new-cap": ["error", { "newIsCap": true }],
-    "object-shorthand": ["error", "always"],
-    "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }],
-    "space-infix-ops": ["error", { "int32Hint": false }]
+    "max-len": ["warn", 120],
+    "no-duplicate-imports": "error",
+    "id-length": "error",
+    "id-blacklist": ["error", "err", "e", "cb", "callback", "payload", "obj", "arr"],
+		"max-depth": ["warn", 4],
+		"react/prop-types": 0,
+		"camelcase": "off"
+  },
+  "globals": {
+    "expect": true
   }
 }

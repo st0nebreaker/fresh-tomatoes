@@ -12,7 +12,7 @@ const appState = {
   movieID: 475430,
   comments: [],
   inputComment: ''
-}
+};
 
 describe('CommentContainer', () => {
   fetchMovieComments.mockResolvedValue({
@@ -53,7 +53,7 @@ describe('CommentContainer', () => {
   });
 
   it('renders a comment form for logged in user', () => {
-    const { getByText, getByPlaceholderText, getByRole } = render(
+    const { getByPlaceholderText, getByRole } = render(
       <MemoryRouter>
         <CommentContainer appState={appState} />
       </MemoryRouter>
@@ -70,10 +70,10 @@ describe('CommentContainer', () => {
   it('a new comment submitted will render to the page', async () => {
     postNewComment.mockResolvedValue([
       {
-          "user_id": 16,
-          "comment": "I believe in my voice, keyboard warrior",
-          "user_name": "Steve",
-          "date": 1594763731688
+        "user_id": 16,
+        "comment": "I believe in my voice, keyboard warrior",
+        "user_name": "Steve",
+        "date": 1594763731688
       }
     ]);
     const { debug, getByText, getByPlaceholderText, getByRole } = render(
@@ -91,5 +91,5 @@ describe('CommentContainer', () => {
     const newComment = await waitFor(() => getByText("I believe in my voice, keyboard warrior"));
     debug();
     expect(newComment).toBeInTheDocument();
-  })
-})
+  });
+});

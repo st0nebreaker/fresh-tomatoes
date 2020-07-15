@@ -11,8 +11,8 @@ class CommentContainer extends Component {
       comments: props.appState.comments,
       userName: props.appState.userName,
       userID: props.appState.userID,
-      inputComment: '',
-    }
+      inputComment: ''
+    };
   }
 
   componentDidMount = () => {
@@ -22,47 +22,40 @@ class CommentContainer extends Component {
   fetchMovieComments = async () => {
     try {
       const data = await fetchMovieComments(this.state.movieID);
-      this.setState({comments: data[this.state.movieID]})
+      this.setState({comments: data[this.state.movieID]});
     } catch (error){
       console.log(error);
     }
-    // fetchMovieComments(this.state.movieID)
-    //   .then(data => this.setState({ comments: data[this.state.movieID] }))
-    //   .catch(error => console.log(error.message));
   }
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   postComment = async (event) => {
     event.preventDefault();
     try {
-      const data = await postNewComment(this.state.movieID, this.state.userID, this.state.inputComment, this.state.userName);
-      this.setState({comments: data, inputComment: ''});
-    } catch(error) {
+      const receivedComments = await postNewComment(this.state.movieID, this.state.userID, this.state.inputComment, this.state.userName);
+      this.setState({comments: receivedComments, inputComment: ''});
+    } catch (error) {
       console.log(error);
     }
-    // return await postNewComment(this.state.movieID, this.state.userID, this.state.inputComment, this.state.userName)
-    //   .then((data) => this.setState({comments: data, inputComment: ''}))
-    //   .then(() => this.fetchMovieComments)
-    //   .catch((error) => console.log(error.message));
   }
 
   render () {
     let commentCards;
     if (this.state.comments.length) {
-      // let sortedCards = this.state.comments.sort((a, b) => b.date - a.date);
       commentCards = this.state.comments.map((movie) => {
         return (
           <CommentCard 
             comment={movie.comment}
             userName={movie.user_name}
             date={movie.date}
+            key={movie.date}
           />
-        )
-      })
-    } else { commentCards = <div className='no-comments'>No comments</div>}
+        );
+      });
+    } else { commentCards = <div className='no-comments'>No comments</div>; }
   
     return (
       <div className='comment-container'>
@@ -90,7 +83,7 @@ class CommentContainer extends Component {
 
         {commentCards}
       </div>
-    )
+    );
   }
 }
 
