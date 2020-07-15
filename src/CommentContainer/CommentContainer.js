@@ -19,10 +19,16 @@ class CommentContainer extends Component {
     this.fetchMovieComments();
   }
 
-  fetchMovieComments = () => {
-    fetchMovieComments(this.state.movieID)
-      .then(data => this.setState({ comments: data[this.state.movieID] }))
-      .catch(error => console.log(error.message));
+  fetchMovieComments = async () => {
+    try {
+      const data = await fetchMovieComments(this.state.movieID);
+      this.setState({comments: data[this.state.movieID]})
+    } catch (error){
+      console.log(error);
+    }
+    // fetchMovieComments(this.state.movieID)
+    //   .then(data => this.setState({ comments: data[this.state.movieID] }))
+    //   .catch(error => console.log(error.message));
   }
 
   handleChange = (event) => {
@@ -31,10 +37,16 @@ class CommentContainer extends Component {
 
   postComment = async (event) => {
     event.preventDefault();
-    return await postNewComment(this.state.movieID, this.state.userID, this.state.inputComment, this.state.userName)
-      .then((data) => this.setState({comments: data, inputComment: ''}))
-      .then(() => this.fetchMovieComments)
-      .catch((error) => console.log(error.message));
+    try {
+      const data = await postNewComment(this.state.movieID, this.state.userID, this.state.inputComment, this.state.userName);
+      this.setState({comments: data, inputComment: ''});
+    } catch(error) {
+      console.log(error);
+    }
+    // return await postNewComment(this.state.movieID, this.state.userID, this.state.inputComment, this.state.userName)
+    //   .then((data) => this.setState({comments: data, inputComment: ''}))
+    //   .then(() => this.fetchMovieComments)
+    //   .catch((error) => console.log(error.message));
   }
 
   render () {

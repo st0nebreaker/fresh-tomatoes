@@ -9,8 +9,8 @@ class MovieCard extends Component {
       foundRating: null,
       rating: null,
       clicked: false,
-          error: null,
-          deleted: false,
+      error: null,
+      deleted: false,
     };
     this.ratingButtons = this.createRadioButtons();
   }
