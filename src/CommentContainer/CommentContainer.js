@@ -58,7 +58,8 @@ class CommentContainer extends Component {
           <CommentCard 
             comment={movie.comment}
             userName={movie.user_name}
-            date={movie.date}
+						date={movie.date}
+						key={movie.date}
           />
         )
       })
