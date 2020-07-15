@@ -17,24 +17,24 @@ const appState = {
 describe('CommentContainer', () => {
 	fetchMovieComments.mockResolvedValue({
 		"475430": [
-				{
-						"user_id": 32,
-						"comment": "This movie was awesome. I love Leo.",
-						"user_name": "Dennis",
-						"date": 1519211811670
-				},
-				{
-						"user_id": 41,
-						"comment": "Kept me on the edge of my seat. 98 minutes of wow.",
-						"user_name": "Clark",
-						"date": 1519211811670
-				},
-				{
-						"user_id": 40,
-						"comment": "Didn\t care for it",
-						"user_name": "Bob",
-						"date": 1519211811670
-				}
+			{
+				"user_id": 32,
+				"comment": "This movie was awesome. I love Leo.",
+				"user_name": "Dennis",
+				"date": 1519211811670
+			},
+			{
+				"user_id": 41,
+				"comment": "Kept me on the edge of my seat. 98 minutes of wow.",
+				"user_name": "Clark",
+				"date": 1519211811670
+			},
+			{
+				"user_id": 40,
+				"comment": "Didn\t care for it",
+				"user_name": "Bob",
+				"date": 1519211811670
+			}
 		]
 	});
 
