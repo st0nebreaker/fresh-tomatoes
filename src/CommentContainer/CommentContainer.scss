@@ -1,54 +1,54 @@
 .comment-container {
-	width: 50%;
-	margin: 0 auto;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .comment-form {
-	display: flex;
-	flex-direction: row;
-	height: 86px;
+  display: flex;
+  flex-direction: row;
+  height: 86px;
 }
 
 .comment-form-container {
-	display: flex;
-	flex-direction: row;
-	height: 86px;
-	box-shadow: none;
+  display: flex;
+  flex-direction: row;
+  height: 86px;
+  box-shadow: none;
 }
 
 .comment-input {
-	width: 73%;
-	margin-left: 10px;
-	background-color: white;
-	border: 1px solid lightgray;
+  width: 73%;
+  margin-left: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
 }
 
 .username {
-	padding-left: 10px;
-	font-weight: bold;
-	color: gray;
-	display: flex;
-	align-items: center;
+  padding-left: 10px;
+  font-weight: bold;
+  color: gray;
+  display: flex;
+  align-items: center;
 }
 
 .comment-btn {
-	height: 3vh;
-	width: 6vw;
-	font-size: 12px;
-	margin-left: 15px;
-	color: red;
-	background-color: white;
-	border: 1px solid lightgray;
-	&:hover {
-		color: white;
-		background-color: red;
-		border: none;
-	}
+  height: 3vh;
+  width: 6vw;
+  font-size: 12px;
+  margin-left: 15px;
+  color: red;
+  background-color: white;
+  border: 1px solid lightgray;
+  &:hover {
+    color: white;
+    background-color: red;
+    border: none;
+  }
 }
 
 .no-comments {
-	width: 50%;
-	font-style: italic;
-	margin: 0 auto;
-	color: gray;
+  width: 50%;
+  font-style: italic;
+  margin: 0 auto;
+  color: gray;
 }

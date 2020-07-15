@@ -49,13 +49,13 @@ getAllFavoritesApi.mockResolvedValue(() => {
 });
 
 describe(('App'), () => {
-	it('renders the landing page without breaking', () => {
-		const { getByText } = render(<MemoryRouter><App /></MemoryRouter>);
-		const linkElement = getByText(/Fresh Tomatoes/);
-		expect(linkElement).toBeInTheDocument();
-	})
+  it('renders the landing page without breaking', () => {
+    const { getByText } = render(<MemoryRouter><App /></MemoryRouter>);
+    const linkElement = getByText(/Fresh Tomatoes/);
+    expect(linkElement).toBeInTheDocument();
+  })
 
-	// it("should render a movie", async () => {
+  // it("should render a movie", async () => {
   //   const {getByText, debug} = render(<MemoryRouter><App /></MemoryRouter>);
 
   //   const movieRating = await waitFor(() => getByText("Artemis Fowl"));
@@ -73,13 +73,13 @@ describe(('App'), () => {
 
   it.skip('when clicked, the login button should route to login page', () => {
     const { getByRole } = render(<MemoryRouter><App /></MemoryRouter>);
-		const loginBtn = getByRole('button');
-		fireEvent.click(loginBtn);
+    const loginBtn = getByRole('button');
+    fireEvent.click(loginBtn);
 
     expect(getByRole('link', {href: '/login'})).toBeInTheDocument();
-	})
-	
-	// it.skip('should fetch movies on page load', async () => {
+  })
+  
+  // it.skip('should fetch movies on page load', async () => {
   //   const { getByText } = render(<BrowserRouter><App /></BrowserRouter>);
 
   //   // const linkeElement = await waitFor(() => getByText('Fresh Tomatoes'));

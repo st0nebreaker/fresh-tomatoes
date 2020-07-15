@@ -1,6 +1,6 @@
 header {
-	background-color: red;
-	opacity: 85%;
+  background-color: red;
+  opacity: 85%;
   min-height: 13vh;
   display: flex;
   flex-direction: column;
@@ -9,34 +9,34 @@ header {
 }
 
 .tomato-logo {
-	margin-left: 2px;
-	margin-right: 5px;
-	width: 35px;
-	max-width: 35px;
-	min-width: 30px;
+  margin-left: 2px;
+  margin-right: 5px;
+  width: 35px;
+  max-width: 35px;
+  min-width: 30px;
 }
 
 .login-btn {
-	right: 0;
-	top: 0;
-	position: absolute;
-	margin: 5px;
-	height: 3vh;
-	font-size: 12px;
-	text-shadow: 1px 1px 1px black;
+  right: 0;
+  top: 0;
+  position: absolute;
+  margin: 5px;
+  height: 3vh;
+  font-size: 12px;
+  text-shadow: 1px 1px 1px black;
 }
 
 h2 {
-	font-size: 101%;
-	margin-left: 10px;
+  font-size: 101%;
+  margin-left: 10px;
 }
 
  .title {
-	display: flex;
-	align-items: flex-end;
-	font-family: 'Ultra', serif;
-	font-weight: 100;
-	margin-top: 1%;
-	font-size: 3vh;
-	text-shadow: 2px 2px 0px black;
+  display: flex;
+  align-items: flex-end;
+  font-family: 'Ultra', serif;
+  font-weight: 100;
+  margin-top: 1%;
+  font-size: 3vh;
+  text-shadow: 2px 2px 0px black;
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import './UserHome.scss';
 
 const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites, favorites}) => {
-	return (
+  return (
     <>
       <header className="App-header">
         <h1 className="title">
@@ -50,6 +50,6 @@ const UserHome = ({ appState, changeUserId, getUsersRatings, getAllFavorites, fa
       />
     </>
   );
-	
+  
 }
 export default UserHome;

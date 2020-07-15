@@ -16,20 +16,20 @@ class App extends Component {
       userID: null,
       userName: null,
       userRatings: [],
-			usersFavorites: [],
-			comments: null,
-	  	localStorage: null,
+      usersFavorites: [],
+      comments: null,
+      localStorage: null,
     };
   }
-	
-	componentDidMount = () => {
-		this.verifyLoginLocalStorage();
-		getAllMovies()
-			.then((data) => this.setState({ movies: data.movies }))
-			.catch((error) => this.setState({ error }));
-	};
+  
+  componentDidMount = () => {
+    this.verifyLoginLocalStorage();
+    getAllMovies()
+      .then((data) => this.setState({ movies: data.movies }))
+      .catch((error) => this.setState({ error }));
+  };
 
-	componentDidUpdate = () => {
+  componentDidUpdate = () => {
     let loggedUserId = JSON.stringify(this.state.userID);
     let loggedUserName = JSON.stringify(this.state.userName);
     let loggedRatings = JSON.stringify(this.state.userRatings);
@@ -37,8 +37,8 @@ class App extends Component {
 
     localStorage.setItem("loggedInUserId", loggedUserId);
     localStorage.setItem("loggedInUserName", loggedUserName);
-	  localStorage.setItem("loggedRatings", loggedRatings);
-	  localStorage.setItem("loggedFavorites", loggedFavorites);
+    localStorage.setItem("loggedRatings", loggedRatings);
+    localStorage.setItem("loggedFavorites", loggedFavorites);
   };
 
   changeUserId = (givenUser) => {
@@ -53,8 +53,8 @@ class App extends Component {
   verifyLoginLocalStorage() {
     let loggedUserId = JSON.parse(localStorage.getItem("loggedInUserId"));
     let loggedUserName = JSON.parse(localStorage.getItem("loggedInUserName"));
-		let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
-		let loggedFavorites = JSON.parse(localStorage.getItem("loggedFavorites")) || [];
+    let loggedRatings = JSON.parse(localStorage.getItem("loggedRatings"));
+    let loggedFavorites = JSON.parse(localStorage.getItem("loggedFavorites")) || [];
 
     this.setState({
       userID: loggedUserId,
@@ -62,22 +62,22 @@ class App extends Component {
       userRatings: loggedRatings,
       localStorage: true,
       usersFavorites: loggedFavorites
-		});
-		
+    });
+    
     return loggedUserId;
   };
 
   getUsersRatings = (id) => {
-		return getUserRatedMovies(id)
-		.then((data) => this.setState({ userRatings: data.ratings }))
-		.catch((error) => console.log(error.message));
+    return getUserRatedMovies(id)
+    .then((data) => this.setState({ userRatings: data.ratings }))
+    .catch((error) => console.log(error.message));
   };
 
   getAllFavorites = () => {
-	  return getAllFavoritesApi()
+    return getAllFavoritesApi()
       .then(favorites => this.setState({usersFavorites: favorites}))
       .catch((error) => console.log(error.message))
-	}
+  }
 
   render() {
     return (

@@ -32,7 +32,7 @@ const appState = {
 };
 
 describe(('MovieContainer'), () => {
-	it('renders the landing page without breaking', () => {
+  it('renders the landing page without breaking', () => {
         const { getByText, debug } = render(
           <MemoryRouter>
             <UserHome
@@ -43,11 +43,11 @@ describe(('MovieContainer'), () => {
             />
           </MemoryRouter>
         );
-		const header = getByText(/Fresh Tomatoes/);
-		expect(header).toBeInTheDocument();
+    const header = getByText(/Fresh Tomatoes/);
+    expect(header).toBeInTheDocument();
     })
 
-	it('should render a VIEW FAVORITES button', () => {
+  it('should render a VIEW FAVORITES button', () => {
         const { getByRole, debug } = render(
           <MemoryRouter>
             <UserHome
@@ -58,8 +58,8 @@ describe(('MovieContainer'), () => {
             />
           </MemoryRouter>
         );
-		const viewFavoritesBtn = getByRole("button", { name: "VIEW FAVORITES" });
-		expect(viewFavoritesBtn).toBeInTheDocument();
+    const viewFavoritesBtn = getByRole("button", { name: "VIEW FAVORITES" });
+    expect(viewFavoritesBtn).toBeInTheDocument();
     })
 
     it(`should render a movie's title when given a movie in appState.movies`, () => {
