@@ -34,7 +34,9 @@ In your browser, navigate to `localhost:3000`.
 To enable the comment & favoriting feature on the app...
 
 Clone down our [microserver repository](https://github.com/b-stein) to your local machine.
+
 --OR--
+
 Run `git clone git@github.com:attom2/fresh-tomatoes-microserver.git`
 
 Once cloned, change into this repo's directy.
