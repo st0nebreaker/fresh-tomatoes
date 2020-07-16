@@ -1,6 +1,5 @@
-## A React/Router/Node/Express stack application, giving a platform to rate and comment on movies. Built as a partnered project.
-# Travel Tracker
-### Contributor
+# Fresh Tomatoes
+### Contributors
 - Becca Steinbrecher (GitHub: [b-stein](https://github.com/b-stein))
 - Andy Tom (GitHub: [attom2](https://github.com/attom2))
 
@@ -18,6 +17,7 @@ The user may delete their score and the User Interface is updated seamlessly.
 - Work with and navigate a shared, persistent API using GET, POST, and DELETE requests
 
 ## Setup
+(1)
 
 Clone down this repository to your local machine.
 
@@ -29,29 +29,41 @@ Run `npm start`.
 
 In your browser, navigate to `localhost:3000`.
 
-To login as a user, enter the email: `charlie@turing.io`.
+(2)
 
-In both cases, use the password `qwerty`.
+To enable the comment & favoriting feature on the app...
 
-To set up the microserver:
-
-Clone down the repository at https://github.com/attom2/fresh-tomatoes-microserver
+Clone down our [microserver repository](https://github.com/b-stein) to your local machine.
 --OR--
 Run `git clone git@github.com:attom2/fresh-tomatoes-microserver.git`
 
+Once cloned, change into this repo's directy.
+
+Run `nodemon server.js`.
+
+(3)
+
+View the application as a guest user, or login to experience for added functionality.
+
+You can log in with the username: `charlie@turing.io` and password: `qwerty`.
+
 
 ## In Action
-#### Login page
-![](https://media.giphy.com/media/fUjp3cq9gW0bmRDmQ6/giphy.gif)
 
-#### User book request form
+#### Viewing favorites and movie details
+![](https://media.giphy.com/media/J3MgI9jbcc5bH9DuWr/giphy.gif)
 
-![](https://media.giphy.com/media/Ma0KBsi1ViUFUyCCAt/giphy.gif)
+#### Adding comments
+![](https://media.giphy.com/media/PnnJn3Bq4RJlKkO2KI/giphy.gif)
 
-#### Mobile view of the user's dashboard
+#### Deleting and adding a movie rating
+![](https://media.giphy.com/media/hrjgPy5yxUzPsNrO9i/giphy.gif)
 
-![](https://media.giphy.com/media/ZdUXsZsfHAFrvBkm1g/giphy.gif)
-![2020-06-09 20 41 30](https://user-images.githubusercontent.com/59381432/84221879-72228200-aa93-11ea-9e68-2d2e4e1189d1.gif)
+#### Logging out, navigating to home from login page
+![](https://media.giphy.com/media/lTdBWUuy3OBaDrOamM/giphy.gif)
+
+#### Logging in with incorrect & correct fields
+![](https://media.giphy.com/media/eiGo73mPT7cfRKWorx/giphy.gif)
 
 ### Wins
 - Finishing the functionality of the project with time to spare
@@ -60,8 +72,10 @@ Run `git clone git@github.com:attom2/fresh-tomatoes-microserver.git`
 - Adhering to RESTful design principles for routing
 
 ### Future Iterations..
-- Write a more robust testing suite with more tests for dom updates and fetches.
+- Write a more robust testing suite with more integration tests verifying user interaction.
+- Finish error handling to print errors to the DOM.
 - Upload microserver to heroku so data will persist 
+
 
 ## Technologies Used
 - React & Router
@@ -72,7 +86,3 @@ Run `git clone git@github.com:attom2/fresh-tomatoes-microserver.git`
 ## Systems/Practices
 - git/Version Control
 - Project Board ([on Trello](https://trello.com/b/Wjx5Jq9x/rancid-tomatillos))
-
-
-
-
