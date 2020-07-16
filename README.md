@@ -17,7 +17,7 @@ The user may delete their score and the User Interface is updated seamlessly.
 - Work with and navigate a shared, persistent API using GET, POST, and DELETE requests
 
 ## Setup
-(1)
+**(1)
 
 Clone down this repository to your local machine.
 
@@ -29,7 +29,7 @@ Run `npm start`.
 
 In your browser, navigate to `localhost:3000`.
 
-(2)
+**(2)
 
 To enable the comment & favoriting feature on the app...
 
@@ -43,7 +43,7 @@ Once cloned, change into this repo's directy.
 
 Run `nodemon server.js`.
 
-(3)
+**(3)
 
 View the application as a guest user, or login to experience for added functionality.
 
