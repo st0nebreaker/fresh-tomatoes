@@ -45,7 +45,7 @@ Run `nodemon server.js`.
 
 **(3)**
 
-View the application as a guest user, or login to experience for added functionality.
+View the application as a guest user, or login to experience added functionality.
 
 You can log in with the username: `charlie@turing.io` and password: `qwerty`.
 
