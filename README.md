@@ -29,7 +29,9 @@ Run `npm start`.
 
 In your browser, navigate to `localhost:3000`.
 
-(2) To enable the comment & favoriting feature on the app...
+(2)
+
+To enable the comment & favoriting feature on the app...
 
 Clone down our [microserver repository](https://github.com/b-stein) to your local machine.
 
@@ -45,11 +47,21 @@ You can log in with the username: `charlie@turing.io` and password: `qwerty`.
 
 
 ## In Action
-![](https://media.giphy.com/media/fUjp3cq9gW0bmRDmQ6/giphy.gif)
 
-![](https://media.giphy.com/media/Ma0KBsi1ViUFUyCCAt/giphy.gif)
+#### Viewing favorites and movie details
+![](https://media.giphy.com/media/J3MgI9jbcc5bH9DuWr/giphy.gif)
 
-![](https://media.giphy.com/media/ZdUXsZsfHAFrvBkm1g/giphy.gif)
+#### Adding comments
+![](https://media.giphy.com/media/PnnJn3Bq4RJlKkO2KI/giphy.gif)
+
+#### Deleting and adding a movie rating
+![](https://media.giphy.com/media/hrjgPy5yxUzPsNrO9i/giphy.gif)
+
+#### Logging out, navigating to home from login page
+![](https://media.giphy.com/media/lTdBWUuy3OBaDrOamM/giphy.gif)
+
+#### Logging in with incorrect & correct fields
+![](https://media.giphy.com/media/eiGo73mPT7cfRKWorx/giphy.gif)
 
 ### Wins
 - Creating first React app with relative ease and quick bug mitigation.
