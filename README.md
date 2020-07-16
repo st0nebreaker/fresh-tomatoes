@@ -1,14 +1,14 @@
 # Fresh Tomatoes
-### Contributor
-- Andy Tom (GitHub: [attom2](https://github.com/attom2))
+### Contributors
 - Becca Steinbrecher (GitHub: [b-stein](https://github.com/b-stein))
+- Andy Tom (GitHub: [attom2](https://github.com/attom2))
 
 ## Abstract
-This application is a travel agency service platform. A viewer can sign in as a user or agent.
+This application is a rotten tomatoes clone. It supports user interactions through a multi-page experience.
 
-The travel user has the capabilities to view all their trips, past, present, future, pending; along with the details for each trip. They can also request a new booking.
+The user has the capabilities to view all movies, select favorite movies, and view just those movies. They may view movie details such as release date and add comments to each movie.
 
-An agent can view all user trips. Their landing page display the company's calendar-year revenue, trip requests, and trips active today. Using the search bar an agent can look up any user and view their entire trip log. The agent can approve or deny pending trips or delete upcoming trips.
+The user may delete their score and the User Interface is updated seamlessly. 
 
 ## Learning Goals
 - Reinforce React fundamentals
@@ -34,6 +34,8 @@ In your browser, navigate to `localhost:3000`.
 To enable the comment & favoriting feature on the app...
 
 Clone down our [microserver repository](https://github.com/b-stein) to your local machine.
+--OR--
+Run `git clone git@github.com:attom2/fresh-tomatoes-microserver.git`
 
 Once cloned, change into this repo's directy.
 
@@ -64,18 +66,22 @@ You can log in with the username: `charlie@turing.io` and password: `qwerty`.
 ![](https://media.giphy.com/media/eiGo73mPT7cfRKWorx/giphy.gif)
 
 ### Wins
-- Creating first React app with relative ease and quick bug mitigation.
-- Implementing backend endpoints and data via Express.
+- Finishing the functionality of the project with time to spare
+- Using a new technology, express, to set up interactions with node.js
+- Using stateful class components to transfer data
+- Adhering to RESTful design principles for routing
 
 ### Future Iterations..
 - Write a more robust testing suite with more integration tests verifying user interaction.
 - Finish error handling to print errors to the DOM.
+- Upload microserver to heroku so data will persist 
+
 
 ## Technologies Used
-- React
-- Router
-- Express.js
-- Jest
+- React & Router
+- Jest & React-testing-library
+- SCSS/SASS
+- Fetch API
 
 ## Systems/Practices
 - git/Version Control
