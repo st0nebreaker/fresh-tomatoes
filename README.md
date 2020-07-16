@@ -15,6 +15,7 @@ The user may delete their score and the User Interface is updated seamlessly.
 - Reinforce using React Router to create a multi-page user experience
 - Reinforce component and asynchronous JS testing
 - Work with and navigate a shared, persistent API using GET, POST, and DELETE requests
+- Create a microserver using Express.js
 
 ## Setup
 **(1)**
