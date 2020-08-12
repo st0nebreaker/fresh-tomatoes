@@ -53,7 +53,7 @@ class MovieDetails extends Component {
     try {
       const data = fetchMovieComments(this.props.id);
       this.setState({ comments: data[this.props.id] });
-    } catch(error) {
+    } catch (error) {
       console.log(error.message);
     }
   }
