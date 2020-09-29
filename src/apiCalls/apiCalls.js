@@ -57,7 +57,7 @@ export const fetchOneMovie = async (givenID) => {
 }
 
 export const getAllFavoritesApi = async () => {
-  const response = await fetch("https://fresh-tomatoes-microserver.herokuapp.com/favorites");
+  const response = await fetch("https://fresh-tomatoes-microserver.herokuapp.com/api/v1/favorites");
   const data = await response.json();
   return data;
 }
@@ -72,7 +72,7 @@ export const postFavorite = async (movieID, userID) => {
     }),
   };
 
-  const response = await fetch("https://fresh-tomatoes-microserver.herokuapp.com/favorites", request);
+  const response = await fetch("https://fresh-tomatoes-microserver.herokuapp.com/api/v1/favorites", request);
   const data = await response.json();
   return data;
 };
@@ -88,7 +88,7 @@ export const removeFavorite = async (movieID, userID) => {
   };
 
   const response = await fetch(
-    "https://fresh-tomatoes-microserver.herokuapp.com/favorites",
+    "https://fresh-tomatoes-microserver.herokuapp.com/api/v1/favorites",
     request
   );
 
@@ -97,13 +97,13 @@ export const removeFavorite = async (movieID, userID) => {
 };
 
 export const getAllComments = async () => {
-  const response = await fetch("https://fresh-tomatoes-microserver.herokuapp.com/comments");
+  const response = await fetch("https://fresh-tomatoes-microserver.herokuapp.com/api/v1/comments");
   const data = await response.json();
   return data;
 };
 
 export const fetchMovieComments = async (givenID) => {
-  const response = await fetch(`https://fresh-tomatoes-microserver.herokuapp.com/comments/${givenID}`);
+  const response = await fetch(`https://fresh-tomatoes-microserver.herokuapp.com/api/v1/comments/${givenID}`);
   const data = await response.json();
   return data;
 };
@@ -119,7 +119,7 @@ export const postNewComment = async (givenID, userID, comment, userName) => {
       movie_id: givenID
     })
   };
-  const response = await fetch(`https://fresh-tomatoes-microserver.herokuapp.com/comments/${givenID}`, request);
+  const response = await fetch(`https://fresh-tomatoes-microserver.herokuapp.com/api/v1/comments/${givenID}`, request);
   const data = await response.json();
   return data;
 };
