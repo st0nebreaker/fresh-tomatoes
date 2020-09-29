@@ -1,6 +1,6 @@
 header {
   background-color: red;
-  opacity: 85%;
+  opacity: .85;
   min-height: 13vh;
   display: flex;
   flex-direction: column;
